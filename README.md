@@ -20,3 +20,14 @@ To run the project using npm, follow these steps:
 If you encounter any issues while running the project, check the project's documentation or contact the developer for assistance.
 
 ---
+
+This deliverable includes the following:
+
+- A ProductManager class that can be found in the index.js file. The class includes the following methods:
+  - addProduct
+  - getProducts
+  - getProductById
+  
+  The code for these methods has been implemented using ECMAScript classes and advanced features.
+  
+- Basic tests for the ProductManager class and its methods. The tests have been written in plain javascript but have not been implemented using a testing framework yet.
