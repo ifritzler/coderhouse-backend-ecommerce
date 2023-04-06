@@ -1,0 +1,26 @@
+{
+  "name": "coderhouse-backend-ecommerce",
+  "version": "0.0.1",
+  "description": "Node.js ecommerce backend using MERN stack for full-stack development.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ifritzler/coderhouse-backend-ecommerce.git"
+  },
+  "keywords": [
+    "coderhouse",
+    "backend",
+    "mern",
+    "ecommerce"
+  ],
+  "author": "Ilan Emanuel Fritzler (ifritzler)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ifritzler/coderhouse-backend-ecommerce/issues"
+  },
+  "homepage": "https://github.com/ifritzler/coderhouse-backend-ecommerce#readme"
+}
