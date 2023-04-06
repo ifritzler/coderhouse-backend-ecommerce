@@ -17,13 +17,13 @@ class ProductManager {
     addProduct({ title, description, price, thumbnail, code, stock }) {
         // Validar que no se repita el campo “code” y que todos los campos sean obligatorios.
         // Mas adelante pueden validarse tambien los tipos de dato para proveer de robustes al backend.
-        if(!title || !description || !price || !thumbnail || !code || !stock) {
+        if (!title || !description || !price || !thumbnail || !code || !stock) {
             console.error('The properties "title", "description", "price", "thumbnail", "code" and "stock" are required.');
             // throw new Error('The properties "title", "description", "price", "thumbnail", "code" and "stock" are required.')
             return;
         }
         // debe arrojar error en caso de querer sumar un producto con un codigo existente.
-        if(this.products.find(product => product.code === code)) {
+        if (this.products.find(product => product.code === code)) {
             console.error(`The code ${code} is already exists. Please try again with different code.`);
             // throw new Error(`The code ${code} is already exists. Please try again with different code.`);
             return;
@@ -46,7 +46,7 @@ class ProductManager {
     // getProductById debe devolver error si no encuentra el producto o el producto mismo en caso de encontrarlo
     getProductById(pid) {
         const found = this.products.find(product => product.id === pid);
-        if(!found) {
+        if (!found) {
             console.error(`Product with id ${pid} not found.`);
             // throw new Error(`Product with id ${pid} not found.`);
             return;
@@ -54,3 +54,41 @@ class ProductManager {
         return found;
     }
 }
+
+/**
+ * @test
+ * Testeando el entregable
+ */
+// Se creará una instancia de la clase “ProductManager”
+const productManager = new ProductManager();
+// Se llamará “getProducts” recién creada la instancia, debe devolver un arreglo vacío []
+console.log(productManager.getProducts());
+// Se llamará al método “addProduct” con los siguientes campos:
+const productInputData = {
+    title: 'Prueba',
+    description: 'Este es un producto prueba',
+    price: 200,
+    thumbnail: 'Sin imagen',
+    code: 'abc123',
+    stock: 25
+};
+const secondProductInputData = {
+    title: 'Prueba2',
+    description: 'Este es un producto prueba2',
+    price: 200,
+    thumbnail: 'Sin imagen',
+    code: 'abc1232',
+    stock: 20
+};
+// El objeto debe agregarse satisfactoriamente con un id generado automáticamente SIN REPETIRSE
+productManager.addProduct(productInputData);
+productManager.addProduct(secondProductInputData);
+// Se llamará el método “getProducts” nuevamente, esta vez debe aparecer el producto recién agregado
+console.log(productManager.getProducts());
+// Se llamará al método “addProduct” con los mismos campos de arriba, debe arrojar un error porque el código estará repetido.
+productManager.addProduct(productInputData);
+// Se evaluará que getProductById devuelva error si no encuentra el producto o el producto en caso de encontrarlo
+const productFound = productManager.getProductById(1);
+const productFoundWithError = productManager.getProductById(999);
+
+console.log({ productFound, productFoundWithError });
