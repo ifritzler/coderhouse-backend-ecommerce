@@ -9,6 +9,17 @@
 
 const fs = require('fs');
 
+// Devuelve un conjunto de propiedades pertenecientes a un objeto que no tengan un valor indefinido.
+function cleanUndefinedProperties(obj) {
+    const newObject = {};
+    for (let prop in obj) {
+        if (typeof obj[prop] !== 'undefined') {
+            newObject[prop] = obj[prop];
+        }
+    }
+    return newObject;
+}
+
 class ProductManager {
     // La clase ProductManager debe contar con una variable this.path, el cual se inicializará desde el constructor y debe recibir 
     // la ruta a trabajar desde el momento de generar su instancia.
@@ -52,12 +63,44 @@ class ProductManager {
     // El método getProductById, debe recibir un id, y tras leer el archivo, 
     // debe buscar el producto con el id especificado y devolverlo en formato objeto.
     async getProductById(pid) {
-        const products = await this.getProducts()
+        const products = await this.getProducts();
         const found = products.find(product => product.id === pid);
         if (!found) {
             throw new Error(`Product with id ${pid} not found.`);
         }
         return found;
+    }
+    // Debe tener un método updateProduct, el cual debe recibir el id del producto a actualizar, 
+    // así también como el campo a actualizar (puede ser el objeto completo, como en una DB), y 
+    // debe actualizar el producto que tenga ese id en el archivo. NO DEBE BORRARSE SU ID 
+    async updateProduct(pid, data) {
+        try {
+            const product = await this.getProductById(pid);
+            // Saco el id por las dudas que me lo manden en el objeto.
+            const { id: _id, ...changes } = data;
+            // Este proceso de limpieza me asegura de forma declarativa que no voy a poder ingresar
+            // ningun atributo extra al primer nivel del producto a travez de un update.
+            const unclenedChanges = {
+                title: changes.title,
+                description: changes.description,
+                price: changes.price,
+                thumbnail: changes.thumbnail,
+                code: changes.code,
+                stock: changes.stock
+            };
+            const productChanges = cleanUndefinedProperties(unclenedChanges);
+            // Genero el nuevo producto con sus cambios.
+            const productUpdated = { ...product, ...productChanges };
+            const products = await this.getProducts();
+            const productIndex = products.findIndex(p => p.id === pid);
+            // Actualizo el producto en la lista de productos.
+            products[productIndex] = productUpdated;
+            // Escribo en el archivo la modificacion.
+            await fs.promises.writeFile(this.path, JSON.stringify(products, null, 2));
+            return productUpdated;
+        } catch (error) {
+            throw error
+        }
     }
 }
 
@@ -70,7 +113,7 @@ async function testingDeliverable() {
     try {
         const productManager = new ProductManager('products.json');
         // Se llamará “getProducts” recién creada la instancia, debe devolver un arreglo vacío []
-        console.log(productManager.getProducts());
+        console.log(await productManager.getProducts());
         // Se llamará al método “addProduct” con los siguientes campos:
         const productInputData = {
             title: 'Prueba',
@@ -89,17 +132,25 @@ async function testingDeliverable() {
             stock: 20
         };
         // El objeto debe agregarse satisfactoriamente con un id generado automáticamente SIN REPETIRSE
-        // await productManager.addProduct(productInputData);
+        await productManager.addProduct(productInputData);
         await productManager.addProduct(secondProductInputData);
         // Se llamará el método “getProducts” nuevamente, esta vez debe aparecer el producto recién agregado
-        console.log(productManager.getProducts());
+        console.log(await productManager.getProducts());
         // Se llamará al método “addProduct” con los mismos campos de arriba, debe arrojar un error porque el código estará repetido.
         await productManager.addProduct(productInputData);
         // Se evaluará que getProductById devuelva error si no encuentra el producto o el producto en caso de encontrarlo
-        // const productFound = productManager.getProductById(1);
+        const productFound = await productManager.getProductById(1);
         // const productFoundWithError = productManager.getProductById(999);
+        console.log({ productFound });
 
-        // console.log({ productFound, productFoundWithError });
+        // Actualizacion de Producto con id 1
+        // Se le tratan de ingresar un id y una propiedad extra para verificar que esta todo funcionando ok.
+        const productUpdated = await productManager.updateProduct(1, {
+            id: 999,
+            greetings: 'hello everyone', 
+            title: 'Prueba actualizada2'
+         });
+        console.log(productUpdated);
     } catch (error) {
         console.error(error);
     }
