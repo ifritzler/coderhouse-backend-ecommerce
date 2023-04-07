@@ -102,6 +102,13 @@ class ProductManager {
             throw error
         }
     }
+    // Debe tener un método deleteProduct, el cual debe recibir un id y debe eliminar el producto que tenga ese id en el archivo.
+    async deleteProduct (pid) {
+        const products = await this.getProducts();
+        if(products.find(product => product.id === id)) throw new Error(`Product with id ${pid} not found.`);
+        const newProducts = products.filter(product => product.id !== pid);
+        await fs.promises.writeFile(this.path, JSON.stringify(newProducts, null, 2));
+    }
 }
 
 /**
