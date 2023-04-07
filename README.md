@@ -5,9 +5,9 @@ Node.js ecommerce backend using MERN stack for full-stack development.
 - **Tutor**: Ivan Passalia
 - **Commission**: 51380
 
-### Challenge 1: Clases ECMAScript y ECMAScript avanzado
+### Challenge 2: Manejo de Archivos
 
-To complete Challenge 1 for the course, I have implemented the necessary functionality using ECMAScript classes and advanced features. The code for this challenge can be found in the appropriate files.
+To complete Challenge 2 for the course, I have implemented the necessary functionality using ECMAScript classes and advanced features with the file system library included in nodejs. The code for this challenge can be found in the appropriate files.
 
 ## Running the Project with npm
 
@@ -27,7 +27,8 @@ This deliverable includes the following:
   - addProduct
   - getProducts
   - getProductById
-  
+  - updateProduct
+  - deleteProduct
   The code for these methods has been implemented using ECMAScript classes and advanced features.
   
 - Basic tests for the ProductManager class and its methods. The tests have been written in plain javascript but have not been implemented using a testing framework yet.
