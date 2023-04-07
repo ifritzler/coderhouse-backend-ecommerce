@@ -8,10 +8,13 @@
 // Los comentarios pueden ser excesivos para tan poco codigo, pero va con la intencion de ir al grano en lo que pide la consigna 
 // y dar cuenta de que no falta nada de lo que se pide ademas de agregar el proceso de pensamiento de la entrega.
 
+const fs = require('fs');
+
 class ProductManager {
-    // Debe crearse desde su constructor con el elemento products, el cual será un arreglo vacío
-    constructor() {
-        this.products = [];
+    // La clase ProductManager debe contar con una variable this.path, el cual se inicializará desde el constructor y debe recibir 
+    // la ruta a trabajar desde el momento de generar su instancia.
+    constructor(path) {
+        this.path = path;
     }
     // Debe contar con un método “addProduct” el cual agregará un producto al arreglo de productos inicial.
     addProduct({ title, description, price, thumbnail, code, stock }) {
