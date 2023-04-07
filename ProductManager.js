@@ -26,10 +26,7 @@ class ProductManager {
         if (!title || !description || !price || !thumbnail || !code || !stock) {
             throw new Error('The properties "title", "description", "price", "thumbnail", "code" and "stock" are required.');
         }
-        // Si el archivo existe busco los datos, de lo contrario devuelvo un arreglo vacio.
-        const products = fs.existsSync(this.path)
-            ? JSON.parse(await fs.promises.readFile(this.path, { encoding: 'utf-8' }))
-            : [];
+        const products = await this.getProducts();
         // debe arrojar error en caso de querer sumar un producto con un codigo existente.
         if (products.find(product => product.code === code)) {
             throw new Error(`The code ${code} is already exists. Please try again with different code.`);
@@ -45,14 +42,18 @@ class ProductManager {
         // Mas adelante devolver el nuevo producto con su id puede ser de utilidad para no repetir una query a base de datos.
         return newProduct;
     }
-    // Debe contar con un método “getProducts” el cual debe devolver 
-    // el arreglo con todos los productos creados hasta ese momento
-    getProducts() {
-        return this.products;
+    // El método getProducts, debe leer el archivo de productos y devolver todos los productos en formato de arreglo.
+    async getProducts() {
+        // Si el archivo existe busco los datos, de lo contrario devuelvo un arreglo vacio.
+        const products = fs.existsSync(this.path)
+            ? JSON.parse(await fs.promises.readFile(this.path, { encoding: 'utf-8' }))
+            : [];
+        return products;
     }
     // getProductById debe devolver error si no encuentra el producto o el producto mismo en caso de encontrarlo
-    getProductById(pid) {
-        const found = this.products.find(product => product.id === pid);
+    async getProductById(pid) {
+        const products = await this.getProducts()
+        const found = products.find(product => product.id === pid);
         if (!found) {
             console.error(`Product with id ${pid} not found.`);
             // throw new Error(`Product with id ${pid} not found.`);
@@ -99,7 +100,7 @@ async function testingDeliverable() {
         // Se evaluará que getProductById devuelva error si no encuentra el producto o el producto en caso de encontrarlo
         // const productFound = productManager.getProductById(1);
         // const productFoundWithError = productManager.getProductById(999);
-    
+
         // console.log({ productFound, productFoundWithError });
     } catch (error) {
         console.error(error);
