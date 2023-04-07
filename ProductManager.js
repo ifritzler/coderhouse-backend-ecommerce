@@ -115,49 +115,40 @@ class ProductManager {
  * @test
  * Testeando el entregable
  */
-// Se creará una instancia de la clase “ProductManager”
 async function testingDeliverable() {
     try {
+        // Se creará una instancia de la clase “ProductManager”
         const productManager = new ProductManager('products.json');
         // Se llamará “getProducts” recién creada la instancia, debe devolver un arreglo vacío []
         console.log(await productManager.getProducts());
         // Se llamará al método “addProduct” con los siguientes campos:
         const productInputData = {
-            title: 'Prueba',
+            title: 'producto prueba',
             description: 'Este es un producto prueba',
             price: 200,
             thumbnail: 'Sin imagen',
             code: 'abc123',
             stock: 25
         };
-        const secondProductInputData = {
-            title: 'Prueba2',
-            description: 'Este es un producto prueba2',
-            price: 200,
-            thumbnail: 'Sin imagen',
-            code: 'abc1232',
-            stock: 20
-        };
         // El objeto debe agregarse satisfactoriamente con un id generado automáticamente SIN REPETIRSE
         await productManager.addProduct(productInputData);
-        await productManager.addProduct(secondProductInputData);
         // Se llamará el método “getProducts” nuevamente, esta vez debe aparecer el producto recién agregado
         console.log(await productManager.getProducts());
-        // Se llamará al método “addProduct” con los mismos campos de arriba, debe arrojar un error porque el código estará repetido.
-        await productManager.addProduct(productInputData);
-        // Se evaluará que getProductById devuelva error si no encuentra el producto o el producto en caso de encontrarlo
+        // Se llamará al método “getProductById” y se corroborará que devuelva el 
+        // producto con el id especificado, en caso de no existir, debe arrojar un error.
         const productFound = await productManager.getProductById(1);
-        // const productFoundWithError = productManager.getProductById(999);
-        console.log({ productFound });
-
-        // Actualizacion de Producto con id 1
-        // Se le tratan de ingresar un id y una propiedad extra para verificar que esta todo funcionando ok.
+        console.log(productFound);
+        // Se llamará al método “updateProduct” y se intentará cambiar un campo 
+        // de algún producto, se evaluará que no se elimine el id y que sí se haya hecho la actualización.
         const productUpdated = await productManager.updateProduct(1, {
             id: 999,
             greetings: 'hello everyone', 
             title: 'Prueba actualizada2'
          });
         console.log(productUpdated);
+        // Se llamará al método “deleteProduct”, se evaluará que realmente se elimine el producto 
+        // o que arroje un error en caso de no existir.
+         await productManager.deleteProduct(1);
     } catch (error) {
         console.error(error);
     }
