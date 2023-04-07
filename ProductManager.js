@@ -16,28 +16,32 @@ class ProductManager {
     constructor(path) {
         this.path = path;
     }
-    // Debe contar con un método “addProduct” el cual agregará un producto al arreglo de productos inicial.
-    addProduct({ title, description, price, thumbnail, code, stock }) {
+    // addProduct debe recibir un objeto con el formato previamente especificado, asignarle un id autoincrementable y 
+    // guardarlo en el arreglo (siempre guardarlo como un array en el archivo).
+    // Debe guardar objetos con el siguiente formato:
+    async addProduct(productInputData) {
+        const { title, description, price, thumbnail, code, stock } = productInputData;
         // Validar que no se repita el campo “code” y que todos los campos sean obligatorios.
         // Mas adelante pueden validarse tambien los tipos de dato para proveer de robustes al backend.
         if (!title || !description || !price || !thumbnail || !code || !stock) {
-            console.error('The properties "title", "description", "price", "thumbnail", "code" and "stock" are required.');
-            // throw new Error('The properties "title", "description", "price", "thumbnail", "code" and "stock" are required.')
-            return;
+            throw new Error('The properties "title", "description", "price", "thumbnail", "code" and "stock" are required.');
         }
+        // Si el archivo existe busco los datos, de lo contrario devuelvo un arreglo vacio.
+        const products = fs.existsSync(this.path)
+            ? JSON.parse(await fs.promises.readFile(this.path, { encoding: 'utf-8' }))
+            : [];
         // debe arrojar error en caso de querer sumar un producto con un codigo existente.
-        if (this.products.find(product => product.code === code)) {
-            console.error(`The code ${code} is already exists. Please try again with different code.`);
-            // throw new Error(`The code ${code} is already exists. Please try again with different code.`);
-            return;
+        if (products.find(product => product.code === code)) {
+            throw new Error(`The code ${code} is already exists. Please try again with different code.`);
         }
         // Al agregarlo, debe crearse con un id autoincrementable
         // Uso el operador "optional chaining (?.)" para evitar posible error de acceso por desborde y asignar por default el valor 1 al id.
-        const id = this.products[this.products.length - 1]?.id + 1 || 1;
+        const id = products[products.length - 1]?.id + 1 || 1;
         const newProduct = {
             id, title, description, price, thumbnail, code, stock
         };
-        this.products.push(newProduct);
+        products.push(newProduct);
+        await fs.promises.writeFile(this.path, JSON.stringify(products, null, 2));
         // Mas adelante devolver el nuevo producto con su id puede ser de utilidad para no repetir una query a base de datos.
         return newProduct;
     }
@@ -63,35 +67,43 @@ class ProductManager {
  * Testeando el entregable
  */
 // Se creará una instancia de la clase “ProductManager”
-const productManager = new ProductManager();
-// Se llamará “getProducts” recién creada la instancia, debe devolver un arreglo vacío []
-console.log(productManager.getProducts());
-// Se llamará al método “addProduct” con los siguientes campos:
-const productInputData = {
-    title: 'Prueba',
-    description: 'Este es un producto prueba',
-    price: 200,
-    thumbnail: 'Sin imagen',
-    code: 'abc123',
-    stock: 25
-};
-const secondProductInputData = {
-    title: 'Prueba2',
-    description: 'Este es un producto prueba2',
-    price: 200,
-    thumbnail: 'Sin imagen',
-    code: 'abc1232',
-    stock: 20
-};
-// El objeto debe agregarse satisfactoriamente con un id generado automáticamente SIN REPETIRSE
-productManager.addProduct(productInputData);
-productManager.addProduct(secondProductInputData);
-// Se llamará el método “getProducts” nuevamente, esta vez debe aparecer el producto recién agregado
-console.log(productManager.getProducts());
-// Se llamará al método “addProduct” con los mismos campos de arriba, debe arrojar un error porque el código estará repetido.
-productManager.addProduct(productInputData);
-// Se evaluará que getProductById devuelva error si no encuentra el producto o el producto en caso de encontrarlo
-const productFound = productManager.getProductById(1);
-const productFoundWithError = productManager.getProductById(999);
+async function testingDeliverable() {
+    try {
+        const productManager = new ProductManager('products.json');
+        // Se llamará “getProducts” recién creada la instancia, debe devolver un arreglo vacío []
+        console.log(productManager.getProducts());
+        // Se llamará al método “addProduct” con los siguientes campos:
+        const productInputData = {
+            title: 'Prueba',
+            description: 'Este es un producto prueba',
+            price: 200,
+            thumbnail: 'Sin imagen',
+            code: 'abc123',
+            stock: 25
+        };
+        const secondProductInputData = {
+            title: 'Prueba2',
+            description: 'Este es un producto prueba2',
+            price: 200,
+            thumbnail: 'Sin imagen',
+            code: 'abc1232',
+            stock: 20
+        };
+        // El objeto debe agregarse satisfactoriamente con un id generado automáticamente SIN REPETIRSE
+        // await productManager.addProduct(productInputData);
+        await productManager.addProduct(secondProductInputData);
+        // Se llamará el método “getProducts” nuevamente, esta vez debe aparecer el producto recién agregado
+        console.log(productManager.getProducts());
+        // Se llamará al método “addProduct” con los mismos campos de arriba, debe arrojar un error porque el código estará repetido.
+        await productManager.addProduct(productInputData);
+        // Se evaluará que getProductById devuelva error si no encuentra el producto o el producto en caso de encontrarlo
+        // const productFound = productManager.getProductById(1);
+        // const productFoundWithError = productManager.getProductById(999);
+    
+        // console.log({ productFound, productFoundWithError });
+    } catch (error) {
+        console.error(error);
+    }
+}
 
-console.log({ productFound, productFoundWithError });
+testingDeliverable();
