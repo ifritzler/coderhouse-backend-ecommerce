@@ -2,10 +2,9 @@
  * @author Ilan Emanuel Fritzler
  * @tutor Ivan Passalia
  */
-// En esta entrega decidi utilizar solo console.error en lugar de lanzar errores con throw new Error('mensaje');
-// Ya que esto aligera el proceso de testeo para el tutor. Dejaré en formato de comentario la forma ideal de trabajar con new Error
 // Mas adelante creo ideal poder centralizar los errores en interceptores y middlewares cuando se comienze con express.
-// Los comentarios pueden ser excesivos para tan poco codigo, pero va con la intencion de ir al grano en lo que pide la consigna 
+// Los comentarios pueden ser excesivos para tan poco codigo, pero va con la intencion de dejar cada consigna escrita 
+// donde el codigo soluciona 
 // y dar cuenta de que no falta nada de lo que se pide ademas de agregar el proceso de pensamiento de la entrega.
 
 const fs = require('fs');
@@ -50,14 +49,13 @@ class ProductManager {
             : [];
         return products;
     }
-    // getProductById debe devolver error si no encuentra el producto o el producto mismo en caso de encontrarlo
+    // El método getProductById, debe recibir un id, y tras leer el archivo, 
+    // debe buscar el producto con el id especificado y devolverlo en formato objeto.
     async getProductById(pid) {
         const products = await this.getProducts()
         const found = products.find(product => product.id === pid);
         if (!found) {
-            console.error(`Product with id ${pid} not found.`);
-            // throw new Error(`Product with id ${pid} not found.`);
-            return;
+            throw new Error(`Product with id ${pid} not found.`);
         }
         return found;
     }
