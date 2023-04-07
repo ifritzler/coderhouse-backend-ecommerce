@@ -29,6 +29,7 @@ This deliverable includes the following:
   - getProductById
   - updateProduct
   - deleteProduct
+  
   The code for these methods has been implemented using ECMAScript classes and advanced features.
   
 - Basic tests for the ProductManager class and its methods. The tests have been written in plain javascript but have not been implemented using a testing framework yet.
