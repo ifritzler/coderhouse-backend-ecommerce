@@ -7,7 +7,7 @@ class ProductManager {
         this.path = path;
     }
 
-    async addProduct(productInputData) {
+    async addProduct(productInputData = {}) {
         const { title, description, price, thumbnail, code, stock } = productInputData;
         if (!title || !description || !price || !thumbnail || !code || !stock) {
             throw new ProductValidationError();
@@ -43,7 +43,7 @@ class ProductManager {
         return found;
     }
 
-    async updateProduct(pid, data) {
+    async updateProduct(pid, data = {}) {
         const { id: _id, ...changes } = data;
         // Limpio los datos que me llegan
         const unclenedChanges = {
@@ -59,6 +59,8 @@ class ProductManager {
         const products = await this.getProducts();
         const productIndex = products.findIndex(p => p.id === pid);
         if(productIndex === -1) throw new ProductNotFoundException(pid);
+        // Valido si hay code y si ya existe lanzo una excepcion.
+        if(products.find(p => p.code === productChanges.code)) throw new ProductCodeDuplicatedException(productChanges.code)
         // Consigo el producto usando concepto de inmutabiliad.
         const product = {...products[productIndex]};
         // Actualizo los datos del producto con los datos que me llegaron ya limpios.
@@ -70,6 +72,7 @@ class ProductManager {
         await fs.promises.writeFile(this.path, JSON.stringify(newProducts, null, 2));
         return productUpdated;
     }
+    
     async deleteProduct(pid) {
         const products = await this.getProducts();
         if (products.find(product => product.id === id)) throw new ProductNotFoundException(pid);

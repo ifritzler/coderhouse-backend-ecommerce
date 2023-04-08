@@ -20,6 +20,8 @@ class ProductInterceptor {
         if (err instanceof ProductNotFoundException) return next(new ApplicationError(err.message, 404));
         if (err instanceof ProductCodeDuplicatedException) return next(new ApplicationError(err.message, 409));
         if (err instanceof ProductValidationError) return next(new ApplicationError(err.message, 400));
+
+        throw err;
     }
 }
 
