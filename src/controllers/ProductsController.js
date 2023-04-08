@@ -2,9 +2,14 @@ const productService = require('../services/products/ProductService.js');
 
 class ProductsController {
     constructor() {
-        this.productService = productService
+        this.productService = productService;
     };
-
+    /**
+     * El servidor debe contar con los siguientes endpoints:
+     * ruta ‘/products’, la cual debe leer el archivo de productos y devolverlos 
+     * dentro de un objeto agregar el soporte para recibir por query param 
+     * el valor ?limit= el cual recibirá un límite de resultados.
+     */
     static async getAll(req, res) {
         const limit = parseInt(req.query.limit || 20);
         if (isNaN(limit)) {
@@ -15,17 +20,14 @@ class ProductsController {
         const products = await productService.getProducts(limit);
         res.status(200).json(products);
     }
-
+    /**
+     * ruta ‘/products/:pid’, la cual debe recibir por req.params el pid (product Id) 
+     * y devolver sólo el producto solicitado, en lugar de todos los productos.
+     */
     static async getById(req, res) {
-        try {
-            const { pid } = req.params;
-            const product = await productService.getProductById(parseInt(pid));
-            res.status(200).json(product);
-        } catch (error) {
-            res.status(404).json({
-                error: error.message
-            });
-        }
+        const { pid } = req.params;
+        const product = await productService.getProductById(parseInt(pid));
+        res.status(200).json(product);
     }
 }
 
