@@ -1,11 +1,12 @@
 {
   "name": "coderhouse-backend-ecommerce",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Node.js ecommerce backend using MERN stack for full-stack development.",
-  "main": "index.js",
+  "main": "src/app.js",
   "scripts": {
     "test": "jest",
-    "start": "node ProductManager.js"
+    "dev": "nodemon .",
+    "start": "node ."
   },
   "repository": {
     "type": "git",
@@ -22,5 +23,14 @@
   "bugs": {
     "url": "https://github.com/ifritzler/coderhouse-backend-ecommerce/issues"
   },
-  "homepage": "https://github.com/ifritzler/coderhouse-backend-ecommerce#readme"
+  "homepage": "https://github.com/ifritzler/coderhouse-backend-ecommerce#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  },
+  "nodemonConfig": {
+    "ignore": ["*.json"]
+  }
 }
