@@ -1,14 +1,5 @@
 const fs = require('fs');
-
-function cleanUndefinedProperties(obj) {
-    const newObject = {};
-    for (let prop in obj) {
-        if (typeof obj[prop] !== 'undefined') {
-            newObject[prop] = obj[prop];
-        }
-    }
-    return newObject;
-}
+const cleanUndefinedProperties = require('../../utils.js');
 
 class ProductManager {
     constructor(path) {
