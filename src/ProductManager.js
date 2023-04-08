@@ -31,11 +31,14 @@ class ProductManager {
         await fs.promises.writeFile(this.path, JSON.stringify(products, null, 2));
         return newProduct;
     }
-    async getProducts() {
+    async getProducts(limit = null) {
         const products = fs.existsSync(this.path)
             ? JSON.parse(await fs.promises.readFile(this.path, { encoding: 'utf-8' }))
             : [];
-        return products;
+        console.log(products)
+        // Si se recibe un límite, sólo devolver el número de productos solicitados
+        // Si no se recibe query de límite, se devolverán todos los productos
+        return limit ? products.slice(0, limit) : products;
     }
     async getProductById(pid) {
         const products = await this.getProducts();
@@ -77,4 +80,4 @@ class ProductManager {
     }
 }
 
-module.exports = ProductManager;
+module.exports = new ProductManager('./products.json');
