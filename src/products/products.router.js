@@ -1,7 +1,7 @@
-const { Router } = require('express');
-const ProductsController = require('../controllers/ProductsController.js');
+const {Router} = require('express');
+const ProductsController = require('./products.controller');
 const asyncHandler = require('express-async-handler');
-const ProductInterceptor = require('../middlewares/interceptors/ProductInterceptor.js');
+const ProductInterceptor = require('./products.interceptor');
 
 const productsRouter = Router();
 

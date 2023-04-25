@@ -1,10 +1,12 @@
 const fs = require('fs');
-const cleanUndefinedProperties = require('../../utils.js');
+const cleanUndefinedProperties = require('../app/utils.js');
+const app = require('../app/config/application.config')
+
 const {
     ProductValidationError,
     ProductCodeDuplicatedException,
     ProductNotFoundException
-} = require('../../exceptions/product/product.exceptions.js');
+} = require('./products.exceptions');
 
 class ProductService {
     constructor(path) {
@@ -12,7 +14,7 @@ class ProductService {
     }
 
     async addProduct(productInputData = {}) {
-        const { title, description, price, thumbnail, code, stock } = productInputData;
+        const {title, description, price, thumbnail, code, stock} = productInputData;
         if (!title || !description || !price || !thumbnail || !code || !stock) {
             throw new ProductValidationError();
         }
@@ -26,12 +28,13 @@ class ProductService {
         };
         products.push(newProduct);
         await fs.promises.writeFile(this.path, JSON.stringify(products, null, 2));
+        app.io.emit('product:created', newProduct);
         return newProduct;
     }
 
     async getProducts(limit = null) {
         const products = fs.existsSync(this.path)
-            ? JSON.parse(await fs.promises.readFile(this.path, { encoding: 'utf-8' }))
+            ? JSON.parse(await fs.promises.readFile(this.path, {encoding: 'utf-8'}))
             : [];
         return limit ? products.slice(0, limit) : products;
     }
@@ -46,7 +49,7 @@ class ProductService {
     }
 
     async updateProduct(pid, data = {}) {
-        const { id: _id, ...changes } = data;
+        const {id: _id, ...changes} = data;
         const productChanges = cleanUndefinedProperties(changes);
 
         const products = await this.getProducts();
@@ -58,8 +61,8 @@ class ProductService {
         if (codeExists) {
             throw new ProductCodeDuplicatedException(productChanges.code);
         }
-        const product = { ...products[productIndex] };
-        const productUpdated = { ...product, ...productChanges };
+        const product = {...products[productIndex]};
+        const productUpdated = {...product, ...productChanges};
         const newProducts = products.map((p, index) => index === productIndex ? productUpdated : p);
         await fs.promises.writeFile(this.path, JSON.stringify(newProducts, null, 2));
         return productUpdated;
@@ -67,10 +70,12 @@ class ProductService {
 
     async deleteProduct(pid) {
         const products = await this.getProducts();
-        if (products.find(product => product.id === id)) throw new ProductNotFoundException(pid);
-        const newProducts = products.filter(product => product.id !== pid);
-        await fs.promises.writeFile(this.path, JSON.stringify(newProducts, null, 2));
+        products.splice(productIndex, 1);
+        const productIndex = products.findIndex(product => product.id === pid);
+        if (productIndex === -1) throw new ProductNotFoundException(pid);
+        products.splice(productIndex, 1);
+        await fs.promises.writeFile(this.path, JSON.stringify(products, null, 2));
     }
 }
 
-module.exports = new ProductService('./database/products.json');
+module.exports = new ProductService('./src/app/database/products.json');

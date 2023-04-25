@@ -1,12 +1,23 @@
-const express = require('express');
-const apiRouter = require('./routes/api.router.js');
-const ErrorHandler = require('./middlewares/ErrorHandler.js');
+const registerProductListenEvents = require('./products/products.events');
+const app = require('./app/config/application.config');
 
-const app = express();
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }))
+const onDisconnect = async (socket) => {
+    socket.broadcast.emit('socket-disconnect', `The socketid: ${socket.id} is gone`);
+}
 
-app.use('/api', apiRouter);
-app.use(ErrorHandler.intercept);
+const onConnection = async (socket) => {
+    socket.on('disconnect', () => {
+        onDisconnect(socket)
+    })
+    socket.emit('hello', `Hello id: ${socket.id}`)
+    socket.broadcast.emit('new-socket-connected', `The socketid: ${socket.id} is connected`);
 
-module.exports = app;
+    registerProductListenEvents(app.io, socket);
+}
+
+
+app.io.on("connection", onConnection);
+
+
+const PORT = 8080;
+app.listen(PORT)

@@ -1,6 +1,6 @@
 const fs = require('fs');
-const { CartNotFoundException, ProductNotFoundInCartException } = require('../../exceptions/carts/cart.exceptions.js');
-const productsService = require('../products/ProductsService.js');
+const {CartNotFoundException, ProductNotFoundInCartException} = require('./carts.exceptions');
+const productsService = require('../products/products.service');
 
 class CartsService {
     constructor(path) {
@@ -9,7 +9,7 @@ class CartsService {
 
     async getAll(limit = null) {
         const carts = fs.existsSync(this.path)
-            ? JSON.parse(await fs.promises.readFile(this.path, { encoding: 'utf-8' }))
+            ? JSON.parse(await fs.promises.readFile(this.path, {encoding: 'utf-8'}))
             : [];
         return limit ? carts.slice(0, limit) : carts;
     }
@@ -77,4 +77,4 @@ class CartsService {
     }
 }
 
-module.exports = new CartsService('./database/carts.json');
+module.exports = new CartsService('./src/app/database/carts.json');

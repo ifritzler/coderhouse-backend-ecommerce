@@ -1,8 +1,5 @@
 /**
     Represents an error when a product with a given ID is not found.
-    @class
-    @extends Error
-    @param {string} id - The ID of the product that was not found.
 */
 class ProductNotFoundException extends Error {
     constructor(id) {
@@ -11,9 +8,6 @@ class ProductNotFoundException extends Error {
 }
 /**
     Represents an error when a product code is duplicated.
-    @class
-    @extends Error
-    @param {string} code - The code that is already in use.
  */
 class ProductCodeDuplicatedException extends Error {
     constructor(code) {
@@ -22,8 +16,6 @@ class ProductCodeDuplicatedException extends Error {
 }
 /**
     Represents an error when a product is missing required properties.
-    @class
-    @extends Error
 */
 class ProductValidationError extends Error {
     constructor() {

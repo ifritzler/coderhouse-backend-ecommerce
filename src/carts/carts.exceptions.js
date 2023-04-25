@@ -1,8 +1,5 @@
 /**
     Represents an error when a cart with a given ID is not found.
-    @class
-    @extends Error
-    @param {string} id - The ID of the product that was not found.
 */
 class CartNotFoundException extends Error {
     constructor(id) {
