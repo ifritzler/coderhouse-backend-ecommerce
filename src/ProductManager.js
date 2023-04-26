@@ -14,8 +14,9 @@ class ProductManager {
     constructor(path) {
         this.path = path;
     }
+
     async addProduct(productInputData) {
-        const { title, description, price, thumbnail, code, stock } = productInputData;
+        const {title, description, price, thumbnail, code, stock} = productInputData;
         if (!title || !description || !price || !thumbnail || !code || !stock) {
             throw new Error('The properties "title", "description", "price", "thumbnail", "code" and "stock" are required.');
         }
@@ -31,15 +32,16 @@ class ProductManager {
         await fs.promises.writeFile(this.path, JSON.stringify(products, null, 2));
         return newProduct;
     }
+
     async getProducts(limit = null) {
         const products = fs.existsSync(this.path)
-            ? JSON.parse(await fs.promises.readFile(this.path, { encoding: 'utf-8' }))
+            ? JSON.parse(await fs.promises.readFile(this.path, {encoding: 'utf-8'}))
             : [];
-        console.log(products)
         // Si se recibe un límite, sólo devolver el número de productos solicitados
         // Si no se recibe query de límite, se devolverán todos los productos
         return limit ? products.slice(0, limit) : products;
     }
+
     async getProductById(pid) {
         const products = await this.getProducts();
         const found = products.find(product => product.id === pid);
@@ -48,10 +50,11 @@ class ProductManager {
         }
         return found;
     }
+
     async updateProduct(pid, data) {
         try {
             const product = await this.getProductById(pid);
-            const { id: _id, ...changes } = data;
+            const {id: _id, ...changes} = data;
             const unclenedChanges = {
                 title: changes.title,
                 description: changes.description,
@@ -61,20 +64,21 @@ class ProductManager {
                 stock: changes.stock
             };
             const productChanges = cleanUndefinedProperties(unclenedChanges);
-            const productUpdated = { ...product, ...productChanges };
+            const productUpdated = {...product, ...productChanges};
             const products = await this.getProducts();
             const productIndex = products.findIndex(p => p.id === pid);
             products[productIndex] = productUpdated;
-            
+
             await fs.promises.writeFile(this.path, JSON.stringify(products, null, 2));
             return productUpdated;
         } catch (error) {
             throw error
         }
     }
-    async deleteProduct (pid) {
+
+    async deleteProduct(pid) {
         const products = await this.getProducts();
-        if(products.find(product => product.id === id)) throw new Error(`Product with id ${pid} not found.`);
+        if (products.find(product => product.id === id)) throw new Error(`Product with id ${pid} not found.`);
         const newProducts = products.filter(product => product.id !== pid);
         await fs.promises.writeFile(this.path, JSON.stringify(newProducts, null, 2));
     }
