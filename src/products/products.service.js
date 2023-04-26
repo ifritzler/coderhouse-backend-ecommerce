@@ -70,8 +70,8 @@ class ProductService {
 
     async deleteProduct(pid) {
         const products = await this.getProducts();
-        products.splice(productIndex, 1);
         const productIndex = products.findIndex(product => product.id === pid);
+        products.splice(productIndex, 1);
         if (productIndex === -1) throw new ProductNotFoundException(pid);
         products.splice(productIndex, 1);
         await fs.promises.writeFile(this.path, JSON.stringify(products, null, 2));
