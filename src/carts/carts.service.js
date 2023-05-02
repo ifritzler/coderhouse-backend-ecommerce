@@ -1,6 +1,6 @@
-const fs = require('fs')
-const { CartNotFoundException, ProductNotFoundInCartException } = require('./carts.exceptions')
-const productsService = require('../products/products.service')
+import fs from 'fs'
+import { CartNotFoundException, ProductNotFoundInCartException } from './carts.exceptions.js'
+import productsService from '../products/products.service.js'
 
 class CartsService {
   constructor (path) {
@@ -77,4 +77,4 @@ class CartsService {
   }
 }
 
-module.exports = new CartsService('./src/app/database/carts.json')
+export default new CartsService('./src/app/database/carts.json')

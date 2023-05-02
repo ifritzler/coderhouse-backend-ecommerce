@@ -1,14 +1,14 @@
-const { create } = require('express-handlebars')
+import { create } from 'express-handlebars'
 
 const hbs = create({
-  extname: 'html',
+  extname: 'handlebars',
   encoding: 'utf-8'
 })
 
 const handlebarsConfiguration = (expressApp) => {
-  expressApp.engine('html', hbs.engine)
-  expressApp.set('view engine', 'html')
+  expressApp.engine('handlebars', hbs.engine)
+  expressApp.set('view engine', 'handlebars')
   expressApp.set('views', './views')
 }
 
-module.exports = handlebarsConfiguration
+export default handlebarsConfiguration

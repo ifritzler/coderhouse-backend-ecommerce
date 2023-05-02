@@ -1,10 +1,10 @@
-const { Router } = require('express')
-const productsRouter = require('../../products/products.router')
-const cartsRouter = require('../../carts/carts.router')
+import { Router } from 'express'
+import productsRouter from '../../products/products.router.js'
+import cartsRouter from '../../carts/carts.router.js'
 
 const apiRouter = Router()
 
 apiRouter.use('/products', productsRouter)
 apiRouter.use('/carts', cartsRouter)
 
-module.exports = apiRouter
+export default apiRouter

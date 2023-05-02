@@ -1,10 +1,9 @@
-const ApplicationError = require('../exceptions/ApplicationError.js')
+import ApplicationError from '../exceptions/ApplicationError.js'
 /**
     A class that handles errors and sends appropriate responses to the client.
     @class
 */
 class ErrorHandler {
-  constructor () { };
   /**
         Intercepts errors and sends appropriate responses to the client.
         @static
@@ -31,4 +30,4 @@ class ErrorHandler {
   }
 }
 
-module.exports = ErrorHandler
+export default ErrorHandler

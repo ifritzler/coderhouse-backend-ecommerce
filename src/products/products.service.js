@@ -1,13 +1,9 @@
-const fs = require('fs')
-const cleanUndefinedProperties = require('../app/utils')
-const eventBus = require('../app/EventBus')
-const uuid = require('uuid')
+import { promises, existsSync } from 'fs'
+import cleanUndefinedProperties from '../app/utils.js'
+import eventBus from '../app/EventBus.js'
+import { v4 } from 'uuid'
 
-const {
-  ProductValidationError,
-  ProductCodeDuplicatedException,
-  ProductNotFoundException
-} = require('./products.exceptions')
+import { ProductValidationError, ProductNotFoundException, ProductCodeDuplicatedException } from './products.exceptions.js'
 
 class ProductService {
   constructor (path, eventBus) {
@@ -24,12 +20,12 @@ class ProductService {
     if (products.find(product => product.code === code)) {
       throw new ProductCodeDuplicatedException(code)
     }
-    const id = uuid.v4()
+    const id = v4()
     const newProduct = {
       id, title, description, price, thumbnail, code, stock
     }
     products.push(newProduct)
-    await fs.promises.writeFile(this.path, JSON.stringify(products, null, 2))
+    await promises.writeFile(this.path, JSON.stringify(products, null, 2))
 
     // Envio el evento a travez de node para que lo escuchen las partes interesadas, en este caso
     // la configuracion de sockets para darle aviso a todos los que estan conectados en realtime
@@ -38,8 +34,8 @@ class ProductService {
   }
 
   async getProducts (limit = null) {
-    const products = fs.existsSync(this.path)
-      ? JSON.parse(await fs.promises.readFile(this.path, { encoding: 'utf-8' }))
+    const products = existsSync(this.path)
+      ? JSON.parse(await promises.readFile(this.path, { encoding: 'utf-8' }))
       : []
     return limit ? products.slice(0, limit) : products
   }
@@ -69,7 +65,7 @@ class ProductService {
     const product = { ...products[productIndex] }
     const productUpdated = { ...product, ...productChanges }
     const newProducts = products.map((p, index) => index === productIndex ? productUpdated : p)
-    await fs.promises.writeFile(this.path, JSON.stringify(newProducts, null, 2))
+    await promises.writeFile(this.path, JSON.stringify(newProducts, null, 2))
     return productUpdated
   }
 
@@ -79,8 +75,8 @@ class ProductService {
     products.splice(productIndex, 1)
     if (productIndex === -1) throw new ProductNotFoundException(pid)
     products.splice(productIndex, 1)
-    await fs.promises.writeFile(this.path, JSON.stringify(products, null, 2))
+    await promises.writeFile(this.path, JSON.stringify(products, null, 2))
   }
 }
 
-module.exports = new ProductService('./src/app/database/products.json', eventBus)
+export default new ProductService('./src/app/database/products.json', eventBus)

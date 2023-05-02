@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "Node.js ecommerce backend using MERN stack for full-stack development.",
   "main": "src/app.js",
+  "type": "module",
   "scripts": {
     "test": "jest",
     "dev": "nodemon .",

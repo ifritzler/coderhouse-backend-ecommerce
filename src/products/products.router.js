@@ -1,7 +1,7 @@
-const { Router } = require('express')
-const ProductsController = require('./products.controller')
-const asyncHandler = require('express-async-handler')
-const ProductInterceptor = require('./products.interceptor')
+import { Router } from 'express'
+import ProductsController from './products.controller.js'
+import asyncHandler from 'express-async-handler'
+import ProductsInterceptor from './products.interceptor.js'
 
 const productsRouter = Router()
 
@@ -11,6 +11,6 @@ productsRouter.get('/:pid', asyncHandler(ProductsController.getById))
 productsRouter.put('/:pid', asyncHandler(ProductsController.updateById))
 productsRouter.delete('/:pid', asyncHandler(ProductsController.deleteById))
 
-productsRouter.use(ProductInterceptor.intercept)
+productsRouter.use(ProductsInterceptor.intercept)
 
-module.exports = productsRouter
+export default productsRouter

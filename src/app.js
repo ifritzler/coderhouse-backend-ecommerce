@@ -1,5 +1,5 @@
-const { httpServer: app, socketServer } = require('./app/config/application.config')
-const eventBus = require('./app/EventBus')
+import { httpServer as app, socketServer } from './app/config/application.config.js'
+import eventBus from './app/EventBus.js'
 
 const onConnection = async (socket) => {
   console.log('New Connection')
