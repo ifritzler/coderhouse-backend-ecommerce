@@ -1,6 +1,6 @@
 import { promises, existsSync } from 'fs'
 import { cleanUndefinedProperties } from '../app/utils.js'
-import { EventBus } from '../app/event-bus.js'
+import { eventBus } from '../app/event-bus.js'
 import { v4 } from 'uuid'
 
 import { ProductValidationError, ProductNotFoundException, ProductCodeDuplicatedException } from './products-exceptions.js'
@@ -79,4 +79,4 @@ export class ProductService {
   }
 }
 
-export const productService = new ProductService('./src/app/database/products.json', EventBus)
+export const productService = new ProductService('./src/app/database/products.json', eventBus)

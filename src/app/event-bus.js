@@ -4,3 +4,4 @@ import EventEmmiter from 'events'
 // conectar todas aquellas areas de la aplicacion que se desea tener desacopladas por completo
 // y actuan de forma independiente una de la otra.
 export class EventBus extends EventEmmiter {}
+export const eventBus = new EventBus()

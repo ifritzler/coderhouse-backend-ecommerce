@@ -5,7 +5,7 @@ Node.js ecommerce backend using MERN stack for full-stack development.
 - **Tutor**: Ivan Passalia
 - **Commission**: 51380
 
-### 👨‍💻 Challenge 4: 1er Pre entrega de Proyecto Final
+### 👨‍💻 Challenge 5: Websockets
 
 To complete "Pre entrega de Proyecto Final" for the course, I have implemented the necessary functionality using ECMAScript classes and advanced features with the file system library included in nodejs and the framework for web applications Express. The code for this challenge can be found in the appropriate files.
 
@@ -148,3 +148,7 @@ module.exports = app;
 | GET    | `/api/products/:pid` | `200`, `404`        | `id: number` | `none`                 |
 | PUT    | `/api/products/:pid` | `200`, `400`, `409` | `id: number` | `none`                 |
 | DELETE | `/api/products/:pid` | `200`, `404`        | `id: number` | `none`                 |
+
+# References
+- [Naming files and directories - kevanstannard - Devto](https://dev.to/kevanstannard/naming-files-and-directories-in-javascript-projects-35e4)
+- [Google style guide - Google](https://google.github.io/styleguide/jsguide.html#file-name)

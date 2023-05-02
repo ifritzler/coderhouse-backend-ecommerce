@@ -1,7 +1,14 @@
 import { Router } from 'express'
+import { productService } from '../../products/products-service.js'
 
 export const clientRouter = Router()
 
-clientRouter.use('/', (req, res) => {
-  res.render('index', { numbers: [1, 2, 3, 4, 5, 6, 7, 8] })
+clientRouter.get('/', async (req, res) => {
+  const products = await productService.getProducts()
+  res.render('index', { products })
+})
+
+clientRouter.get('/realtimeProducts', async (req, res) => {
+  const products = await productService.getProducts()
+  res.render('index', { products, socket: true })
 })
