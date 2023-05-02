@@ -1,5 +1,5 @@
-import { ApplicationError } from '../app/ApplicationError.js'
-import { ProductNotFoundException, ProductCodeDuplicatedException, ProductValidationError } from './products.exceptions.js'
+import { ApplicationError } from '../app/application-error.js'
+import { ProductNotFoundException, ProductCodeDuplicatedException, ProductValidationError } from './products-exceptions.js'
 
 /**
  * Interceptor for handling product-related exceptions.

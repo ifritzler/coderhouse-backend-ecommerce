@@ -1,4 +1,4 @@
-import { cartsService } from './carts.service.js'
+import { cartsService } from './carts-service.js'
 
 export class CartsController {
   static async getCartProducts (req, res) {

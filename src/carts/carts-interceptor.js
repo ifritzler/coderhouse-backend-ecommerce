@@ -1,5 +1,5 @@
-import { ApplicationError } from '../app/ApplicationError.js'
-import { CartNotFoundException, ProductNotFoundInCartException } from './carts.exceptions.js'
+import { ApplicationError } from '../app/application-error.js'
+import { CartNotFoundException, ProductNotFoundInCartException } from './carts-exceptions.js'
 
 /**
  * Interceptor for handling cart-related exceptions. * @class

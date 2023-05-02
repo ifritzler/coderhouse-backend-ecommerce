@@ -1,9 +1,9 @@
 import { promises, existsSync } from 'fs'
 import { cleanUndefinedProperties } from '../app/utils.js'
-import { EventBus } from '../app/EventBus.js'
+import { EventBus } from '../app/event-bus.js'
 import { v4 } from 'uuid'
 
-import { ProductValidationError, ProductNotFoundException, ProductCodeDuplicatedException } from './products.exceptions.js'
+import { ProductValidationError, ProductNotFoundException, ProductCodeDuplicatedException } from './products-exceptions.js'
 
 export class ProductService {
   constructor (path, eventBus) {

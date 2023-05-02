@@ -1,6 +1,6 @@
 import fs from 'fs'
-import { CartNotFoundException, ProductNotFoundInCartException } from './carts.exceptions.js'
-import { productService } from '../products/products.service.js'
+import { CartNotFoundException, ProductNotFoundInCartException } from './carts-exceptions.js'
+import { productService } from '../products/products-service.js'
 
 class CartsService {
   constructor (path) {

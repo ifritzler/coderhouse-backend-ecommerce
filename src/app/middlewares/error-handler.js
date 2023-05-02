@@ -1,4 +1,4 @@
-import { ApplicationError } from '../ApplicationError.js'
+import { ApplicationError } from '../application-error.js'
 /**
     A class that handles errors and sends appropriate responses to the client.
     @class

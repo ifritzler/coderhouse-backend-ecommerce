@@ -1,5 +1,5 @@
-import { httpServer as app, socketServer } from './app/config/application.config.js'
-import { EventBus } from './app/EventBus.js'
+import { httpServer as app, socketServer } from './app/config/application-config.js'
+import { EventBus } from './app/event-bus.js'
 
 const onConnection = async (socket) => {
   console.log('New Connection')

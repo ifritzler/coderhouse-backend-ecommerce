@@ -1,7 +1,7 @@
 import { Router } from 'express'
-import { CartsController } from './carts.controller.js'
+import { CartsController } from './carts-controller.js'
 import asyncHandler from 'express-async-handler'
-import { CartsInterceptor } from './carts.interceptor.js'
+import { CartsInterceptor } from './carts-interceptor.js'
 
 export const cartsRouter = Router()
 
