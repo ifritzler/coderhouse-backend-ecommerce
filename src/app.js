@@ -1,23 +1,17 @@
-const registerProductListenEvents = require('./products/products.events');
-const app = require('./app/config/application.config');
-
-const onDisconnect = async (socket) => {
-    socket.broadcast.emit('socket-disconnect', `The socketid: ${socket.id} is gone`);
-}
+const { httpServer: app, socketServer } = require('./app/config/application.config')
+const eventBus = require('./app/EventBus')
 
 const onConnection = async (socket) => {
-    socket.on('disconnect', () => {
-        onDisconnect(socket)
-    })
-    socket.emit('hello', `Hello id: ${socket.id}`)
-    socket.broadcast.emit('new-socket-connected', `The socketid: ${socket.id} is connected`);
-
-    registerProductListenEvents(app.io, socket);
+  console.log('New Connection')
+  eventBus.on('new:product', newProduct => {
+    console.log('A new product was created with title: ' + newProduct.title)
+    socketServer.emit('new:product', newProduct)
+  })
 }
 
+socketServer.on('connection', onConnection)
 
-app.io.on("connection", onConnection);
-
-
-const PORT = 8080;
-app.listen(PORT)
+const PORT = 8083
+app.listen(PORT, () => {
+  console.log(`Server up and running on port ${PORT}`)
+})
