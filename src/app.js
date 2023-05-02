@@ -1,9 +1,9 @@
 import { httpServer as app, socketServer } from './app/config/application.config.js'
-import eventBus from './app/EventBus.js'
+import { EventBus } from './app/EventBus.js'
 
 const onConnection = async (socket) => {
   console.log('New Connection')
-  eventBus.on('new:product', newProduct => {
+  EventBus.on('new:product', newProduct => {
     console.log('A new product was created with title: ' + newProduct.title)
     socketServer.emit('new:product', newProduct)
   })

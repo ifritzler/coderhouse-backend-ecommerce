@@ -1,7 +1,7 @@
 /**
  * Class representing an interceptor for handling product-related exceptions.
  */
-class ApplicationError extends Error {
+export class ApplicationError extends Error {
   constructor (message, status, errors = null) {
     super()
     Error.captureStackTrace(this, this.constructor)
@@ -12,5 +12,3 @@ class ApplicationError extends Error {
     }
   }
 }
-
-export default ApplicationError

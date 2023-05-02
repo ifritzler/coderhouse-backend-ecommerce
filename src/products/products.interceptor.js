@@ -1,10 +1,10 @@
-import ApplicationError from '../app/exceptions/ApplicationError.js'
+import { ApplicationError } from '../app/ApplicationError.js'
 import { ProductNotFoundException, ProductCodeDuplicatedException, ProductValidationError } from './products.exceptions.js'
 
 /**
  * Interceptor for handling product-related exceptions.
  */
-class ProductsInterceptor {
+export class ProductsInterceptor {
   /**
      * Intercepts product-related exceptions and maps them to appropriate HTTP error codes.
      */
@@ -16,5 +16,3 @@ class ProductsInterceptor {
     throw err
   }
 }
-
-export default ProductsInterceptor

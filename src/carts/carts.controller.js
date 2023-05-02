@@ -1,6 +1,6 @@
-import cartsService from './carts.service.js'
+import { cartsService } from './carts.service.js'
 
-class ProductsController {
+export class CartsController {
   static async getCartProducts (req, res) {
     const { cid } = req.params
     const products = cartsService.getCartProducts(parseInt(cid))
@@ -24,5 +24,3 @@ class ProductsController {
     res.status(204).send()
   }
 }
-
-export default ProductsController

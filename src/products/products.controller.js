@@ -1,6 +1,6 @@
-import productService from './products.service.js'
+import { productService } from './products.service.js'
 
-class ProductsController {
+export class ProductsController {
   constructor () {
     this.productService = productService
   };
@@ -66,5 +66,3 @@ class ProductsController {
     res.status(200).json(updatedProduct)
   }
 }
-
-export default ProductsController

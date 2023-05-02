@@ -1,6 +1,6 @@
 import fs from 'fs'
 import { CartNotFoundException, ProductNotFoundInCartException } from './carts.exceptions.js'
-import productsService from '../products/products.service.js'
+import { productService } from '../products/products.service.js'
 
 class CartsService {
   constructor (path) {
@@ -42,7 +42,7 @@ class CartsService {
 
   async addProductToCart (cid, pid) {
     // This line of code just makes the product search and throws error if not exists.
-    await productsService.getProductById(pid)
+    await productService.getProductById(pid)
 
     const carts = await this.getAll()
     const cartIndex = carts.findIndex(cart => cart.id === cid)
@@ -77,4 +77,4 @@ class CartsService {
   }
 }
 
-export default new CartsService('./src/app/database/carts.json')
+export const cartsService = new CartsService('./src/app/database/carts.json')

@@ -1,9 +1,9 @@
-import { Router } from 'express'
-import ProductsController from './products.controller.js'
 import asyncHandler from 'express-async-handler'
-import ProductsInterceptor from './products.interceptor.js'
+import { Router } from 'express'
+import { ProductsController } from './products.controller.js'
+import { ProductsInterceptor } from './products.interceptor.js'
 
-const productsRouter = Router()
+export const productsRouter = Router()
 
 productsRouter.get('/', asyncHandler(ProductsController.getAll))
 productsRouter.post('/', asyncHandler(ProductsController.create))
@@ -12,5 +12,3 @@ productsRouter.put('/:pid', asyncHandler(ProductsController.updateById))
 productsRouter.delete('/:pid', asyncHandler(ProductsController.deleteById))
 
 productsRouter.use(ProductsInterceptor.intercept)
-
-export default productsRouter

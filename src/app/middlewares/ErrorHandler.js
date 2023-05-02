@@ -1,9 +1,9 @@
-import ApplicationError from '../exceptions/ApplicationError.js'
+import { ApplicationError } from '../ApplicationError.js'
 /**
     A class that handles errors and sends appropriate responses to the client.
     @class
 */
-class ErrorHandler {
+export class ErrorHandler {
   /**
         Intercepts errors and sends appropriate responses to the client.
         @static
@@ -29,5 +29,3 @@ class ErrorHandler {
     }
   }
 }
-
-export default ErrorHandler

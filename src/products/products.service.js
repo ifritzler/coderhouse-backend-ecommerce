@@ -1,11 +1,11 @@
 import { promises, existsSync } from 'fs'
-import cleanUndefinedProperties from '../app/utils.js'
-import eventBus from '../app/EventBus.js'
+import { cleanUndefinedProperties } from '../app/utils.js'
+import { EventBus } from '../app/EventBus.js'
 import { v4 } from 'uuid'
 
 import { ProductValidationError, ProductNotFoundException, ProductCodeDuplicatedException } from './products.exceptions.js'
 
-class ProductService {
+export class ProductService {
   constructor (path, eventBus) {
     this.path = path
     this.EventBus = eventBus
@@ -79,4 +79,4 @@ class ProductService {
   }
 }
 
-export default new ProductService('./src/app/database/products.json', eventBus)
+export const productService = new ProductService('./src/app/database/products.json', EventBus)

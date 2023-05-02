@@ -1,10 +1,10 @@
-import ApplicationError from '../app/exceptions/ApplicationError.js'
+import { ApplicationError } from '../app/ApplicationError.js'
 import { CartNotFoundException, ProductNotFoundInCartException } from './carts.exceptions.js'
 
 /**
  * Interceptor for handling cart-related exceptions. * @class
  */
-class CartsInterceptor {
+export class CartsInterceptor {
   /**
      * Intercepts cart-related exceptions and maps them to appropriate HTTP error codes.
      */
@@ -18,5 +18,3 @@ class CartsInterceptor {
     throw err
   }
 }
-
-export default CartsInterceptor
