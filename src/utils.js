@@ -3,14 +3,14 @@
  * Ideal para operaciones crud de update donde posiblemente vengan 1 valor o todos los de la entidad
  * queriendo actualizar.
  */
-function cleanUndefinedProperties(obj) {
-    const newObject = {};
-    for (let prop in obj) {
-        if (typeof obj[prop] !== 'undefined') {
-            newObject[prop] = obj[prop];
-        }
+function cleanUndefinedProperties (obj) {
+  const newObject = {}
+  for (const prop in obj) {
+    if (typeof obj[prop] !== 'undefined') {
+      newObject[prop] = obj[prop]
     }
-    return newObject;
+  }
+  return newObject
 }
 
-module.exports = cleanUndefinedProperties;
+module.exports = cleanUndefinedProperties
