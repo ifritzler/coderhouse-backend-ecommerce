@@ -2,7 +2,7 @@
   "name": "coderhouse-backend-ecommerce",
   "version": "0.1.0",
   "description": "Node.js ecommerce backend using MERN stack for full-stack development.",
-  "main": "server.js",
+  "main": "src/app.js",
   "scripts": {
     "test": "jest",
     "dev": "nodemon .",

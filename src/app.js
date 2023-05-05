@@ -9,4 +9,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use('/api', apiRouter)
 app.use(ErrorHandler.intercept)
 
-module.exports = app
+const PORT = 8080
+app.listen(PORT, () => {
+  console.log(`Server up and running on port ${PORT} 🚀`)
+})
