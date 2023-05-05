@@ -2,8 +2,8 @@ import { resolve } from 'path'
 import express from 'express'
 import { handlebarsConfiguration } from './handlebars-config.js'
 import { ErrorHandler } from '../middlewares/error-handler.js'
-import { apiRouter } from '../routers/api-router.js'
-import { clientRouter } from '../routers/client-router.js'
+import { apiRouter } from '../api-router.js'
+import { clientRouter } from '../../client-side/client-router.js'
 
 export const app = express()
 handlebarsConfiguration(app)

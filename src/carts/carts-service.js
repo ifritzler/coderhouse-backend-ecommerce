@@ -23,11 +23,6 @@ class CartsService {
     return found
   }
 
-  async getCartProducts (cid) {
-    const cart = await this.getById(cid)
-    return cart.products
-  }
-
   async create () {
     const carts = await this.getAll()
     const id = carts[carts.length - 1]?.id + 1 || 1
@@ -73,7 +68,7 @@ class CartsService {
       throw new ProductNotFoundInCartException(cid, pid)
     }
     carts[cartIndex].products.splice(productCartIndex, 1)
-    fs.promises.writeFile(this.path, JSON.stringify(carts, null, 2))
+    await fs.promises.writeFile(this.path, JSON.stringify(carts, null, 2))
   }
 }
 

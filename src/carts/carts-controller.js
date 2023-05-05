@@ -3,8 +3,8 @@ import { cartsService } from './carts-service.js'
 export class CartsController {
   static async getCartProducts (req, res) {
     const { cid } = req.params
-    const products = cartsService.getCartProducts(parseInt(cid))
-    res.status(200).json(products)
+    const cart = cartsService.getById(parseInt(cid))
+    res.status(200).json(cart.product)
   }
 
   static async create (req, res) {

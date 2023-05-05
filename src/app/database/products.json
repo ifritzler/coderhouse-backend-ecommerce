@@ -1,92 +1,164 @@
 [
-    {
-        "id": 1,
-        "title": "iPhone 12",
-        "description": "The latest iPhone with 5G technology",
-        "code": "APL-0001",
-        "thumbnail": "Sin Imagen",
-        "price": 999,
-        "stock": 50
-    },
-    {
-        "id": 2,
-        "title": "Samsung Galaxy S21",
-        "description": "The latest Samsung phone with 5G technology",
-        "code": "SAM-0001",
-        "thumbnail": "Sin Imagen",
-        "price": 899,
-        "stock": 40
-    },
-    {
-        "id": 3,
-        "title": "MacBook Pro",
-        "description": "The latest MacBook with M1 chip",
-        "code": "APP-0001",
-        "thumbnail": "Sin Imagen",
-        "price": 1499,
-        "stock": 20
-    },
-    {
-        "id": 4,
-        "title": "iPad Pro",
-        "description": "The latest iPad with M1 chip",
-        "code": "APP-0002",
-        "thumbnail": "Sin Imagen",
-        "price": 799,
-        "stock": 30
-    },
-    {
-        "id": 5,
-        "title": "Sony PlayStation 5",
-        "description": "The latest gaming console from Sony",
-        "code": "SNY-0001",
-        "thumbnail": "Sin Imagen",
-        "price": 499,
-        "stock": 10
-    },
-    {
-        "id": 6,
-        "title": "Xbox Series X",
-        "description": "The latest gaming console from Microsoft",
-        "code": "MSF-0001",
-        "thumbnail": "Sin Imagen",
-        "price": 499,
-        "stock": 15
-    },
-    {
-        "id": 7,
-        "title": "Samsung 55-inch 4K Smart TV",
-        "description": "Sin Imagen",
-        "code": "SAM-0002",
-        "thumbnail": "Sin Imagen",
-        "price": 899,
-        "stock": 25
-    },
-    {
-        "id": 8,
-        "title": "Bose QuietComfort 35 II",
-        "description": "Wireless noise-cancelling headphones",
-        "code": "BSE-0001",
-        "thumbnail": "Sin Imagen",
-        "price": 299,
-        "stock": 50
-    },
-    {
-        "id": 9,
-        "title": "Fitbit Charge 4",
-        "description": "A fitness tracker with GPS and heart rate monitor",
-        "code": "FTB-0001",
-        "thumbnail": "Sin Imagen",
-        "price": 149,
-        "stock": 100
-    },
-    {
-        "id": 10,
-        "title": "Amazon Echo Dot",
-        "description": "A smart speaker with Alexa voice assistant",
-        "code": "AMZ-0001",
-        "thumbnail": "Sin Imagen",
-        "price": 49,
-        "stock": 200
-    }
+  {
+    "id": 1,
+    "title": "iPhone 12",
+    "description": "The latest iPhone with 5G technology",
+    "code": "APL-0001",
+    "thumbnails": ["https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-12-family-select-2021?wid=940&hei=1112&fmt=jpeg&qlt=90&.v=1617135051000"],
+    "price": 999,
+    "stock": 50
+  },
+  {
+    "id": 2,
+    "title": "Samsung Galaxy S21",
+    "description": "The latest Samsung phone with 5G technology",
+    "code": "SAM-0001",
+    "thumbnail": "Sin Imagen",
+    "price": 899,
+    "stock": 40
+  },
+  {
+    "id": 3,
+    "title": "MacBook Pro",
+    "description": "The latest MacBook with M1 chip",
+    "code": "APP-0001",
+    "thumbnail": "Sin Imagen",
+    "price": 1499,
+    "stock": 20
+  },
+  {
+    "id": 4,
+    "title": "iPad Pro",
+    "description": "The latest iPad with M1 chip",
+    "code": "APP-0002",
+    "thumbnail": "Sin Imagen",
+    "price": 799,
+    "stock": 30
+  },
+  {
+    "id": 5,
+    "title": "Sony PlayStation 5",
+    "description": "The latest gaming console from Sony",
+    "code": "SNY-0001",
+    "thumbnail": "Sin Imagen",
+    "price": 499,
+    "stock": 10
+  },
+  {
+    "id": 6,
+    "title": "Xbox Series X",
+    "description": "The latest gaming console from Microsoft",
+    "code": "MSF-0001",
+    "thumbnail": "Sin Imagen",
+    "price": 499,
+    "stock": 15
+  },
+  {
+    "id": 7,
+    "title": "Samsung 55-inch 4K Smart TV",
+    "description": "Sin Imagen",
+    "code": "SAM-0002",
+    "thumbnail": "Sin Imagen",
+    "price": 899,
+    "stock": 25
+  },
+  {
+    "id": 8,
+    "title": "Bose QuietComfort 35 II",
+    "description": "Wireless noise-cancelling headphones",
+    "code": "BSE-0001",
+    "thumbnail": "Sin Imagen",
+    "price": 299,
+    "stock": 50
+  },
+  {
+    "id": 9,
+    "title": "Fitbit Charge 4",
+    "description": "A fitness tracker with GPS and heart rate monitor",
+    "code": "FTB-0001",
+    "thumbnail": "Sin Imagen",
+    "price": 149,
+    "stock": 100
+  },
+  {
+    "id": 10,
+    "title": "Amazon Echo Dot",
+    "description": "A smart speaker with Alexa voice assistant",
+    "code": "AMZ-0001",
+    "thumbnail": "Sin Imagen",
+    "price": 49,
+    "stock": 200
+  },
+  {
+    "id": "d1d12061-470d-4d6c-abeb-660bdc130a78",
+    "title": "Nuevo producto de prueba",
+    "description": "The latest iPhone with 5G technology",
+    "price": 999,
+    "thumbnail": "Sin Imagen",
+    "code": "TEST-010",
+    "stock": 50
+  },
+  {
+    "id": "073278af-064a-4913-b17d-7edbc7c0d6b3",
+    "title": "Nuevo producto de prueba",
+    "description": "The latest iPhone with 5G technology",
+    "price": 999,
+    "thumbnail": "Sin Imagen",
+    "code": "TEST-011",
+    "stock": 50
+  },
+  {
+    "id": "515ef7a9-c060-41d8-8bef-b1b550ebf5ce",
+    "title": "Nuevo producto de prueba",
+    "description": "The latest iPhone with 5G technology",
+    "price": 999,
+    "thumbnail": "Sin Imagen",
+    "code": "TEST-012",
+    "stock": 50
+  },
+  {
+    "id": "9afe5964-a968-469c-bc5e-21482c0773e1",
+    "title": "Nuevo producto de prueba",
+    "description": "The latest iPhone with 5G technology",
+    "price": 999,
+    "thumbnail": "Sin Imagen",
+    "code": "TEST-013",
+    "stock": 50
+  },
+  {
+    "id": "db6f9fbc-8253-4e2d-bb18-3209bccd43cd",
+    "title": "Nuevo producto de prueba",
+    "description": "The latest iPhone with 5G technology",
+    "price": 999,
+    "thumbnail": "Sin Imagen",
+    "code": "TEST-014",
+    "stock": 50
+  },
+  {
+    "id": "40c230ec-de5e-4692-9c91-a246fd9ae7a8",
+    "title": "Nuevo producto de prueba",
+    "description": "The latest iPhone with 5G technology",
+    "price": 999,
+    "thumbnail": "Sin Imagen",
+    "code": "TEST-015",
+    "stock": 50
+  },
+  {
+    "id": "58dfa048-c3c0-42a9-bcb4-5e6032fb89d5",
+    "title": "Nuevo producto de prueba",
+    "description": "The latest iPhone with 5G technology",
+    "price": 999,
+    "thumbnail": "Sin Imagen",
+    "code": "TEST-016",
+    "stock": 50
+  },
+  {
+    "id": "53b6200e-3333-4d18-be40-bb288ce58c3b",
+    "title": "Nuevo producto de prueba",
+    "description": "The latest iPhone with 5G technology",
+    "price": 999,
+    "thumbnail": "Sin Imagen",
+    "code": "TEST-017",
+    "stock": 50
+  }
 ]

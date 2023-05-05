@@ -1,0 +1,79 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;  
+}
+
+html {
+  font-family: 'Raleway', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h5, .title {
+  font-family: 'Playfair Display', serif;
+}
+
+body {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+main {
+  padding-inline: 3rem;
+}
+
+.product-list {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.product-card {
+  width: min-content;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: .9rem;
+  /* border: 1px solid rgba(0, 0, 0, .06);
+  background-color: #fdfdfd; */
+}
+
+.product-card-img {
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.product-card-img img {
+  object-fit: cover;
+}
+
+.product-card .product-card-info h2 {
+  font-size: 18px;
+  font-family: 'Raleway', sans-serif;
+}
+
+.product-card .product-card-info p {
+  text-overflow: ellipsis;
+  overflow: hidden; 
+  width: 160px; 
+  height: 1.2em; 
+  white-space: nowrap;
+}
+
+#online-watch {
+  background-color: red;
+  font-family: 'Arial', sans-serif;
+  font-size: 12px;
+  position: absolute;
+  font-weight: 700;
+  border-radius: 30px;
+  padding-inline: 10px;
+  left: 2rem;
+  top: 2rem;
+  color: white;
+  opacity: 0;
+}

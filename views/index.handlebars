@@ -1,4 +1,5 @@
-<p>Hello world</p>
-{{#each products as |p|}}
-<p>{{p.title}}</p>
-{{/each}}
+<ul class="product-list">
+  {{#each products as |p|}}
+      {{>product-card product=p}}
+  {{/each}}
+</ul>
