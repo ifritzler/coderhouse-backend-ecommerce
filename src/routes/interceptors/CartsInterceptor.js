@@ -7,12 +7,8 @@ const { CartNotFoundException, ProductNotFoundInCartException } = require('../..
 */
 class CartsInterceptor {
   static intercept (err, _req, _res, next) {
-    if (
-      err instanceof CartNotFoundException ||
-            err instanceof ProductNotFoundInCartException
-    ) {
-      return next(new ApplicationError(err.message, 404))
-    }
+    if (err instanceof CartNotFoundException) return next(new ApplicationError(err.message, 404))
+    if (err instanceof ProductNotFoundInCartException) return next(new ApplicationError(err.message, 404))
     throw err
   }
 }

@@ -13,8 +13,8 @@ class ProductService {
   }
 
   async addProduct (productInputData = {}) {
-    const { title, description, price, thumbnail, code, stock } = productInputData
-    if (!title || !description || !price || !thumbnail || !code || !stock) {
+    const { title, description, price, thumbnails = [], code, stock, status = true } = productInputData
+    if (!title || !description || !price || !code || !stock) {
       throw new ProductValidationError()
     }
     const products = await this.getProducts()
@@ -23,7 +23,7 @@ class ProductService {
     }
     const id = uuid()
     const newProduct = {
-      id, title, description, price, thumbnail, code, stock
+      id, title, description, price, thumbnails, code, stock, status
     }
     products.push(newProduct)
     await fs.promises.writeFile(this.path, JSON.stringify(products, null, 2))
@@ -68,10 +68,10 @@ class ProductService {
 
   async deleteProduct (pid) {
     const products = await this.getProducts()
-    if (products.find(product => product.id === pid)) throw new ProductNotFoundException(pid)
+    if (!products.find(product => product.id === pid)) throw new ProductNotFoundException(pid)
     const newProducts = products.filter(product => product.id !== pid)
     await fs.promises.writeFile(this.path, JSON.stringify(newProducts, null, 2))
   }
 }
 
-module.exports = new ProductService('./database/products.json')
+module.exports = new ProductService('./src/database/products.json')

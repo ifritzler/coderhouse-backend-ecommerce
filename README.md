@@ -7,7 +7,7 @@ Node.js ecommerce backend using MERN stack for full-stack development.
 
 ### 👨‍💻 Challenge 4: 1er Pre entrega de Proyecto Final
 
-To complete "Pre entrega de Proyecto Final" for the course, I have implemented the necessary functionality using ECMAScript classes and advanced features with the file system library included in nodejs and the framework for web applications Express. The code for this challenge can be found in the appropriate files.
+To complete "Pre entrega de Proyecto Final" for the course, I've implemented the necessary functionality using ECMAScript classes and advanced features with the file system library included in nodejs and the framework for web applications Express. The code for this challenge can be found in the appropriate files.
 
 ## 🏃‍♂️ Running the Project with npm
 
@@ -25,26 +25,24 @@ If you encounter any issues while running the project, check the project's docum
 ## ⁉ I have been using interceptors, WHY?
 Example: 
 ```javascript
+const ApplicationError = require('../../exceptions/ApplicationError.js')
+const { ProductNotFoundException, ProductCodeDuplicatedException, ProductValidationError } = require('../../exceptions/product.exceptions.js')
+
+/**
+ * Interceptor for handling product-related exceptions.
+ * @class
+*/
 class ProductInterceptor {
-    constructor() { };
-    /**
-     * Intercepts product-related exceptions and maps them to appropriate HTTP error codes.
-     * @static
-     * @param {Error} err - The error object to be intercepted.
-     * @param {Object} _req - The request object.
-     * @param {Object} _res - The response object.
-     * @param {Function} next - The next middleware function.
-     * @returns {void}
-    */
-    static intercept(err, _req, _res, next) {
-        if (err instanceof ProductNotFoundException) return next(new ApplicationError(err.message, 404));
-        if (err instanceof ProductCodeDuplicatedException) return next(new ApplicationError(err.message, 409));
-        if (err instanceof ProductValidationError) return next(new ApplicationError(err.message, 400));
-        throw err;
-    }
+  static intercept (err, _req, _res, next) {
+    if (err instanceof ProductNotFoundException) return next(new ApplicationError(err.message, 404))
+    if (err instanceof ProductCodeDuplicatedException) return next(new ApplicationError(err.message, 409))
+    if (err instanceof ProductValidationError) return next(new ApplicationError(err.message, 400))
+
+    throw err
+  }
 }
 
-module.exports = ProductInterceptor;
+module.exports = ProductInterceptor
 ```
 Use: 
 ```javascript
@@ -72,51 +70,50 @@ This interceptor needs to be used like a simple error handler. It is used to han
 
 Then, the ErrorHandler the master piece of error handling in the API catch the ApplicationError and create the response to the client based on that, avoiding and preventing every single error that I've not been handled yet and throws an Internal Server Error instead.
 ```javascript
+const ApplicationError = require('../exceptions/ApplicationError.js')
+/**
+    A class that handles errors and sends appropriate responses to the client.
+    @class
+*/
 class ErrorHandler {
-    constructor() { };
-    /**
-        Intercepts errors and sends appropriate responses to the client.
-        @static
-        @param {Error} error - The error object.
-        @param {Object} _req - The request object.
-        @param {Object} res - The response object.
-        @param {Function} _next - The next middleware function.
-    */
-    static intercept(error, _req, res, _next) {
-        if (error instanceof ApplicationError) {
-            res.status(error.status).json({
-                success: false,
-                error: error.message,
-                errorList: error.errors
-            });
-        } else {
-            // TODO: Usar loggers para guardar cada uno de los errores y asignarle un ID unico para identificarlo.
-            console.error({ errorMessage: error.message, errorStack: error.stack });
-            res.status(500).json({
-                success: false,
-                message: 'Internal server error'
-            });
-        }
+  static intercept (error, _req, res, _next) {
+    if (error instanceof ApplicationError) {
+      return res.status(error.status).json({
+        success: false,
+        error: error.message,
+        errorList: error.errors
+      })
     }
+    // TODO: Usar loggers para guardar cada uno de los errores y asignarle un ID unico para identificarlo.
+    console.error({ errorMessage: error.message, errorStack: error.stack })
+    res.status(500).json({
+      success: false,
+      message: 'Unexpected error. Please contact to an administrator.'
+    })
+  }
 }
+
+module.exports = ErrorHandler
 ```
-Use:
+Usage:
 ```javascript
-const express = require('express');
-const apiRouter = require('./routes/api.router.js');
-const ErrorHandler = require('./middlewares/ErrorHandler.js');
+const express = require('express')
+const apiRouter = require('./routes/api.router.js')
+const ErrorHandler = require('./middlewares/ErrorHandler.js')
 
-const app = express();
+const app = express()
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 
-app.use('/api', apiRouter);
-app.use(ErrorHandler.intercept);
+app.use('/api', apiRouter)
+app.use(ErrorHandler.intercept)
 
-module.exports = app;
+module.exports = app
 ```
 ---
 # 🧃 Product Entity
 ### Database (file products.json) storage:
-- **folder**: `./database/products.json`
+- **folder**: `./src/database/products.json`
 ## 🐕‍🦺 Service
 - A ProductService class **(named before ProductManager)** that can be found in the `src/services/ProductService.js` file. The class includes the following methods:
   - addProduct
@@ -148,3 +145,36 @@ module.exports = app;
 | GET    | `/api/products/:pid` | `200`, `404`        | `id: number` | `none`                 |
 | PUT    | `/api/products/:pid` | `200`, `400`, `409` | `id: number` | `none`                 |
 | DELETE | `/api/products/:pid` | `200`, `404`        | `id: number` | `none`                 |
+
+# 🧃 Cart Entity
+### Database (file carts.json) storage:
+- **folder**: `./src/database/carts.json`
+## 🐕‍🦺 Service
+- A CartService class that can be found in the `src/services/CartService.js` file. The class includes the following methods:
+  - getAll
+  - getById
+  - create
+  - addProductToCart
+  - deleteProductInCart
+  
+  The code for these methods has been implemented using ECMAScript classes and advanced features.
+  
+## ⤴ Routes
+
+- The routes can be found in the file `src/routes/carts.router.js`
+- All controllers (functions that will be triggered on http request event) are surround with `asyncHandler` function from `express-async-handler` external package. This is for avoid unnecessary try catch blocks, simplify code legibility and I'm used to better implementing the error handling system of the api.
+- A CartsController class that can be found in the `src/controllers/CartsController.js` file. The class includes the following methods:
+  - getCartProducts
+  - create
+  - addProductToCart
+  - deleteCartProduct
+  
+  The code for these methods has been implemented using ECMAScript classes and advanced features.
+- Endpoints: 
+
+| Method | Endpoint                       | Statuses     | Params                       | Query params           |
+| ------ | ------------------------------ | ------------ | ---------------------------- | ---------------------- |
+| POST   | `/api/carts`                   | `200`, `404` | `none`                       | `none`                 |
+| GET    | `/api/carts/:cid`              | `200`, `404` | `cid: string`, `pid: string` | `none`                 |
+| POST   | `/api/carts/:cid/product/:pid` | `200`, `404` | `cid: string`, `pid: string` | `none`                 |
+| DELETE | `/api/carts/:cid/product/:pid` | `200`, `404` | `cid: string`, `pid: string` | `none`                 |

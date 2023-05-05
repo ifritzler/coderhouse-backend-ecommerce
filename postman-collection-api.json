@@ -1,0 +1,422 @@
+{
+	"info": {
+		"_postman_id": "dcd4d30a-8e34-4cd7-b822-8a37cdc057aa",
+		"name": "Backend API - 51380 - Fritzler Ilan Emanuel",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "products",
+			"item": [
+				{
+					"name": "get all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all with limit",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/products?limit=5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"products"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/products/023cddd8-96b0-43c5-8101-85efc82a21f2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"products",
+								"023cddd8-96b0-43c5-8101-85efc82a21f2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get by id with error",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/products/023cddd8-96b0-43c5-8101-85efc82a21f1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"products",
+								"023cddd8-96b0-43c5-8101-85efc82a21f1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"iPhone 12\",\r\n    \"description\": \"The latest iPhone with 5G technology\",\r\n    \"code\": \"TEST-0001\",\r\n    \"price\": 999,\r\n    \"stock\": 50\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/products/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"products",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create with error",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"iPhone 12\",\r\n    \"description\": \"The latest iPhone with 5G technology\",\r\n    \"code\": \"APL-0001\",\r\n    \"price\": 999,\r\n    \"stock\": 50\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Amazon Echo Dot Actualizado\",\r\n    \"price\": 99,\r\n    \"status\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/products/b91eaaab-475b-4668-b5f0-8decd1d17630",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"products",
+								"b91eaaab-475b-4668-b5f0-8decd1d17630"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update with error",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Amazon Echo Dot Actualizado\",\r\n    \"price\": 99,\r\n    \"status\": false,\r\n    \"code\": \"APP-0001\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/products/b91eaaab-475b-4668-b5f0-8decd1d17630",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"products",
+								"b91eaaab-475b-4668-b5f0-8decd1d17630"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/products/023cddd8-96b0-43c5-8101-85efc82a21f2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"products",
+								"023cddd8-96b0-43c5-8101-85efc82a21f2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete by id with error",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/products/023cddd8-96b0-43c5-8101-85efc82a21f1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"products",
+								"023cddd8-96b0-43c5-8101-85efc82a21f1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "carts",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/carts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"carts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/carts/da69b149-fc34-4845-963b-3d27f65c4658",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"carts",
+								"da69b149-fc34-4845-963b-3d27f65c4658"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get products with error",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/carts/da69b149-fc34-4845-963b-3d27f65c4657",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"carts",
+								"da69b149-fc34-4845-963b-3d27f65c4657"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/carts/da69b149-fc34-4845-963b-3d27f65c4658/product/6da7e541-2564-4654-89ae-5e17d0bd751b",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"carts",
+								"da69b149-fc34-4845-963b-3d27f65c4658",
+								"product",
+								"6da7e541-2564-4654-89ae-5e17d0bd751b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add product with cart error",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/carts/da69b149-fc34-4845-963b-3d27f65c4658/product/6da7e541-2564-4654-89ae-5e17d0bd751b",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"carts",
+								"da69b149-fc34-4845-963b-3d27f65c4658",
+								"product",
+								"6da7e541-2564-4654-89ae-5e17d0bd751b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add product with product error",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/carts/da69b149-fc34-4845-963b-3d27f65c4658/product/6da7e541-2564-4654-89ae-5e17d0bd751b",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"carts",
+								"da69b149-fc34-4845-963b-3d27f65c4658",
+								"product",
+								"6da7e541-2564-4654-89ae-5e17d0bd751b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete product",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/carts/da69b149-fc34-4845-963b-3d27f65c4658/product/b6403ee4-f5a2-4193-8092-819b533c43db",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"carts",
+								"da69b149-fc34-4845-963b-3d27f65c4658",
+								"product",
+								"b6403ee4-f5a2-4193-8092-819b533c43db"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

@@ -23,11 +23,6 @@ class CartsService {
     return found
   }
 
-  async getCartProducts (cid) {
-    const cart = await this.getById(cid)
-    return cart.products
-  }
-
   async create () {
     const carts = await this.getAll()
     const newCart = {
@@ -44,7 +39,7 @@ class CartsService {
     const cartIndex = carts.findIndex(cart => cart.id === cid)
     if (cartIndex === -1) throw new CartNotFoundException(cid)
 
-    const productCartIndex = carts[cartIndex].products.findIndex(product => product === pid)
+    const productCartIndex = carts[cartIndex].products.findIndex(product => product.id === pid)
     if (productCartIndex === -1) {
       carts[cartIndex].products.push({
         id: pid, quantity: 1
@@ -72,4 +67,4 @@ class CartsService {
   }
 }
 
-module.exports = new CartsService('./database/carts.json')
+module.exports = new CartsService('./src/database/carts.json')

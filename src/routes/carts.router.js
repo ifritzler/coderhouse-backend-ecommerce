@@ -7,9 +7,9 @@ const cartsRouter = Router()
 
 cartsRouter.get('/:cid', asyncHandler(CartsController.getCartProducts))
 cartsRouter.post('/', asyncHandler(CartsController.create))
-cartsRouter.post('/:cid/product/:pid', asyncHandler(CartsController.addProductTo))
+cartsRouter.post('/:cid/product/:pid', asyncHandler(CartsController.addProductToCart))
 cartsRouter.delete('/:cid/product/:pid', asyncHandler(CartsController.deleteCartProduct))
 
 cartsRouter.use(CartsInterceptor.intercept)
 
-module.exports = CartsInterceptor
+module.exports = cartsRouter
