@@ -13,7 +13,7 @@ class CartsController {
     })
   }
 
-  static async create (req, res) {
+  static async create (_req, res) {
     const cart = await cartsService.create()
     res.status(201).json({
       success: true,

@@ -13,8 +13,8 @@ class ProductService {
   }
 
   async addProduct (productInputData = {}) {
-    const { title, description, price, thumbnails = [], code, stock, status = true } = productInputData
-    if (!title || !description || !price || !code || !stock) {
+    const { title, description, price, thumbnails = [], code, stock, status = true, category } = productInputData
+    if (!title || !description || !price || !code || !stock || !category) {
       throw new ProductValidationError()
     }
     const products = await this.getProducts()
@@ -23,7 +23,7 @@ class ProductService {
     }
     const id = uuid()
     const newProduct = {
-      id, title, description, price, thumbnails, code, stock, status
+      id, title, description, price, thumbnails, code, stock, status, category
     }
     products.push(newProduct)
     await fs.promises.writeFile(this.path, JSON.stringify(products, null, 2))
@@ -47,8 +47,17 @@ class ProductService {
   }
 
   async updateProduct (pid, data = {}) {
-    const { id: _id, ...changes } = data
-    const productChanges = cleanUndefinedProperties(changes)
+    const unCleanedChanges = {
+      title: data.title,
+      description: data.description,
+      price: data.price,
+      code: data.code,
+      stock: data.stock,
+      status: data.status,
+      category: data.category,
+      thumbnails: data.thumbnails
+    }
+    const productChanges = cleanUndefinedProperties(unCleanedChanges)
 
     const products = await this.getProducts()
     const productIndex = products.findIndex(p => p.id === pid)
