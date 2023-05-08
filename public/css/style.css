@@ -1,0 +1,95 @@
+@import url(https://fonts.googleapis.com/css?family=Calibri:400,300,700);
+html {
+  font-family: 'Raleway', serif;
+}
+
+ul, li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.tienda-logo {
+  font-family: 'Rozha One', serif;
+  font-size: 22px
+}
+
+.bg-light {
+    background-color: #fff!important;
+}
+
+.navbar-toggler {
+  outline: none!important;
+}
+
+.mt-100 {
+  margin-top: 100px;
+}
+.product-wrapper,
+.product-img {
+  overflow: hidden;
+  position: relative;
+}
+.mb-45 {
+  margin-bottom: 45px;
+}
+.product-action {
+  bottom: 0px;
+  left: 0;
+  opacity: 0;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  transition: all 0.6s ease 0s;
+}
+
+.product-action .product-title {
+  color: white
+}
+.product-wrapper {
+  border-radius: 10px;
+}
+.product-img > span {
+  background-color: #fff;
+  box-shadow: 0 0 8px 1.7px rgba(0, 0, 0, 0.06);
+  color: #333;
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 500;
+  left: 20px;
+  letter-spacing: 1px;
+  padding: 3px 12px;
+  position: absolute;
+  text-align: center;
+  text-transform: uppercase;
+  top: 20px;
+}
+.product-action-style {
+  background-color: #fff;
+  box-shadow: 0 0 8px 1.7px rgba(0, 0, 0, 0.06);
+  display: inline-block;
+  padding: 16px 2px 12px;
+}
+.product-action-style > a {
+  color: #979797;
+  line-height: 1;
+  padding: 0 21px;
+  position: relative;
+}
+.product-action-style > a.action-plus {
+  font-size: 18px;
+}
+.product-wrapper:hover .product-action {
+  bottom: 20px;
+  opacity: 1;
+}
+
+.product-store-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  width: 90%;
+  margin: 0 auto;
+}

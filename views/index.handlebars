@@ -1,1 +1,36 @@
-<h1>Hello world, I am the template</h1>
+<ul class="product-store-list">
+  {{#each products as |product|}}
+  <li class="product-store-item">
+      <div class="container d-flex justify-content-center">	
+        <div class="row"> 
+          <div class=""> 
+            <div class="product-wrapper text-center"> 
+              <div class="product-img"> 
+                <a href="#" data-abc="true"> 
+                  <img src="https://i.imgur.com/tL7ZE46.jpg" alt=""> 
+                </a>	
+                <span class="text-center">
+                  <i class="fa fa-rupee"></i> {{product.price}}
+                </span> 
+                <div class="product-action">
+                  <p class="product-title">{{product.title}}</p>
+                  <div class="product-action-style"> 
+                    <a href="#"> <i class="fa fa-plus">
+                      </i>
+                    </a>
+                    <a href="#">
+                      <i class="fa fa-heart"></i> 
+                    </a>
+                    <a href="#">
+                      <i class="fa fa-shopping-cart"></i> 
+                    </a> 
+                  </div> 
+                </div> 
+              </div> 
+            </div> 
+          </div>  
+        </div>
+      </div>
+  </li>
+{{/each}}
+</ul>
