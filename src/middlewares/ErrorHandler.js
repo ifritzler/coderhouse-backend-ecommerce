@@ -4,7 +4,7 @@ const ApplicationError = require('../exceptions/ApplicationError.js')
     @class
 */
 class ErrorHandler {
-  static intercept (error, _req, res, _next) {
+  static async intercept (error, req, res, _next) {
     if (error instanceof ApplicationError) {
       return res.status(error.status).json({
         success: false,

@@ -1,5 +1,5 @@
 const fs = require('fs')
-const cleanUndefinedProperties = require('../utils.js')
+const { cleanUndefinedProperties } = require('../utils.js')
 const {
   ProductValidationError,
   ProductCodeDuplicatedException,

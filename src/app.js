@@ -12,6 +12,10 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use('/', express.static('public'))
 
+app.get('/', (req, res) => {
+  res.render('index', { title: 'Hello' })
+})
+
 app.use('/api', apiRouter)
 app.use(ErrorHandler.intercept)
 
