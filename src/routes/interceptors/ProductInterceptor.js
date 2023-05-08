@@ -1,5 +1,5 @@
-const ApplicationError = require('../../exceptions/ApplicationError.js')
-const { ProductNotFoundException, ProductCodeDuplicatedException, ProductValidationError } = require('../../exceptions/product.exceptions.js')
+import ApplicationError from '../../exceptions/ApplicationError.js'
+import { ProductNotFoundException, ProductCodeDuplicatedException, ProductValidationError } from '../../exceptions/product.exceptions.js'
 
 /**
  * Interceptor for handling product-related exceptions.
@@ -15,4 +15,4 @@ class ProductInterceptor {
   }
 }
 
-module.exports = ProductInterceptor
+export default ProductInterceptor

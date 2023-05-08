@@ -1,5 +1,5 @@
-const { MulterError } = require('multer')
-const ApplicationError = require('../../exceptions/ApplicationError.js')
+import { MulterError } from 'multer'
+import ApplicationError from '../../exceptions/ApplicationError.js'
 
 const errorMessages = {
   LIMIT_PART_COUNT: 'Too many parts',
@@ -31,4 +31,4 @@ class MulterInterceptor {
   }
 }
 
-module.exports = MulterInterceptor
+export default MulterInterceptor

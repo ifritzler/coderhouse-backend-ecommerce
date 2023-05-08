@@ -1,6 +1,6 @@
-const { upload } = require('../config/multer.js')
-const productService = require('../services/ProductsService.js')
-const { removeUploadImages } = require('../utils.js')
+import { upload } from '../config/multer.js'
+import productService from '../services/ProductsService.js'
+import { removeUploadImages } from '../utils.js'
 
 class ProductsController {
   constructor () {
@@ -78,4 +78,4 @@ class ProductsController {
   }
 }
 
-module.exports = ProductsController
+export default ProductsController

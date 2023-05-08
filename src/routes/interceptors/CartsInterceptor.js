@@ -1,5 +1,5 @@
-const ApplicationError = require('../../exceptions/ApplicationError.js')
-const { CartNotFoundException, ProductNotFoundInCartException } = require('../../exceptions/cart.exceptions.js')
+import ApplicationError from '../../exceptions/ApplicationError.js'
+import { CartNotFoundException, ProductNotFoundInCartException } from '../../exceptions/cart.exceptions.js'
 
 /**
  * Interceptor for handling cart-related exceptions.
@@ -13,4 +13,4 @@ class CartsInterceptor {
   }
 }
 
-module.exports = CartsInterceptor
+export default CartsInterceptor

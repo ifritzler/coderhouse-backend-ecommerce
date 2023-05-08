@@ -1,7 +1,7 @@
-const { engine } = require('express-handlebars')
-const express = require('express')
-const apiRouter = require('./routes/api.router.js')
-const ErrorHandler = require('./middlewares/ErrorHandler.js')
+import { engine } from 'express-handlebars'
+import express from 'express'
+import apiRouter from './routes/api.router.js'
+import ErrorHandler from './middlewares/ErrorHandler.js'
 const app = express()
 
 app.engine('handlebars', engine())
@@ -12,7 +12,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use('/', express.static('public'))
 
-app.get('/', (req, res) => {
+app.get('/', (_req, res) => {
   res.render('index', { title: 'Hello' })
 })
 

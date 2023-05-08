@@ -1,8 +1,8 @@
-const { Router } = require('express')
-const ProductsController = require('../controllers/ProductsController.js')
-const asyncHandler = require('express-async-handler')
-const ProductInterceptor = require('./interceptors/ProductInterceptor.js')
-const { upload } = require('../config/multer.js')
+import { Router } from 'express'
+import ProductsController from '../controllers/ProductsController.js'
+import asyncHandler from 'express-async-handler'
+import ProductInterceptor from './interceptors/ProductInterceptor.js'
+import { upload } from '../config/multer.js'
 const productsRouter = Router()
 
 productsRouter.get('/', asyncHandler(ProductsController.getAll))
@@ -13,4 +13,4 @@ productsRouter.delete('/:pid', asyncHandler(ProductsController.deleteById))
 
 productsRouter.use(ProductInterceptor.intercept)
 
-module.exports = productsRouter
+export default productsRouter

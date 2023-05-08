@@ -1,12 +1,12 @@
-const { ProductNotFoundInCartException } = require('../exceptions/cart.exceptions.js')
-const { ProductNotFoundException } = require('../exceptions/product.exceptions.js')
-const cartsService = require('../services/CartService.js')
-const productsService = require('../services/ProductsService.js')
+import { ProductNotFoundInCartException } from '../exceptions/cart.exceptions.js'
+import { ProductNotFoundException } from '../exceptions/product.exceptions.js'
+import cartService from '../services/CartService.js'
+import productService from '../services/ProductsService.js'
 
 class CartsController {
   static async getCartProducts (req, res) {
     const { cid } = req.params
-    const cart = await cartsService.getById(cid)
+    const cart = await cartService.getById(cid)
     res.status(200).json({
       success: true,
       payload: cart.products
@@ -14,7 +14,7 @@ class CartsController {
   }
 
   static async create (_req, res) {
-    const cart = await cartsService.create()
+    const cart = await cartService.create()
     res.status(201).json({
       success: true,
       payload: cart
@@ -25,9 +25,9 @@ class CartsController {
     try {
       const { cid, pid } = req.params
       // This line of code just makes the product search and throws error if not exists.
-      const product = await productsService.getProductById(pid)
+      const product = await productService.getProductById(pid)
 
-      await cartsService.addProductToCart(cid, product.id)
+      await cartService.addProductToCart(cid, product.id)
       res.status(200).json({
         success: true
       })
@@ -41,11 +41,11 @@ class CartsController {
 
   static async deleteCartProduct (req, res) {
     const { cid, pid } = req.params
-    await cartsService.deleteProductInCart(cid, pid)
+    await cartService.deleteProductInCart(cid, pid)
     res.status(200).json({
       success: true
     })
   }
 }
 
-module.exports = CartsController
+export default CartsController

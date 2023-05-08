@@ -1,7 +1,7 @@
-const { Router } = require('express')
-const CartsController = require('../controllers/CartsController.js')
-const asyncHandler = require('express-async-handler')
-const CartsInterceptor = require('./interceptors/CartsInterceptor.js')
+import { Router } from 'express'
+import CartsController from '../controllers/CartsController.js'
+import asyncHandler from 'express-async-handler'
+import CartsInterceptor from './interceptors/CartsInterceptor.js'
 
 const cartsRouter = Router()
 
@@ -12,4 +12,4 @@ cartsRouter.delete('/:cid/product/:pid', asyncHandler(CartsController.deleteCart
 
 cartsRouter.use(CartsInterceptor.intercept)
 
-module.exports = cartsRouter
+export default cartsRouter

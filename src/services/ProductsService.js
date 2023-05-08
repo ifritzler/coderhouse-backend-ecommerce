@@ -1,11 +1,7 @@
-const fs = require('fs')
-const { cleanUndefinedProperties } = require('../utils.js')
-const {
-  ProductValidationError,
-  ProductCodeDuplicatedException,
-  ProductNotFoundException
-} = require('../exceptions/product.exceptions.js')
-const uuid = require('uuid').v4
+import { promises, existsSync } from 'fs'
+import { cleanUndefinedProperties } from '../utils.js'
+import { ProductValidationError, ProductCodeDuplicatedException, ProductNotFoundException } from '../exceptions/product.exceptions.js'
+import { v4 as uuid } from 'uuid'
 
 class ProductService {
   constructor (path) {
@@ -26,13 +22,13 @@ class ProductService {
       id, title, description, price: +price, thumbnails, code, stock: +stock, status, category
     }
     products.push(newProduct)
-    await fs.promises.writeFile(this.path, JSON.stringify(products, null, 2))
+    await promises.writeFile(this.path, JSON.stringify(products, null, 2))
     return newProduct
   }
 
   async getProducts (limit = null) {
-    const products = fs.existsSync(this.path)
-      ? JSON.parse(await fs.promises.readFile(this.path, { encoding: 'utf-8' }))
+    const products = existsSync(this.path)
+      ? JSON.parse(await promises.readFile(this.path, { encoding: 'utf-8' }))
       : []
     return limit ? products.slice(0, limit) : products
   }
@@ -71,7 +67,7 @@ class ProductService {
     const product = { ...products[productIndex] }
     const productUpdated = { ...product, ...productChanges }
     const newProducts = products.map((p, index) => index === productIndex ? productUpdated : p)
-    await fs.promises.writeFile(this.path, JSON.stringify(newProducts, null, 2))
+    await promises.writeFile(this.path, JSON.stringify(newProducts, null, 2))
     return productUpdated
   }
 
@@ -79,8 +75,8 @@ class ProductService {
     const products = await this.getProducts()
     if (!products.find(product => product.id === pid)) throw new ProductNotFoundException(pid)
     const newProducts = products.filter(product => product.id !== pid)
-    await fs.promises.writeFile(this.path, JSON.stringify(newProducts, null, 2))
+    await promises.writeFile(this.path, JSON.stringify(newProducts, null, 2))
   }
 }
 
-module.exports = new ProductService('./src/database/products.json')
+export default new ProductService('./src/database/products.json')
