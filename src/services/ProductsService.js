@@ -23,7 +23,7 @@ class ProductService {
     }
     const id = uuid()
     const newProduct = {
-      id, title, description, price, thumbnails, code, stock, status, category
+      id, title, description, price: +price, thumbnails, code, stock: +stock, status, category
     }
     products.push(newProduct)
     await fs.promises.writeFile(this.path, JSON.stringify(products, null, 2))

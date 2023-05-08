@@ -118,15 +118,15 @@
     "status": true
   },
   {
-    "id": "d33321f2-4042-467e-aa21-410d95bf202c",
+    "id": "afb124ad-3c07-4957-9f69-74951767f164",
     "title": "nuevo",
     "description": "nuevo",
-    "price": "500",
+    "price": 500,
     "thumbnails": [
-      "/thumbnails/1683524655982-OIP.jpg"
+      "/thumbnails/1683525071867-OIP.jpg"
     ],
     "code": "nuevo03",
-    "stock": "50",
+    "stock": 50,
     "status": true,
     "category": "men"
   }
