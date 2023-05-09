@@ -1,4 +1,4 @@
-import { unlink, promises } from 'fs'
+import fs from 'fs'
 /**
  * Funcion que me permite eliminar las propiedades que llegan en un objeto indefinidas.
  * Ideal para operaciones crud de update donde posiblemente vengan 1 valor o todos los de la entidad
@@ -16,18 +16,18 @@ export function cleanUndefinedProperties (obj) {
 
 export async function removeUploadImages (path, req = null) {
   if (path) {
-    return unlink(path)
+    return await fs.promises.unlink(path)
   }
 
   if (req) {
     if (req.file) {
       const filePath = req.file.destination + '/' + req.file.filename
-      return await promises.unlink(filePath)
+      return await fs.promises.unlink(filePath)
     }
     if (req.files) {
       for (const file in req.files) {
         const filePath = file.destination + '/' + file.filename
-        await promises.unlink(filePath)
+        await fs.promises.unlink(filePath)
       }
     }
   }

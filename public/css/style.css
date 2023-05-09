@@ -9,46 +9,64 @@ ul, li {
   padding: 0;
 }
 
-.tienda-logo {
-  font-family: 'Rozha One', serif;
-  font-size: 22px
-}
-
 .bg-light {
     background-color: #fff!important;
+}
+
+.mb-45 {
+  margin-bottom: 45px;
+}
+
+.mt-100 {
+  margin-top: 100px;
 }
 
 .navbar-toggler {
   outline: none!important;
 }
 
-.mt-100 {
-  margin-top: 100px;
-}
-.product-wrapper,
-.product-img {
-  overflow: hidden;
-  position: relative;
-}
-.mb-45 {
-  margin-bottom: 45px;
-}
-.product-action {
+
+.product-action, .product-title {
   bottom: 0px;
   left: 0;
   opacity: 0;
   position: absolute;
   right: 0;
   text-align: center;
-  transition: all 0.6s ease 0s;
+  transition: all 0.2s ease 0s;
 }
 
-.product-action .product-title {
+.product-action p {
   color: white
 }
-.product-wrapper {
-  border-radius: 10px;
+
+.product-action-style > a {
+  color: #979797;
+  line-height: 1;
+  padding: 0 21px;
+  position: relative;
 }
+
+.product-action-style > a.action-plus {
+  font-size: 18px;
+}
+
+.product-action-style {
+  background-color: #fff;
+  box-shadow: 0 0 8px 1.7px rgba(0, 0, 0, 0.06);
+  display: inline-block;
+  padding: 16px 2px 12px;
+}
+
+.product-img .product-title {
+  bottom: 20px;
+  top: initial;
+  left: 0;
+  right: 0;
+  width: 70%;
+  margin: 0 auto;
+}
+
 .product-img > span {
   background-color: #fff;
   box-shadow: 0 0 8px 1.7px rgba(0, 0, 0, 0.06);
@@ -64,24 +82,17 @@ ul, li {
   text-transform: uppercase;
   top: 20px;
 }
-.product-action-style {
-  background-color: #fff;
-  box-shadow: 0 0 8px 1.7px rgba(0, 0, 0, 0.06);
+
+.product-img {
   display: inline-block;
-  padding: 16px 2px 12px;
+  width: 250px;
+  height: 320px;
 }
-.product-action-style > a {
-  color: #979797;
-  line-height: 1;
-  padding: 0 21px;
-  position: relative;
-}
-.product-action-style > a.action-plus {
-  font-size: 18px;
-}
-.product-wrapper:hover .product-action {
-  bottom: 20px;
-  opacity: 1;
+
+.product-img a img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .product-store-list {
@@ -92,4 +103,33 @@ ul, li {
   justify-content: center;
   width: 90%;
   margin: 0 auto;
+}.product-title {
+  opacity: 1;
+  color: white;
 }
+
+.product-wrapper {
+  border-radius: 10px;
+}
+
+.product-wrapper,
+.product-img {
+  overflow: hidden;
+  position: relative;
+}
+
+.product-wrapper:hover .product-action {
+  bottom: 20px;
+  opacity: 1;
+}
+
+.product-wrapper:hover .product-title {
+  opacity: 0;
+}
+
+.tienda-logo {
+  font-family: 'Rozha One', serif;
+  font-size: 22px
+}
+
+

@@ -25,7 +25,7 @@ class MulterInterceptor {
 
       if (err.message === errorMessages.LIMIT_FILE_COUNT) { throw new ApplicationError('You posts too many files. Maximum permmited 3. Please try again.', 400) }
 
-      if (err.message === errorMessages.MISSING_FIELD_NAME) { throw new ApplicationError('An image must have a name, please rename your file and upload agait', 409) }
+      if (err.message === errorMessages.MISSING_FIELD_NAME) { throw new ApplicationError('An image must have a name, please rename your file and upload agait', 400) }
     }
     next(err)
   }

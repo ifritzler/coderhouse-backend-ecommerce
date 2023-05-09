@@ -16,7 +16,7 @@ export const upload = multer({ // multer settings
   storage,
   fileFilter: function (req, file, callback) {
     const ext = extname(file.originalname)
-    if (ext !== '.png' && ext !== '.jpg' && ext !== '.gif' && ext !== '.jpeg') {
+    if (ext !== '.png' && ext !== '.jpg' && ext !== '.gif' && ext !== '.jpeg' && ext !== '.webp') {
       return callback(new ApplicationError('Only images are permitted', 400))
     }
     callback(null, true)
