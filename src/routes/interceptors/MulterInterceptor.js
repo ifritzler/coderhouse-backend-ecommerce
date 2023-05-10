@@ -17,7 +17,7 @@ const errorMessages = {
  * @class
 */
 class MulterInterceptor {
-  static intercept (err, _req, _res, next) {
+  static intercept(err, _req, _res, next) {
     if (err instanceof MulterError) {
       if (err.message === errorMessages.LIMIT_FIELD_COUNT) { throw new ApplicationError('You has posts too many files. Please try again or contact to an administrator.', 400) }
 

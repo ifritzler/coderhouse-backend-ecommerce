@@ -9,8 +9,8 @@ const productsRouter = Router()
 productsRouter.get('/', asyncHandler(ProductsController.getAll))
 
 productsRouter.post(
-  '/', 
-  asyncHandler(upload.array('thumbnails')), 
+  '/',
+  asyncHandler(upload.array('thumbnails')),
   asyncHandler(ProductsController.create)
 )
 

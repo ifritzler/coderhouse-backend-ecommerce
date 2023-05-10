@@ -4,7 +4,7 @@ import fs from 'fs'
  * Ideal para operaciones crud de update donde posiblemente vengan 1 valor o todos los de la entidad
  * queriendo actualizar.
  */
-export function cleanUndefinedProperties (obj) {
+export function cleanUndefinedProperties(obj) {
   const newObject = {}
   for (const prop in obj) {
     if (typeof obj[prop] !== 'undefined') {
@@ -14,7 +14,7 @@ export function cleanUndefinedProperties (obj) {
   return newObject
 }
 
-export async function removeUploadImages (path, req = null) {
+export async function removeUploadImages(path, req = null) {
   if (path) {
     return await fs.promises.unlink(path)
   }

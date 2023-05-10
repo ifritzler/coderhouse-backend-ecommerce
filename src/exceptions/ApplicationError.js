@@ -7,7 +7,7 @@
  * @param {Array} [errors=null] - An optional array of error objects.
 */
 class ApplicationError extends Error {
-  constructor (message, status, errors = null) {
+  constructor(message, status, errors = null) {
     super()
     Error.captureStackTrace(this, this.constructor)
     this.message = message
