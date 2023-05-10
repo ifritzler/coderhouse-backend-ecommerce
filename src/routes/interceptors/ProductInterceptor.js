@@ -1,10 +1,6 @@
 import ApplicationError from '../../exceptions/ApplicationError.js'
 import { ProductNotFoundException, ProductCodeDuplicatedException, ProductValidationError } from '../../exceptions/product.exceptions.js'
 
-/**
- * Interceptor for handling product-related exceptions.
- * @class
-*/
 class ProductInterceptor {
   static intercept(err, _req, _res, next) {
     if (err instanceof ProductNotFoundException) return next(new ApplicationError(err.message, 404))
