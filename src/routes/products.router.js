@@ -10,17 +10,14 @@ productsRouter.get('/', asyncHandler(ProductsController.getAll))
 
 productsRouter.post(
   '/', 
-  asyncHandler(upload.single('thumbnail')), 
+  asyncHandler(upload.array('thumbnails')), 
   asyncHandler(ProductsController.create)
 )
 
 productsRouter.get('/:pid', asyncHandler(ProductsController.getById))
 
-productsRouter.put(
-  '/:pid', 
-  asyncHandler(upload.single('thumbnail')), 
-  asyncHandler(ProductsController.updateById)
-)
+productsRouter.put('/:pid', asyncHandler(ProductsController.updateById))
+
 productsRouter.delete('/:pid', asyncHandler(ProductsController.deleteById))
 
 productsRouter.use(ProductInterceptor.intercept)

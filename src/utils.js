@@ -25,10 +25,11 @@ export async function removeUploadImages (path, req = null) {
       return await fs.promises.unlink(filePath)
     }
     if (req.files) {
-      for (const file in req.files) {
-        const filePath = file.destination + '/' + file.filename
+      for (let i; i < req.files.length; i++) {
+        const filePath = req.files[i].destination + '/' + req.files[i].filename
         await fs.promises.unlink(filePath)
       }
+      return
     }
   }
 

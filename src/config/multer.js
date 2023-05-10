@@ -22,6 +22,7 @@ export const upload = multer({ // multer settings
     callback(null, true)
   },
   limits: {
+    files: 3,
     fileSize: 1024 * 1024
   }
 })

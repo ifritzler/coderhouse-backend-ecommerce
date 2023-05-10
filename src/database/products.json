@@ -1,15 +1,62 @@
 [
   {
-    "id": "fc33a5e1-e702-4eeb-9e1a-792647e33ab2",
-    "title": "Samsung Galaxy S21",
-    "description": "The latest Samsung phone with 5G technology",
-    "code": "SAM-0001",
+    "id": "4389d779-e2fa-4f05-9037-69b28c510573",
+    "title": "Camisa Utility Oslo - Off-white Mujer Desiderata",
+    "description": "Descripcion...",
+    "price": 29440,
     "thumbnails": [
-      "/thumbnails/250x320.svg"
+      "/thumbnails/1683674927571-D_NQ_NP_2X_651488-MLA54763756839_032023-F.webp",
+      "/thumbnails/1683674927572-D_NQ_NP_2X_664714-MLA54763756835_032023-F.webp",
+      "/thumbnails/1683674927572-D_NQ_NP_2X_868615-MLA54763756843_032023-F.webp"
     ],
-    "price": 899,
-    "stock": 40,
-    "status": true
+    "code": "nuevo06",
+    "stock": 100,
+    "status": true,
+    "category": "woman"
+  },
+  {
+    "id": "07abfee1-e446-4af2-95b1-0345f8dec435",
+    "title": "Remera Turtle Adele - Habano Mujer Desiderata",
+    "description": "Descripcion...",
+    "price": 7790,
+    "thumbnails": [
+      "/thumbnails/1683675553338-D_NQ_NP_2X_620835-MLA54767596852_032023-F.webp",
+      "/thumbnails/1683675553341-D_NQ_NP_2X_688722-MLA54767596848_032023-F.webp",
+      "/thumbnails/1683675553342-D_NQ_NP_2X_839794-MLA54767596850_032023-F.webp"
+    ],
+    "code": "nuevo07",
+    "stock": 100,
+    "status": true,
+    "category": "woman"
+  },
+  {
+    "id": "59e594d3-7902-4fd3-85c9-b0c82fa697a3",
+    "title": "Camisa Over Stripes Mujer Desiderata",
+    "description": "Descripcion...",
+    "price": 29440,
+    "thumbnails": [
+      "/thumbnails/1683674764379-D_NQ_NP_2X_827703-MLA54203008156_032023-F.webp",
+      "/thumbnails/1683674764379-D_NQ_NP_2X_876012-MLA54203008157_032023-F.webp",
+      "/thumbnails/1683674764392-D_NQ_NP_2X_980581-MLA54203008158_032023-F.webp"
+    ],
+    "code": "nuevo05",
+    "stock": 100,
+    "status": true,
+    "category": "woman"
+  },
+  {
+    "id": "44a6e98e-6f5d-42b7-a123-b8faf7ff7521",
+    "title": "Campera Coat De Nylon Mujer 47 Street",
+    "description": "Descripcion...",
+    "price": 34399,
+    "thumbnails": [
+      "/thumbnails/1683654914692-Campera Coat De Nylon Mujer 47 Street.webp",
+      "/thumbnails/1683654914693-Campera Coat De Nylon Mujer 47 Street2.webp"
+    ],
+    "code": "nuevo04",
+    "stock": 50,
+    "status": true,
+    "category": "woman"
   },
   {
     "id": "54a7a2bf-6406-4fee-89dc-35a560f98812",
@@ -120,16 +167,15 @@
     "status": true
   },
   {
-    "id": "44a6e98e-6f5d-42b7-a123-b8faf7ff7521",
-    "title": "Campera Coat De Nylon Mujer 47 Street",
-    "description": "Descripcion...",
-    "price": 34399,
+    "id": "fc33a5e1-e702-4eeb-9e1a-792647e33ab2",
+    "title": "Samsung Galaxy S21",
+    "description": "The latest Samsung phone with 5G technology",
+    "code": "SAM-0001",
     "thumbnails": [
-      "/thumbnails/1683647428406-Campera Coat De Nylon Mujer 47 Street.webp"
+      "/thumbnails/250x320.svg"
     ],
-    "code": "nuevo04",
-    "stock": 50,
-    "status": true,
-    "category": "woman"
+    "price": 899,
+    "stock": 40,
+    "status": true
   }
 ]

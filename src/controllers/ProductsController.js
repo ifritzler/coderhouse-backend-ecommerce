@@ -32,7 +32,8 @@ class ProductsController {
 
   static async create (req, res) {
     const data = req.body
-    data.thumbnails = ['/thumbnails/' + req.file.filename]
+    const thumbnailsPaths = req.files.map(file => `/thumbnails/${file.filename}`)
+    data.thumbnails = thumbnailsPaths || ['/thumbnails/250x320.svg']
     const product = await productService.addProduct(data)
     res.status(201).json({
       success: true,
