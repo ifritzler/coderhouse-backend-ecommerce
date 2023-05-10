@@ -4,7 +4,7 @@ import cartService from '../services/CartService.js'
 import productService from '../services/ProductsService.js'
 
 class CartsController {
-  static async getCartProducts (req, res) {
+  static async getCartProducts(req, res) {
     const { cid } = req.params
     const cart = await cartService.getById(cid)
     res.status(200).json({
@@ -13,7 +13,7 @@ class CartsController {
     })
   }
 
-  static async create (_req, res) {
+  static async create(_req, res) {
     const cart = await cartService.create()
     res.status(201).json({
       success: true,
@@ -21,13 +21,13 @@ class CartsController {
     })
   }
 
-  static async addProductToCart (req, res) {
+  static async addProductToCart(req, res) {
     try {
       const { cid, pid } = req.params
       // This line of code just makes the product search and throws error if not exists.
       const product = await productService.getProductById(pid)
 
-      await cartService.addProductToCart(cid, product.id)
+      await cartService.addProductToCart(cid, product)
       res.status(200).json({
         success: true
       })
@@ -39,9 +39,9 @@ class CartsController {
     }
   }
 
-  static async deleteCartProduct (req, res) {
+  static async deleteCartProduct(req, res) {
     const { cid, pid } = req.params
-    await cartService.deleteProductInCart(cid, pid)
+    await cartService.removeProductInCart(cid, pid)
     res.status(200).json({
       success: true
     })
