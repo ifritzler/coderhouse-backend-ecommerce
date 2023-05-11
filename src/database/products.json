@@ -59,123 +59,48 @@
     "category": "woman"
   },
   {
-    "id": "54a7a2bf-6406-4fee-89dc-35a560f98812",
-    "title": "MacBook Pro",
-    "description": "The latest MacBook with M1 chip",
-    "code": "APP-0001",
+    "id": "9f80cdf8-0be1-4d9d-9a7b-23fd55bd5a04",
+    "title": "Remera Moi Mujer Wanama Oficial",
+    "description": "Descripcion...",
+    "price": 9890,
     "thumbnails": [
-      "/thumbnails/250x320.svg"
+      "/thumbnails/1683735824733-D_NQ_NP_2X_653381-MLA51340312795_082022-F.webp",
+      "/thumbnails/1683735824734-D_NQ_NP_2X_789480-MLA51340312808_082022-F.webp",
+      "/thumbnails/1683735824735-D_NQ_NP_2X_818513-MLA51340312812_082022-F.webp"
     ],
-    "price": 1499,
-    "stock": 20,
-    "status": true
-  },
-  {
-    "id": "6da7e541-2564-4654-89ae-5e17d0bd751b",
-    "title": "iPad Pro",
-    "description": "The latest iPad with M1 chip",
-    "code": "APP-0002",
-    "thumbnails": [
-      "/thumbnails/250x320.svg"
-    ],
-    "price": 799,
-    "stock": 30,
-    "status": true
-  },
-  {
-    "id": "f6bbeb8f-633b-4703-bec1-d424eb3fe8f2",
-    "title": "Sony PlayStation 5",
-    "description": "The latest gaming console from Sony",
-    "code": "SNY-0001",
-    "thumbnails": [
-      "/thumbnails/250x320.svg"
-    ],
-    "price": 499,
-    "stock": 10,
-    "status": true
-  },
-  {
-    "id": "c9c4dfba-74b6-480d-b728-d220f661b1d2",
-    "title": "Xbox Series X",
-    "description": "The latest gaming console from Microsoft",
-    "code": "MSF-0001",
-    "thumbnails": [
-      "/thumbnails/250x320.svg"
-    ],
-    "price": 499,
-    "stock": 15,
-    "status": true
-  },
-  {
-    "id": "b6403ee4-f5a2-4193-8092-819b533c43db",
-    "title": "Samsung 55-inch 4K Smart TV",
-    "description": "Sin Imagen",
-    "code": "SAM-0002",
-    "thumbnails": [
-      "/thumbnails/250x320.svg"
-    ],
-    "price": 899,
-    "stock": 25,
-    "status": true
-  },
-  {
-    "id": "c0e5c972-aae3-4215-899e-c1937a5143b9",
-    "title": "Bose QuietComfort 35 II",
-    "description": "Wireless noise-cancelling headphones",
-    "code": "BSE-0001",
-    "thumbnails": [
-      "/thumbnails/250x320.svg"
-    ],
-    "price": 299,
-    "stock": 50,
-    "status": true
-  },
-  {
-    "id": "8f9f4915-f0c4-4bbb-940a-f4aead9cf754",
-    "title": "Fitbit Charge 4",
-    "description": "A fitness tracker with GPS and heart rate monitor",
-    "code": "FTB-0001",
-    "thumbnails": [
-      "/thumbnails/250x320.svg"
-    ],
-    "price": 149,
+    "code": "nuevo08",
     "stock": 100,
-    "status": true
+    "status": true,
+    "category": "woman"
   },
   {
-    "id": "b91eaaab-475b-4668-b5f0-8decd1d17630",
-    "title": "Amazon Echo Dot Actualizado",
-    "description": "A smart speaker with Alexa voice assistant",
-    "code": "AMZ-0001",
+    "id": "e83d1230-0ed9-46fa-bf5f-7631a8f871d5",
+    "title": "Camisola Lazo Con Cinto Y Bolsillos Rimmel",
+    "description": "Descripcion...",
+    "price": 28890,
     "thumbnails": [
-      "/thumbnails/250x320.svg"
+      "/thumbnails/1683753474714-D_NQ_NP_2X_684999-MLA54691486583_032023-F.webp",
+      "/thumbnails/1683753474715-D_NQ_NP_2X_764934-MLA54691486587_032023-F.webp",
+      "/thumbnails/1683753474715-D_NQ_NP_2X_832867-MLA54691486585_032023-F.webp"
     ],
-    "price": 99,
-    "stock": 200,
-    "status": false
+    "code": "nuevo09",
+    "stock": 100,
+    "status": true,
+    "category": "woman"
   },
   {
-    "id": "f447eb81-e18c-4940-815a-c5f9d8ba201e",
-    "title": "iPhone 12",
-    "description": "The latest iPhone with 5G technology",
-    "price": 999,
+    "id": "5b9111fe-f18e-473d-b651-6d0c15507903",
+    "title": "Vestido Camisero Con Volados Rimmel",
+    "description": "Descripcion...",
+    "price": 25680,
     "thumbnails": [
-      "/thumbnails/250x320.svg"
+      "/thumbnails/1683753607420-D_NQ_NP_2X_733862-MLA54691299251_032023-F.webp",
+      "/thumbnails/1683753607420-D_NQ_NP_2X_862577-MLA54691299249_032023-F.webp",
+      "/thumbnails/1683753607421-D_NQ_NP_2X_879227-MLA54691299247_032023-F.webp"
     ],
-    "code": "TEST-0001",
-    "stock": 50,
-    "status": true
-  },
-  {
-    "id": "fc33a5e1-e702-4eeb-9e1a-792647e33ab2",
-    "title": "Samsung Galaxy S21",
-    "description": "The latest Samsung phone with 5G technology",
-    "code": "SAM-0001",
-    "thumbnails": [
-      "/thumbnails/250x320.svg"
-    ],
-    "price": 899,
-    "stock": 40,
-    "status": true
+    "code": "nuevo10",
+    "stock": 100,
+    "status": true,
+    "category": "woman"
   }
 ]

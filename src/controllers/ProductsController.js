@@ -1,6 +1,4 @@
-import { upload } from '../config/multer.js'
 import productService from '../services/ProductsService.js'
-import { removeUploadImages } from '../utils.js'
 
 class ProductsController {
   constructor() {

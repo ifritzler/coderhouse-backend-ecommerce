@@ -1,21 +1,24 @@
 @import url(https://fonts.googleapis.com/css?family=Calibri:400,300,700);
+
 html {
   font-family: \'Raleway\', serif;
 }
 
-ul, li {
+ul,
+li {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
 .bg-light {
-    background-color: #fff!important;
+  background-color: #fff !important;
 }
 
 .carousel {
-  position: initial!important;
+  position: initial !important;
 }
+
 .mb-45 {
   margin-bottom: 45px;
 }
@@ -25,7 +28,7 @@ ul, li {
 }
 
 .navbar-toggler {
-  outline: none!important;
+  outline: none !important;
 }
 
 
@@ -33,7 +36,8 @@ ul, li {
   color: white
 }
 
-.product-action, .product-title {
+.product-action,
+.product-title {
   bottom: 0px;
   left: 0;
   opacity: 0;
@@ -47,14 +51,14 @@ ul, li {
   transition: all 0.3s ease 0s;
 }
 
-.product-action-style > a {
+.product-action-style>a {
   color: #979797;
   line-height: 1;
   padding: 0 21px;
   position: relative;
 }
 
-.product-action-style > a.action-plus {
+.product-action-style>a.action-plus {
   font-size: 18px;
 }
 
@@ -65,7 +69,8 @@ ul, li {
   padding: 16px 2px 12px;
 }
 
-.product-img > .price, .product-img > .product-title {
+.product-img>.price,
+.product-img>.product-title {
   background-color: #fff;
   box-shadow: 0 0 8px 1.7px rgba(0, 0, 0, 0.06);
   color: #333;
@@ -81,7 +86,7 @@ ul, li {
   top: 20px;
 }
 
-.product-img > .product-title {
+.product-img>.product-title {
   top: initial;
   left: 0;
   right: 0;
@@ -91,10 +96,11 @@ ul, li {
 }
 
 .product-img a img {
-  height: 320px;
+  height: 370px;
   width: 100%;
   object-fit: cover;
 }
+
 .product-img {
   display: inline-block;
   width: 100%;
@@ -110,6 +116,7 @@ ul, li {
   width: 90%;
   margin: 0 auto;
 }
+
 .product-title {
   opacity: 1;
   color: white;
@@ -118,7 +125,7 @@ ul, li {
 .product-wrapper {
   border-radius: 10px;
   width: 250px;
-  height: 320px;
+  height: 370px;
 }
 
 .product-wrapper,
@@ -140,4 +147,3 @@ ul, li {
   font-family: \'Rozha One\', serif;
   font-size: 22px
 }
-
