@@ -4,11 +4,11 @@ import { ProductValidationError, ProductCodeDuplicatedException, ProductNotFound
 import { v4 as uuid } from 'uuid'
 
 class ProductService {
-  constructor(path) {
+  constructor (path) {
     this.path = path
   }
 
-  async addProduct(productInputData = {}) {
+  async addProduct (productInputData = {}) {
     const { title, description, price, thumbnails = [], code, stock, status = true, category } = productInputData
     if (!title || !description || !price || !code || !stock || !category) {
       throw new ProductValidationError()
@@ -26,14 +26,14 @@ class ProductService {
     return newProduct
   }
 
-  async getProducts(limit = null) {
+  async getProducts (limit = null) {
     const products = existsSync(this.path)
       ? JSON.parse(await promises.readFile(this.path, { encoding: 'utf-8' }))
       : []
     return limit ? products.slice(0, limit) : products
   }
 
-  async getProductById(pid) {
+  async getProductById (pid) {
     const products = await this.getProducts()
     const found = products.find(product => product.id === pid)
     if (!found) {
@@ -42,7 +42,7 @@ class ProductService {
     return found
   }
 
-  async updateProduct(pid, data = {}) {
+  async updateProduct (pid, data = {}) {
     const unCleanedChanges = {
       title: data.title,
       description: data.description,
@@ -71,7 +71,7 @@ class ProductService {
     return productUpdated
   }
 
-  async deleteProduct(pid) {
+  async deleteProduct (pid) {
     const products = await this.getProducts()
     if (!products.find(product => product.id === pid)) throw new ProductNotFoundException(pid)
     const newProducts = products.filter(product => product.id !== pid)

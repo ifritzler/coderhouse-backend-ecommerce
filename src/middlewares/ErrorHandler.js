@@ -2,8 +2,8 @@ import ApplicationError from '../exceptions/ApplicationError.js'
 import { removeUploadImages } from '../utils.js'
 
 class ErrorHandler {
-  static async intercept(error, req, res, _next) {
-
+  static async intercept (error, req, res, _next) {
+    await removeUploadImages(null, req.files)
     if (error instanceof ApplicationError) {
       return res.status(error.status).json({
         success: false,

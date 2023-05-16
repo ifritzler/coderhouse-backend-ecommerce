@@ -147,3 +147,28 @@ li {
   font-family: \'Rozha One\', serif;
   font-size: 22px
 }
+
+.swa-confirm-btn,
+.swa-deny-btn {
+  background: none;
+  background-color: #20dc7b;
+  color: inherit;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 10px 21px;
+  font: inherit;
+  outline: none;
+  margin: 0 20px;
+}
+
+.swa-deny-btn {
+  background-color: #ffc9c9;
+}
+
+.nav-item .btn.btn-primary, .nav-item .btn.btn-primary:active, .nav-item .btn.btn-primary:focus {
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 8px;
+  color: black;
+  outline: none;
+  box-shadow: none;
+}

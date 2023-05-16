@@ -3,18 +3,18 @@ import { CartNotFoundException, NoStockProductException, ProductNotFoundInCartEx
 import { v4 as uuid } from 'uuid'
 
 class CartsService {
-  constructor(path) {
+  constructor (path) {
     this.path = path
   }
 
-  async getAll(limit = null) {
+  async getAll (limit = null) {
     const carts = existsSync(this.path)
       ? JSON.parse(await promises.readFile(this.path, { encoding: 'utf-8' }))
       : []
     return limit ? carts.slice(0, limit) : carts
   }
 
-  async getById(cid) {
+  async getById (cid) {
     const carts = await this.getAll()
     const found = carts.find(cart => cart.id === cid)
     if (!found) {
@@ -23,7 +23,7 @@ class CartsService {
     return found
   }
 
-  async create() {
+  async create () {
     const carts = await this.getAll()
     const newCart = {
       id: uuid(),
@@ -34,7 +34,7 @@ class CartsService {
     return newCart
   }
 
-  async addProductToCart(cid, prod) {
+  async addProductToCart (cid, prod) {
     const carts = await this.getAll()
     const cartIndex = carts.findIndex(cart => cart.id === cid)
     if (cartIndex === -1) throw new CartNotFoundException(cid)
@@ -52,7 +52,7 @@ class CartsService {
     await promises.writeFile(this.path, JSON.stringify(carts, null, 2))
   }
 
-  async removeProductInCart(cid, pid) {
+  async removeProductInCart (cid, pid) {
     const carts = await this.getAll()
     const cartIndex = carts.findIndex(cart => cart.id === cid)
     if (cartIndex === -1) {

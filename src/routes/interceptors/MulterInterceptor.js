@@ -17,15 +17,15 @@ const errorMessages = {
  * @class
 */
 class MulterInterceptor {
-  static intercept(err, _req, _res, next) {
+  static intercept (err, _req, _res, next) {
     if (err instanceof MulterError) {
-      if (err.message === errorMessages.LIMIT_FIELD_COUNT) { throw new ApplicationError('You has posts too many files. Please try again or contact to an administrator.', 400) }
+      if (err.message === errorMessages.LIMIT_FIELD_COUNT) next(new ApplicationError('You has posts too many files. Please try again or contact to an administrator.', 400))
 
-      if (err.message === errorMessages.LIMIT_FILE_SIZE) { throw new ApplicationError('You posts a file too large. Please upload a file less than 5MB.', 400) }
+      if (err.message === errorMessages.LIMIT_FILE_SIZE) next(new ApplicationError('You posts a file too large. Please upload a file less than 5MB.', 400))
 
-      if (err.message === errorMessages.LIMIT_FILE_COUNT) { throw new ApplicationError('You posts too many files. Maximum permmited 3. Please try again.', 400) }
+      if (err.message === errorMessages.LIMIT_FILE_COUNT) next(new ApplicationError('You posts too many files. Maximum permmited 3. Please try again.', 400))
 
-      if (err.message === errorMessages.MISSING_FIELD_NAME) { throw new ApplicationError('An image must have a name, please rename your file and upload agait', 400) }
+      if (err.message === errorMessages.MISSING_FIELD_NAME) next(new ApplicationError('An image must have a name, please rename your file and upload agait', 400))
     }
     next(err)
   }

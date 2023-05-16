@@ -1,27 +1,21 @@
 import express from 'express'
 import { engine } from 'express-handlebars'
 import http from 'http'
-import { Server } from "socket.io"
 import ErrorHandler from './middlewares/ErrorHandler.js'
 import apiRouter from './routes/api.router.js'
 import clientRouter from './routes/client.router.js'
+import { initSockets } from './services/sockets/index.js'
+import ioMiddleware from './middlewares/ioMiddleware.js'
 
 const app = express()
-const server = http.createServer(app);
-const io = new Server(server);
+const server = http.createServer(app)
 
 app.engine('handlebars', engine())
 app.set('view engine', 'handlebars')
 app.set('views', './views')
 
-app.use((req, res, next) => {
-  req.io = io;
-  next()
-})
-
-io.on('connection', (socket) => {
-  console.log(`User connected with socket id: ${socket.id}`);
-});
+const io = initSockets(server)
+app.use(ioMiddleware(io))
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
