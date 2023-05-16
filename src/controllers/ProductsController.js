@@ -37,7 +37,7 @@ class ProductsController {
       success: true,
       payload: product
     })
-    req.ioServer.emit('new:product', product)
+    req.ioServer.emit('product:created', product)
   }
 
   static async updateById (req, res) {
@@ -54,6 +54,7 @@ class ProductsController {
   static async deleteById (req, res) {
     const { pid } = req.params
     await productService.deleteProduct(pid)
+    req.ioServer.emit('product:deleted', pid)
     res.status(200).json({
       success: true
     })

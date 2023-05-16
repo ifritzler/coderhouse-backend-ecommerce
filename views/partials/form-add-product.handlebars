@@ -1,15 +1,18 @@
-<form id="addProductForm" action="/api/products" method="post">
+<form id="addProductForm" class="needs-validation" novalidate>
   <div class="form-group">
     <label for="title">Title: </label>
-    <input type="text" name="title" id="title" class="form-control form-control-sm">
+    <input type="text" name="title" id="title" class="form-control form-control-sm" required>
+    <div class="invalid-feedback">
+      Please fill up the product title
+    </div>
   </div>
   <div class="form-group">
     <label for="description">Description:</label>
-    <input type="text" name="description" id="description" class="form-control form-control-sm">
+    <input type="text" name="description" id="description" class="form-control form-control-sm" required>
   </div>
   <div class="form-group">
     <label for="price">Price:</label>
-    <input type="number" name="price" id="price" class="form-control form-control-sm">
+    <input type="number" name="price" id="price" class="form-control form-control-sm" required>
   </div>
   <div class="custom-file">
     <input type="file" class="custom-file-input" id="thumbnails" name="thumbnails">
@@ -18,15 +21,15 @@
   </div>
   <div class="form-group">
     <label for="code">Code:</label>
-    <input type="text" name="code" id="code" class="form-control form-control-sm">
+    <input type="text" name="code" id="code" class="form-control form-control-sm" required>
   </div>
   <div class="form-group">
     <label for="stock">Stock:</label>
-    <input type="number" name="stock" id="stock" class="form-control form-control-sm">
+    <input type="number" name="stock" id="stock" class="form-control form-control-sm" required>
   </div>
   <div class="form-group">
     <label for="category">Category:</label>
-    <input type="text" name="category" id="category" class="form-control form-control-sm">
+    <input type="text" name="category" id="category" class="form-control form-control-sm" required>
   </div>
   <div class="custom-control custom-checkbox">
     <input type="checkbox" class="custom-control-input" id="status" name="status" checked>

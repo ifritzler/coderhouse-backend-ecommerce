@@ -1,6 +1,11 @@
-async function deleteProductFromList (e) {
-  const cardProduct = e.closest('.product-store-item')
-  cardProduct.remove()
+/* eslint-disable no-unused-vars */
+function getProductCardById (id) {
+  const productItems = Array.from(document.getElementsByClassName('product-store-item'))
+  const itemToRemove = productItems.find(item => {
+    const pid = item.querySelector('.carousel').id
+    return pid === id
+  })
+  return itemToRemove
 }
 
 async function deleteProductApi (e) {
@@ -8,9 +13,14 @@ async function deleteProductApi (e) {
   const response = await fetch(`/api/products/${id}`, {
     method: 'delete'
   })
-  if (response.ok) {
-    deleteProductFromList(e)
-  } else {
-    // TODO: MAKE AN ERROR MESSAGE OR TOAST ERROR OR SOMETHING ELSE
+  try {
+    if (response.ok) {
+      const element = getProductCardById(id)
+      element.remove()
+    } else {
+      // TODO: MAKE AN ERROR MESSAGE OR TOAST ERROR OR SOMETHING ELSE
+    }
+  } catch (error) {
+
   }
 }
