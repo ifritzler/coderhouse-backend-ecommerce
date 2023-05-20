@@ -172,3 +172,68 @@ li {
   outline: none;
   box-shadow: none;
 }
+.image-input-container {
+  position: relative;
+}
+.image-input-container > p {
+  margin: 0;
+  padding: 0;
+}
+
+.image-input-container::after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+#image-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+}
+
+.square-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.image-wrapper {
+  position: relative;
+}
+
+.close-button {
+  position: absolute;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  top: 5px;
+  right: 5px;
+  width: 25px;
+  height: 25px;
+  border: none;
+  border-radius: 50%;
+  background-color: #dc3545;
+  color: #fff;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+#product-form {
+  position: relative;
+}
+
+#image-container {
+  margin-bottom: 20px;
+}
+
+.custom-file-label {
+  overflow: hidden;
+}
+
+.custom-file {
+  /* margin-block: 1rem; */
+}

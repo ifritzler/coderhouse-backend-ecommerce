@@ -1,39 +1,50 @@
-<form id="addProductForm" class="needs-validation" novalidate>
-  <div class="form-group">
-    <label for="title">Title: </label>
-    <input type="text" name="title" id="title" class="form-control form-control-sm" required>
-    <div class="invalid-feedback">
-      Please fill up the product title
+<form id="product-form" class="needs-validation grid" enctype="multipart/form-data" novalidate>
+  <div class="row container-fluid">
+    <div class="col-xl">
+      <div class="form-group">
+        <label for="title">Title: </label>
+        <input type="text" name="title" id="title" class="form-control form-control-sm" required>
+        <div class="invalid-feedback">
+          Please fill up the product title
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="description">Description:</label>
+        <input type="text" name="description" id="description" class="form-control form-control-sm" required>
+      </div>
+      <div class="form-group">
+        <label for="price">Price:</label>
+        <input type="number" name="price" id="price" class="form-control form-control-sm" required>
+      </div>
+      <div class="form-group">
+        <label for="code">Code:</label>
+        <input type="text" name="code" id="code" class="form-control form-control-sm" required>
+      </div>
+      <div class="form-group">
+        <label for="stock">Stock:</label>
+        <input type="number" name="stock" id="stock" class="form-control form-control-sm" required>
+      </div>
+      <div class="form-group">
+        <label for="category">Category:</label>
+        <input type="text" name="category" id="category" class="form-control form-control-sm" required>
+      </div>
+
+    </div>
+    <div class="col-xl">
+      <div class="image-input-container">
+        <p>Thumbnails:</p>
+        <div class="custom-file">
+          <input type="file" class="custom-file-input" id="thumbnails" name="thumbnails" multiple>
+          <label class="custom-file-label" for="thumbnails">Upload up to 3 images</label>
+          <div class="invalid-feedback">Example invalid custom file feedback</div>
+        </div>
+        <div id="image-container"></div>
+      </div>
+      <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="status" name="status" checked>
+        <label class="custom-control-label" for="status">Available</label>
+      </div>
+      <button class="btn btn-primary btn-block mt-4" type="submit">Save product</button>
     </div>
   </div>
-  <div class="form-group">
-    <label for="description">Description:</label>
-    <input type="text" name="description" id="description" class="form-control form-control-sm" required>
-  </div>
-  <div class="form-group">
-    <label for="price">Price:</label>
-    <input type="number" name="price" id="price" class="form-control form-control-sm" required>
-  </div>
-  <div class="custom-file">
-    <input type="file" class="custom-file-input" id="thumbnails" name="thumbnails">
-    <label class="custom-file-label" for="thumbnails">Upload up to 3 images</label>
-    <div class="invalid-feedback">Example invalid custom file feedback</div>
-  </div>
-  <div class="form-group">
-    <label for="code">Code:</label>
-    <input type="text" name="code" id="code" class="form-control form-control-sm" required>
-  </div>
-  <div class="form-group">
-    <label for="stock">Stock:</label>
-    <input type="number" name="stock" id="stock" class="form-control form-control-sm" required>
-  </div>
-  <div class="form-group">
-    <label for="category">Category:</label>
-    <input type="text" name="category" id="category" class="form-control form-control-sm" required>
-  </div>
-  <div class="custom-control custom-checkbox">
-    <input type="checkbox" class="custom-control-input" id="status" name="status" checked>
-    <label class="custom-control-label" for="status">Available</label>
-  </div>
-  <button class="btn btn-primary btn-block mt-4" type="submit">Save product</button>
 </form>

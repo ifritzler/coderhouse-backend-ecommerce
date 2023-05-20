@@ -1,6 +1,7 @@
-import { existsSync, promises } from 'fs'
-import { CartNotFoundException, NoStockProductException, ProductNotFoundInCartException } from '../exceptions/cart.exceptions.js'
-import { v4 as uuid } from 'uuid'
+
+const fs = require('fs')
+const { v4: uuid } = require('uuid')
+const { CartNotFoundException, NoStockProductException, ProductNotFoundInCartException } = require('./errors')
 
 class CartsService {
   constructor (path) {
@@ -8,8 +9,8 @@ class CartsService {
   }
 
   async getAll (limit = null) {
-    const carts = existsSync(this.path)
-      ? JSON.parse(await promises.readFile(this.path, { encoding: 'utf-8' }))
+    const carts = fs.existsSync(this.path)
+      ? JSON.parse(await fs.promises.readFile(this.path, { encoding: 'utf-8' }))
       : []
     return limit ? carts.slice(0, limit) : carts
   }
@@ -30,7 +31,7 @@ class CartsService {
       products: []
     }
     carts.push(newCart)
-    promises.writeFile(this.path, JSON.stringify(carts, null, 2))
+    fs.promises.writeFile(this.path, JSON.stringify(carts, null, 2))
     return newCart
   }
 
@@ -49,7 +50,7 @@ class CartsService {
     } else {
       carts[cartIndex].products[productCartIndex].quantity += 1
     }
-    await promises.writeFile(this.path, JSON.stringify(carts, null, 2))
+    await fs.promises.writeFile(this.path, JSON.stringify(carts, null, 2))
   }
 
   async removeProductInCart (cid, pid) {
@@ -70,8 +71,8 @@ class CartsService {
     } else {
       carts[cartIndex].products.splice(productCartIndex, 1)
     }
-    await promises.writeFile(this.path, JSON.stringify(carts, null, 2))
+    await fs.promises.writeFile(this.path, JSON.stringify(carts, null, 2))
   }
 }
 
-export default new CartsService('./src/database/carts.json')
+module.exports = new CartsService('src/carts.json')

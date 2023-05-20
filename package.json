@@ -1,35 +1,21 @@
 {
-  "name": "coderhouse-backend-ecommerce",
-  "version": "0.1.0",
-  "description": "Node.js ecommerce backend using MERN stack for full-stack development.",
-  "main": "src/app.js",
-  "type": "module",
+  "name": "websocket",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
-    "test": "jest",
-    "dev": "nodemon .",
-    "start": "node ./src/app.js"
+    "start": "node ./src/app.js",
+    "dev": "nodemon ./src/app.js",
+    "compile:templates": "handlebars ./views/partials -f ./public/templates.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ifritzler/coderhouse-backend-ecommerce.git"
-  },
-  "keywords": [
-    "coderhouse",
-    "backend",
-    "mern",
-    "ecommerce"
-  ],
-  "author": "Ilan Emanuel Fritzler (ifritzler)",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/ifritzler/coderhouse-backend-ecommerce/issues"
-  },
-  "homepage": "https://github.com/ifritzler/coderhouse-backend-ecommerce#readme",
   "dependencies": {
-    "cookie-parser": "^1.4.6",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
     "express": "^4.18.2",
     "express-async-handler": "^1.2.0",
     "express-handlebars": "^7.0.7",
+    "http-errors": "~1.6.3",
+    "jade": "^0.29.0",
+    "morgan": "~1.9.1",
     "multer": "^1.4.5-lts.1",
     "socket.io": "^4.6.1",
     "uuid": "^9.0.0"
@@ -39,12 +25,9 @@
     "eslint-config-standard": "^17.0.0",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-n": "^15.7.0",
-    "eslint-plugin-promise": "^6.1.1",
-    "nodemon": "^2.0.22"
+    "eslint-plugin-promise": "^6.1.1"
   },
   "nodemonConfig": {
-    "ignore": [
-      "*.json"
-    ]
+    "ignore": ["*.json"]
   }
 }

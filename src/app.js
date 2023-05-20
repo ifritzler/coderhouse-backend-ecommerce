@@ -1,33 +1,37 @@
-import express from 'express'
-import { engine } from 'express-handlebars'
-import http from 'http'
-import ErrorHandler from './middlewares/ErrorHandler.js'
-import apiRouter from './routes/api.router.js'
-import clientRouter from './routes/client.router.js'
-import { initSockets } from './services/sockets/index.js'
-import ioMiddleware from './middlewares/ioMiddleware.js'
+const express = require('express')
+const productsRouter = require('./routes/productsRouter.js')
+const { engine } = require('express-handlebars')
+const viewsRouter = require('./routes/viewsRouter')
+const initSockets = require('./socket.js')
+const http = require('http')
+const socketMiddleware = require('./middlewares/socketMiddleware.js')
+const errorHandler = require('./middlewares/errorHandler.js')
+const cartsRouter = require('./routes/cartsRouter.js')
+const multerInterceptor = require('./middlewares/errors/multerInterceptor.js')
 
 const app = express()
-const server = http.createServer(app)
+const httpServer = http.createServer(app)
+const ioServer = initSockets(httpServer)
 
 app.engine('handlebars', engine())
 app.set('view engine', 'handlebars')
 app.set('views', './views')
 
-const io = initSockets(server)
-app.use(ioMiddleware(io))
-
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-app.use('/', express.static('public'))
+app.use(express.static('public'))
 
-app.use(clientRouter)
-app.use('/api', apiRouter)
+app.use(socketMiddleware(ioServer))
 
-app.use(ErrorHandler.intercept)
+app.use('/api/products', productsRouter)
+app.use('/api/carts', cartsRouter)
+app.use('/', viewsRouter)
 
-const PORT = 8080
+app.use(multerInterceptor)
+app.use(errorHandler)
 
-server.listen(PORT, () => {
-  console.log(`Server up and running on port ${PORT} 🚀`)
+httpServer.listen(8080, () => {
+  console.log('Server up and running on port 8080')
 })
+
+module.exports = app

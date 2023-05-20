@@ -1,23 +1,16 @@
-import ApplicationError from '../exceptions/ApplicationError.js'
-import { removeUploadImages } from '../utils.js'
+const createError = require('http-errors')
 
-class ErrorHandler {
-  static async intercept (error, req, res, _next) {
-    await removeUploadImages(null, req.files)
-    if (error instanceof ApplicationError) {
-      return res.status(error.status).json({
-        success: false,
-        error: error.message,
-        errorList: error.errors
-      })
-    }
-    // TODO: Usar loggers para guardar cada uno de los errores y asignarle un ID unico para identificarlo.
-    console.error({ errorMessage: error.message, errorStack: error.stack })
-    res.status(500).json({
+const errorHandler = (err, req, res, next) => {
+  if (err instanceof createError.HttpError) {
+    return res.status(err.status).json({
       success: false,
-      message: 'Unexpected error. Please contact to an administrator.'
+      error: err.message
     })
   }
+  return res.status(500).json({
+    success: false,
+    error: 'Ha ocurrido un error inesperado. Contacte con un administrador'
+  })
 }
 
-export default ErrorHandler
+module.exports = errorHandler
