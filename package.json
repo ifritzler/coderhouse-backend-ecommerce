@@ -28,6 +28,6 @@
     "eslint-plugin-promise": "^6.1.1"
   },
   "nodemonConfig": {
-    "ignore": ["*.json"]
+    "ignore": ["*.json", "public/thumbnails"]
   }
 }

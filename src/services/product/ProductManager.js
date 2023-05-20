@@ -1,6 +1,7 @@
 const { v4: uuid } = require('uuid')
 const fs = require('fs')
 const { ProductNotFoundError, ProductCodeDuplicatedError } = require('./errors')
+const { deleteThumbnails } = require('../../utils')
 
 class ProductManager {
   constructor (path) {
@@ -31,7 +32,9 @@ class ProductManager {
     if (index === -1) {
       throw new ProductNotFoundError(id)
     }
-    products.splice(index, 1)
+    const deleted = products.splice(index, 1)
+    console.log(deleted)
+    await deleteThumbnails(deleted[0].thumbnails)
     await fs.promises.writeFile(this.path, JSON.stringify(products))
   }
 
