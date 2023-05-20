@@ -1,13 +1,16 @@
+const { PORT, MONGO_URI } = require('./config/environ')
+const http = require('http')
 const express = require('express')
-const productsRouter = require('./routes/productsRouter.js')
 const { engine } = require('express-handlebars')
+const productsRouter = require('./routes/productsRouter.js')
+const cartsRouter = require('./routes/cartsRouter.js')
 const viewsRouter = require('./routes/viewsRouter')
 const initSockets = require('./socket.js')
-const http = require('http')
 const socketMiddleware = require('./middlewares/socketMiddleware.js')
 const errorHandler = require('./middlewares/errorHandler.js')
-const cartsRouter = require('./routes/cartsRouter.js')
 const multerInterceptor = require('./middlewares/errors/multerInterceptor.js')
+const { default: mongoose } = require('mongoose')
+const options = require('./config/mongo')
 
 const app = express()
 const httpServer = http.createServer(app)
@@ -30,8 +33,18 @@ app.use('/', viewsRouter)
 app.use(multerInterceptor)
 app.use(errorHandler)
 
-httpServer.listen(8080, () => {
-  console.log('Server up and running on port 8080')
+httpServer.listen(PORT, async () => {
+  await mongoose.connect(MONGO_URI, options)
+  console.log('Mongo database is initialized! 😁👍')
+  console.log('Server up and running on port ' + PORT + ' 🆗🙆')
+})
+
+httpServer.on('close', async () => {
+  await mongoose.disconnect()
+})
+
+httpServer.on('error', async () => {
+  await mongoose.disconnect()
 })
 
 module.exports = app
