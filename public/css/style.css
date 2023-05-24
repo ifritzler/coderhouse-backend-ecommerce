@@ -108,13 +108,11 @@ li {
 }
 
 .product-store-list {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 2rem;
-  justify-content: center;
-  width: 90%;
-  margin: 0 auto;
+  width: 80%;
+  margin-inline: auto;
 }
 
 .product-title {

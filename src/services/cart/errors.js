@@ -12,7 +12,7 @@ class ProductNotFoundInCartException extends Error {
 
 class NoStockProductException extends Error {
   constructor (id) {
-    super(`Cart with id '${id}' does not have enought stock.`)
+    super(`Product with id '${id}' does not have enought stock.`)
   }
 }
 

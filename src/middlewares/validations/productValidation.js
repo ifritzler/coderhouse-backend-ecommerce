@@ -1,20 +1,20 @@
 const { ProductValidationError } = require('../../services/product/errors')
-
-function productCreateValidation (req, res, next) {
+const { deleteThumbnails } = require('../../utils')
+async function productCreateValidation (req, res, next) {
   const data = req.body
   const files = req.files
-  console.log(req.files)
+  let thumbnails
+  if (files && files.length > 0) {
+    thumbnails = files.map(file => `/thumbnails/${file.filename}`)
+  } else {
+    thumbnails = ['/thumbnails/placeholder.jpg']
+  }
   if (data.title && data.description && data.code && data.price && data.category && data.stock) {
-    if (files && files.length > 0) {
-      data.thumbnails = files.map(file => `/thumbnails/${file.filename}`)
-    } else {
-      data.thumbnails = ['/thumbnails/placeholder.jpg']
-    }
     req.body = {
       title: data.title,
       description: data.description,
       code: data.code,
-      thumbnails: data.thumbnails,
+      thumbnails,
       price: +data.price,
       category: data.category,
       stock: +data.stock,
@@ -22,6 +22,7 @@ function productCreateValidation (req, res, next) {
     }
     next()
   } else {
+    await deleteThumbnails(thumbnails)
     throw new ProductValidationError()
   }
 }
@@ -37,7 +38,7 @@ function productUpdateValidation (req, res, next) {
     if (data.category) req.body.category = data.category
     if (data.stock) req.body.stock = +data.stock
     if (typeof data.status !== 'undefined') req.status = data.status
-    next()
+    return next()
   }
   throw new ProductValidationError()
 }

@@ -9,7 +9,7 @@ const initSockets = require('./socket.js')
 const socketMiddleware = require('./middlewares/socketMiddleware.js')
 const errorHandler = require('./middlewares/errorHandler.js')
 const multerInterceptor = require('./middlewares/errors/multerInterceptor.js')
-const { default: mongoose } = require('mongoose')
+const mongoose = require('mongoose')
 const options = require('./config/mongo')
 
 const app = express()

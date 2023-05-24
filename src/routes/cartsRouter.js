@@ -1,7 +1,6 @@
 const express = require('express')
 const asyncHandler = require('express-async-handler')
-const cartManager = require('../services/cart/CartManager')
-const productManager = require('../services/product/ProductManager')
+const cartManager = require('../services/cart/CartMongoManager')
 const { ProductNotFoundError } = require('../services/product/errors')
 const { ProductNotFoundInCartException } = require('../services/cart/errors.js')
 const cartInterceptor = require('../middlewares/errors/cartsInterceptor')
@@ -27,10 +26,10 @@ cartsRouter.post('/', asyncHandler(async (_req, res) => {
 cartsRouter.post('/:cid/product/:pid', asyncHandler(async (req, res) => {
   try {
     const { cid, pid } = req.params
+    const { quantity } = req.query
     // This line of code just makes the product search and throws error if not exists.
-    const product = await productManager.getProductById(pid)
 
-    await cartManager.addProductToCart(cid, product)
+    await cartManager.addProductToCart(cid, pid, parseInt(quantity))
     res.status(200).json({
       success: true
     })

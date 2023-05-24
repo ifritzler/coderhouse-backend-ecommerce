@@ -1,8 +1,14 @@
 const dotenv = require('dotenv')
-const config = dotenv.config()
+const path = require('path')
+const result = dotenv.config({ path: path.resolve(__dirname, `../../.env.${process.env.NODE_ENV}`.trim()) })
+
+if (result.error) {
+  throw result.error
+}
+
+const { parsed: envConfig } = result
 
 module.exports = {
-  PORT: config.parsed?.PORT || 8080,
-  NODE_ENV: config.parsed?.NODE_ENV || 'development',
-  MONGO_URI: config.parsed?.MONGO_URI
+  PORT: envConfig.PORT || 8080,
+  MONGO_URI: envConfig.MONGO_URI
 }

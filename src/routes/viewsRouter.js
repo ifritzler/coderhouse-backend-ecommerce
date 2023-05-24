@@ -1,5 +1,5 @@
 const { Router } = require('express')
-const productsManager = require('../services/product/ProductManager')
+const productsManager = require('../services/product/ProductMongoManager')
 const router = Router()
 
 router.get('/', async (req, res) => {

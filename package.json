@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./src/app.js",
-    "dev": "nodemon ./src/app.js",
+    "start": "set NODE_ENV=prod && node ./src/app.js",
+    "dev": "set NODE_ENV=dev && nodemon ./src/app.js",
     "compile:templates": "handlebars ./views/partials -f ./public/templates.js"
   },
   "dependencies": {

@@ -1,14 +1,17 @@
+/* eslint-disable no-unexpected-multiline */
+/* eslint-disable func-call-spacing */
 const express = require('express')
-const productManager = require('../services/product/ProductManager')
 const { productCreateValidation, productUpdateValidation } = require('../middlewares/validations/productValidation')
 const productInterceptor = require('../middlewares/errors/productsInterceptor')
 const asyncHandler = require('express-async-handler')
 const upload = require('../middlewares/multer')
+const productService = require('../services/product/ProductMongoManager')
 
 const router = express.Router()
 
 router.get('/', asyncHandler(async (req, res) => {
-  const products = await productManager.getProducts()
+  const { limit = 200 } = req.query
+  const products = await productService.getProducts(limit)
   res.status(200).json({
     success: true,
     payload: products
@@ -17,7 +20,7 @@ router.get('/', asyncHandler(async (req, res) => {
 
 router.get('/:id', asyncHandler(async (req, res) => {
   const { id } = req.params
-  const product = await productManager.getProductById(id)
+  const product = await productService.getProductById(id)
   res.status(200).json({
     success: true,
     payload: product
@@ -26,7 +29,7 @@ router.get('/:id', asyncHandler(async (req, res) => {
 
 /* GET users listing. */
 router.post('/', asyncHandler(upload.array('thumbnails')), asyncHandler(productCreateValidation), asyncHandler(async (req, res) => {
-  const newProduct = await productManager.addProduct(req.body)
+  const newProduct = await productService.addProduct(req.body)
   // Envio evento realtime a todos los sockets conectados. Si el producto fue agregado por alguien conectado en realtime se le enviara al resto
   // de lo contrario se le enviara a todo el mundo.
   req.clientSocket?.broadcast.emit('product:created', newProduct) ??
@@ -40,7 +43,7 @@ router.post('/', asyncHandler(upload.array('thumbnails')), asyncHandler(productC
 /* GET users listing. */
 router.delete('/:id', asyncHandler(async (req, res) => {
   const { id } = req.params
-  await productManager.deleteProduct(id)
+  await productService.deleteProduct(id)
   // Envio evento realtime a todos los sockets conectados. Si el producto fue eliminado por alguien conectado en realtime se le enviara al resto
   // de lo contrario se le enviara a todo el mundo.
   req.clientSocket?.broadcast.emit('product:deleted', id) ??
@@ -52,7 +55,7 @@ router.delete('/:id', asyncHandler(async (req, res) => {
 
 router.put('/:id', asyncHandler(productUpdateValidation), asyncHandler(async (req, res) => {
   const { id } = req.params
-  const productUpdated = await productManager.updateProduct(id, req.body)
+  const productUpdated = await productService.updateProduct(id, req.body)
   res.status(200).json({
     success: true,
     payload: productUpdated

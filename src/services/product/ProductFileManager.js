@@ -3,7 +3,7 @@ const fs = require('fs')
 const { ProductNotFoundError, ProductCodeDuplicatedError } = require('./errors')
 const { deleteThumbnails } = require('../../utils')
 
-class ProductManager {
+class ProductFileManager {
   constructor (path) {
     this.path = path
   }
@@ -33,7 +33,6 @@ class ProductManager {
       throw new ProductNotFoundError(id)
     }
     const deleted = products.splice(index, 1)
-    console.log(deleted)
     await deleteThumbnails(deleted[0].thumbnails)
     await fs.promises.writeFile(this.path, JSON.stringify(products))
   }
@@ -42,6 +41,7 @@ class ProductManager {
     const products = await this.getProducts()
     const isCodeExists = products.some(product => product.code === data.code)
     if (isCodeExists) {
+      await deleteThumbnails(data.thumbnails)
       throw new ProductCodeDuplicatedError(data.code)
     }
     const newProduct = {
@@ -64,4 +64,4 @@ class ProductManager {
   }
 }
 
-module.exports = new ProductManager('src/products.json')
+module.exports = new ProductFileManager('src/products.json')
