@@ -5,7 +5,7 @@ const { productCreateValidation, productUpdateValidation } = require('../middlew
 const productInterceptor = require('../middlewares/errors/productsInterceptor')
 const asyncHandler = require('express-async-handler')
 const upload = require('../middlewares/multer')
-const productService = require('../services/product/ProductMongoManager')
+const productService = require('../services/product/ProductService')
 
 const router = express.Router()
 
