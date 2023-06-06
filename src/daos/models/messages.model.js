@@ -7,7 +7,7 @@ const messagesSchema = new Schema({
     required: true,
     validate: {
       validator: function (v) {
-        return /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(v)
+        return /^[\w\-.]+@([\w-]+\.)+[\w-]{2,}$/gm.test(v)
       },
       message: props => `${props.value} is not a valid email!`
     }
