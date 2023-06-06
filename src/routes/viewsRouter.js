@@ -4,12 +4,12 @@ const router = Router()
 
 router.get('/', async (req, res) => {
   const products = await productsManager.getProducts()
-  res.render('home', { products })
+  res.render('realtimeProducts', { products })
 })
 
 router.get('/realtimeProducts', async (req, res) => {
   const products = await productsManager.getProducts()
-  res.render('realtimeProducts', { products })
+  res.render('home', { products })
 })
 
 module.exports = router

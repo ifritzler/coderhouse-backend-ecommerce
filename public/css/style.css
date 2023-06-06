@@ -1,7 +1,13 @@
 @import url(https://fonts.googleapis.com/css?family=Calibri:400,300,700);
 
+/* Html basic element tags */
 html {
-  font-family: \'Raleway\', serif;
+  font-family: \\\'Raleway\\\', serif;
+}
+
+body {
+  min-height: 100vh;
+  overflow: hidden;
 }
 
 ul,
@@ -11,12 +17,87 @@ li {
   padding: 0;
 }
 
+/* Animaciones */
+@keyframes aparecer-bubble {
+  from {
+    opacity: 0;
+    bottom: -70px;
+  }
+  to {
+    opacity: 1;
+    bottom: 5%;
+  }
+}
+
+/* Css classes style */
+
 .bg-light {
   background-color: #fff !important;
 }
 
 .carousel {
   position: initial !important;
+}
+
+.chat-bubble i {
+  margin-top: -2px;
+}
+.chat-bubble {
+  background-color: #20dc7b;
+  position: absolute;
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
+    rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+  bottom: -70px;
+  right: 5%;
+  opacity: 0;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  cursor: pointer;
+  color: white;
+  animation: aparecer-bubble 1s forwards;
+}
+
+.close-button {
+  position: absolute;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  top: 5px;
+  right: 5px;
+  width: 25px;
+  height: 25px;
+  border: none;
+  border-radius: 50%;
+  background-color: #dc3545;
+  color: #fff;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.custom-file-label {
+  overflow: hidden;
+}
+
+.image-input-container > p {
+  margin: 0;
+  padding: 0;
+}
+
+.image-input-container {
+  position: relative;
+}
+.image-input-container::after {
+  content: \'\';
+  display: table;
+  clear: both;
+}
+
+.image-wrapper {
+  position: relative;
 }
 
 .mb-45 {
@@ -27,13 +108,22 @@ li {
   margin-top: 100px;
 }
 
+.nav-item .btn.btn-primary,
+.nav-item .btn.btn-primary:active,
+.nav-item .btn.btn-primary:focus {
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 8px;
+  color: black;
+  outline: none;
+  box-shadow: none;
+}
 .navbar-toggler {
   outline: none !important;
 }
 
-
 .product-action p {
-  color: white
+  color: white;
 }
 
 .product-action,
@@ -47,21 +137,6 @@ li {
   transition: all 0.4s ease 0s;
 }
 
-.product-title {
-  transition: all 0.3s ease 0s;
-}
-
-.product-action-style>a {
-  color: #979797;
-  line-height: 1;
-  padding: 0 21px;
-  position: relative;
-}
-
-.product-action-style>a.action-plus {
-  font-size: 18px;
-}
-
 .product-action-style {
   background-color: #fff;
   box-shadow: 0 0 8px 1.7px rgba(0, 0, 0, 0.06);
@@ -69,8 +144,31 @@ li {
   padding: 16px 2px 12px;
 }
 
-.product-img>.price,
-.product-img>.product-title {
+.product-action-style > a {
+  color: #979797;
+  line-height: 1;
+  padding: 0 21px;
+  position: relative;
+}
+
+.product-action-style > a.action-plus {
+  font-size: 18px;
+}
+
+.product-img a img {
+  height: 370px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.product-img {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+}
+
+.product-img > .price,
+.product-img > .product-title {
   background-color: #fff;
   box-shadow: 0 0 8px 1.7px rgba(0, 0, 0, 0.06);
   color: #333;
@@ -86,25 +184,13 @@ li {
   top: 20px;
 }
 
-.product-img>.product-title {
+.product-img > .product-title {
   top: initial;
   left: 0;
   right: 0;
   margin: 0 auto;
   bottom: 20px;
   width: 70%;
-}
-
-.product-img a img {
-  height: 370px;
-  width: 100%;
-  object-fit: cover;
-}
-
-.product-img {
-  display: inline-block;
-  width: 100%;
-  height: 100%;
 }
 
 .product-store-list {
@@ -118,6 +204,10 @@ li {
 .product-title {
   opacity: 1;
   color: white;
+}
+
+.product-title {
+  transition: all 0.3s ease 0s;
 }
 
 .product-wrapper {
@@ -141,9 +231,10 @@ li {
   opacity: 0;
 }
 
-.tienda-logo {
-  font-family: \'Rozha One\', serif;
-  font-size: 22px
+.square-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
 }
 
 .swa-confirm-btn,
@@ -162,27 +253,12 @@ li {
   background-color: #ffc9c9;
 }
 
-.nav-item .btn.btn-primary, .nav-item .btn.btn-primary:active, .nav-item .btn.btn-primary:focus {
-  background-color: white;
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  border-radius: 8px;
-  color: black;
-  outline: none;
-  box-shadow: none;
-}
-.image-input-container {
-  position: relative;
-}
-.image-input-container > p {
-  margin: 0;
-  padding: 0;
+.tienda-logo {
+  font-family: \\\'Rozha One\\\', serif;
+  font-size: 22px;
 }
 
-.image-input-container::after {
-  content: '';
-  display: table;
-  clear: both;
-}
+/* ID's */
 
 #image-container {
   display: grid;
@@ -190,48 +266,10 @@ li {
   grid-gap: 10px;
 }
 
-.square-image {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-}
-
-.image-wrapper {
-  position: relative;
-}
-
-.close-button {
-  position: absolute;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  top: 5px;
-  right: 5px;
-  width: 25px;
-  height: 25px;
-  border: none;
-  border-radius: 50%;
-  background-color: #dc3545;
-  color: #fff;
-  font-size: 16px;
-  line-height: 1;
-  cursor: pointer;
-}
-
-#product-form {
-  position: relative;
-}
-
 #image-container {
   margin-bottom: 20px;
 }
 
-.custom-file-label {
-  overflow: hidden;
-}
-
-.custom-file {
-  /* margin-block: 1rem; */
+#product-form {
+  position: relative;
 }

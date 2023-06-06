@@ -4,34 +4,30 @@ const ProductModel = require('../../daos/models/products.model')
 const { ProductNotFoundError } = require('../product/errors')
 
 class CartsService {
-  constructor () {
-    this.dao = CartModel
-  }
-
   async getAll (limit = null) {
     try {
-      return await this.dao.find({}).limit(limit).lean()
+      return await CartModel.find({}).limit(limit).lean()
     } catch {
       return []
     }
   }
 
   async getById (cid) {
-    const product = this.dao
+    const product = CartModel
       .findOne({ _id: cid }).populate('products.product')
       .orFail(new CartNotFoundException(cid))
     return product
   }
 
   async create () {
-    return await this.dao.create({})
+    return await CartModel.create({})
   }
 
   async addProductToCart (cid, pid) {
     const product = await ProductModel.findOne({ _id: pid }).lean()
       .orFail(new ProductNotFoundError(pid))
 
-    const cart = await this.dao.findOne({ _id: cid }).orFail(new CartNotFoundException(cid))
+    const cart = await CartModel.findOne({ _id: cid }).orFail(new CartNotFoundException(cid))
 
     const productIndex = cart.products.findIndex(item => item.product._id.toString() === pid)
 
@@ -47,7 +43,7 @@ class CartsService {
   }
 
   async removeProductInCart (cid, pid) {
-    const cart = await this.dao.findOne({ _id: cid }).orFail(new CartNotFoundException(cid))
+    const cart = await CartModel.findOne({ _id: cid }).orFail(new CartNotFoundException(cid))
 
     const productIndex = cart.products.findIndex(item => item.product._id.toString() === pid)
     if (productIndex === -1) throw new ProductNotFoundInCartException(pid)
@@ -56,7 +52,7 @@ class CartsService {
   }
 
   async delete (cid) {
-    await this.dao.deleteOne({ _id: cid }).orFail(new CartNotFoundException(cid))
+    await CartModel.deleteOne({ _id: cid }).orFail(new CartNotFoundException(cid))
   }
 }
 

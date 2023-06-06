@@ -154,7 +154,7 @@ try {
     e.stopPropagation()
 
     const formData = new FormData(addProductForm)
-    const newProduct = Object.fromEntries(formData.entries())
+    // const newProduct = Object.fromEntries(formData.entries())
 
     const response = await fetch('/api/products', {
       method: 'post',
