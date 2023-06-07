@@ -2,424 +2,452 @@
 
 /* Html basic element tags */
 html {
-  font-family: \\\'Raleway\\\', serif;
+    font-family: \\\'Raleway\\\', serif;
 }
 
 body {
-  min-height: 100vh;
-  overflow: hidden;
+    min-height: 100vh;
+    overflow: hidden;
 }
 
 ul,
 li {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 /* Animaciones */
 @keyframes aparecer-bubble {
-  from {
-    opacity: 0;
-    bottom: -70px;
-  }
-  to {
-    opacity: 1;
-    bottom: 5%;
-  }
+    from {
+        opacity: 0;
+        bottom: -70px;
+    }
+    to {
+        opacity: 1;
+        bottom: 5%;
+    }
 }
 
 @keyframes desaparecer-bubble {
-  from {
-    opacity: 1;
-    bottom: 5%;
-  }
-  to {
-    opacity: 0;
-    bottom: -70px;
-  }
+    from {
+        opacity: 1;
+        bottom: 5%;
+    }
+    to {
+        opacity: 0;
+        bottom: -70px;
+    }
 }
 
 @keyframes aparecer-chat {
-  from {
-    opacity: 0;
-    bottom: -400px;
-  }
-  to {
-    opacity: 1;
-    bottom: 2rem;
-  }
+    from {
+        opacity: 0;
+        bottom: -400px;
+    }
+    to {
+        opacity: 1;
+        bottom: 2rem;
+    }
 }
 
 @keyframes desaparecer-chat {
-  from {
-    opacity: 1;
-    bottom: 2rem;
-  }
-  to {
-    opacity: 0;
-    bottom: -400px;
-  }
+    from {
+        opacity: 1;
+        bottom: 2rem;
+    }
+    to {
+        opacity: 0;
+        bottom: -400px;
+    }
 }
 
 /* Css classes style */
 
 .bg-light {
-  background-color: #fff !important;
+    background-color: #fff !important;
 }
 
 .carousel {
-  position: initial !important;
+    position: initial !important;
 }
 
 .chat-bubble i {
-  margin-top: -2px;
+    margin-top: -2px;
 }
 .chat-bubble {
-  background-color: #20dc7b;
-  position: absolute;
-  box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
-    rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
-  bottom: -70px;
-  right: 5%;
-  opacity: 0;
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  cursor: pointer;
-  color: white;
-  animation: aparecer-bubble 1s forwards;
+    background-color: #20dc7b;
+    position: absolute;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
+        rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+    bottom: -70px;
+    right: 5%;
+    opacity: 0;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    cursor: pointer;
+    color: white;
+    animation: aparecer-bubble 1s forwards;
 }
 
 .chat-container {
-  position: absolute;
-  z-index: 3;
-  display: flex;
-  flex-direction: column;
-  justify-content: end;
-  bottom: -400px;
-  opacity: 0;
-  background-color: white;
-  right: 5%;
-  width: 300px;
-  height: 400px;
-  /* animation: aparecer-chat 1s forwards ease-out; */
-  border-radius: 16px;
-  overflow-x: hidden;
-  overflow-y: auto;
-  padding: 1rem;
-  /* box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px; */
-  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
+    position: absolute;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    bottom: -400px;
+    opacity: 0;
+    background-color: white;
+    right: 5%;
+    width: 300px;
+    height: 400px;
+    /* animation: aparecer-chat 1s forwards ease-out; */
+    border-radius: 16px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 1rem;
+    /* box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px; */
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
 }
 
 .chat-title {
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .close-chat-btn {
-  width: 30px;
-  height: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: none;
-  outline: none;
-  background-color: transparent;
-  cursor: pointer;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    cursor: pointer;
 }
 .close-chat-btn:focus {
-  outline: none;
+    outline: none;
 }
 
 .send-message-btn {
-  display: inline-block;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: none;
-  outline: none;
-  border-radius: 8px;
-  cursor: pointer;
-  color: white;
-  background-color: #20dc7b;
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    outline: none;
+    border-radius: 8px;
+    cursor: pointer;
+    color: white;
+    background-color: #20dc7b;
 }
+
+.send-message-btn:disabled {
+    background-color: #979797;
+    color: black;
+}
+
 .send-message-btn:focus {
-  outline: none;
+    outline: none;
 }
 
 .chat-container input {
-  box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
-  border: none;
-  border-radius: 16px;
-  padding: 8px 16px;
-  width: 80%;
-  overflow-wrap: break-word;
-  overflow-y: auto;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+    border: none;
+    border-radius: 16px;
+    padding: 8px 16px;
+    width: 80%;
+    overflow-wrap: break-word;
+    overflow-y: auto;
 }
 
 .send-actions {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
 }
 
 .chat-container input:focus-visible {
-  outline: none;
+    outline: none;
 }
 
 #message-list {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-bottom: 1rem;
-  overflow-y: auto;
-  height: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 1rem;
+    overflow-y: auto;
+    height: 100%;
+    padding-right: 1rem;
+}
+
+#message-list::-webkit-scrollbar {
+    width: 6px;
+    transition: all .3s;
+}
+
+#message-list::-webkit-scrollbar-track {
+    border-radius: 10px;
+}
+
+#message-list::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #333;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .message {
-  width: fit-content;
-  max-width: 100%;
-  overflow-wrap: break-word;
-  background-color: gray;
-  padding: 8px;
+    width: fit-content;
+    max-width: 100%;
+    overflow-wrap: break-word;
+    background-color: gray;
+    padding: 8px;
 }
-.message p{
-  padding: 0;
-  margin: 0;
+.message p {
+    padding: 0;
+    margin: 0;
 }
 .message-user {
-  font-size: 10px;
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+    font-size: 10px;
 }
 .from-outside {
-  background-color: #dbdbdb;
-  border-radius: 0 16px 16px;
+    background-color: #dbdbdb;
+    border-radius: 0 16px 16px;
+}
+.from-outside>.message-user>span:first-child {
+    order: 1;
 }
 .from-me {
-  background-color: #b9ffdb;
-  border-radius: 16px 16px 0;
-  align-self: flex-end;
+    background-color: #b9ffdb;
+    border-radius: 16px 16px 0;
+    align-self: flex-end;
 }
 
 .close-button {
-  position: absolute;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  top: 5px;
-  right: 5px;
-  width: 25px;
-  height: 25px;
-  border: none;
-  border-radius: 50%;
-  background-color: #dc3545;
-  color: #fff;
-  font-size: 16px;
-  line-height: 1;
-  cursor: pointer;
+    position: absolute;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    top: 5px;
+    right: 5px;
+    width: 25px;
+    height: 25px;
+    border: none;
+    border-radius: 50%;
+    background-color: #dc3545;
+    color: #fff;
+    font-size: 16px;
+    line-height: 1;
+    cursor: pointer;
 }
 
 .custom-file-label {
-  overflow: hidden;
+    overflow: hidden;
 }
 
-.image-input-container > p {
-  margin: 0;
-  padding: 0;
+.image-input-container>p {
+    margin: 0;
+    padding: 0;
 }
 
 .image-input-container {
-  position: relative;
+    position: relative;
 }
 .image-input-container::after {
-  content: \'\';
-  display: table;
-  clear: both;
+    content: \'\';
+    display: table;
+    clear: both;
 }
 
 .image-wrapper {
-  position: relative;
+    position: relative;
 }
 
 .mb-45 {
-  margin-bottom: 45px;
+    margin-bottom: 45px;
 }
 
 .mt-100 {
-  margin-top: 100px;
+    margin-top: 100px;
 }
 
 .nav-item .btn.btn-primary,
 .nav-item .btn.btn-primary:active,
 .nav-item .btn.btn-primary:focus {
-  background-color: white;
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  border-radius: 8px;
-  color: black;
-  outline: none;
-  box-shadow: none;
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 8px;
+    color: black;
+    outline: none;
+    box-shadow: none;
 }
 .navbar-toggler {
-  outline: none !important;
+    outline: none !important;
 }
 
 .product-action p {
-  color: white;
+    color: white;
 }
 
 .product-action,
 .product-title {
-  bottom: 0px;
-  left: 0;
-  opacity: 0;
-  position: absolute;
-  right: 0;
-  text-align: center;
-  transition: all 0.4s ease 0s;
+    bottom: 0px;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    transition: all 0.4s ease 0s;
 }
 
 .product-action-style {
-  background-color: #fff;
-  box-shadow: 0 0 8px 1.7px rgba(0, 0, 0, 0.06);
-  display: inline-block;
-  padding: 16px 2px 12px;
+    background-color: #fff;
+    box-shadow: 0 0 8px 1.7px rgba(0, 0, 0, 0.06);
+    display: inline-block;
+    padding: 16px 2px 12px;
 }
 
-.product-action-style > a {
-  color: #979797;
-  line-height: 1;
-  padding: 0 21px;
-  position: relative;
+.product-action-style>a {
+    color: #979797;
+    line-height: 1;
+    padding: 0 21px;
+    position: relative;
 }
 
-.product-action-style > a.action-plus {
-  font-size: 18px;
+.product-action-style>a.action-plus {
+    font-size: 18px;
 }
 
 .product-img a img {
-  height: 370px;
-  width: 100%;
-  object-fit: cover;
+    height: 370px;
+    width: 100%;
+    object-fit: cover;
 }
 
 .product-img {
-  display: inline-block;
-  width: 100%;
-  height: 100%;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
 }
 
-.product-img > .price,
-.product-img > .product-title {
-  background-color: #fff;
-  box-shadow: 0 0 8px 1.7px rgba(0, 0, 0, 0.06);
-  color: #333;
-  display: inline-block;
-  font-size: 12px;
-  font-weight: 500;
-  left: 20px;
-  letter-spacing: 1px;
-  padding: 3px 12px;
-  position: absolute;
-  text-align: center;
-  text-transform: uppercase;
-  top: 20px;
+.product-img>.price,
+.product-img>.product-title {
+    background-color: #fff;
+    box-shadow: 0 0 8px 1.7px rgba(0, 0, 0, 0.06);
+    color: #333;
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 500;
+    left: 20px;
+    letter-spacing: 1px;
+    padding: 3px 12px;
+    position: absolute;
+    text-align: center;
+    text-transform: uppercase;
+    top: 20px;
 }
 
-.product-img > .product-title {
-  top: initial;
-  left: 0;
-  right: 0;
-  margin: 0 auto;
-  bottom: 20px;
-  width: 70%;
+.product-img>.product-title {
+    top: initial;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    bottom: 20px;
+    width: 70%;
 }
 
 .product-store-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 2rem;
-  width: 80%;
-  margin-inline: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+    width: 80%;
+    margin-inline: auto;
 }
 
 .product-title {
-  opacity: 1;
-  color: white;
+    opacity: 1;
+    color: white;
 }
 
 .product-title {
-  transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s;
 }
 
 .product-wrapper {
-  border-radius: 10px;
-  width: 250px;
-  height: 370px;
+    border-radius: 10px;
+    width: 250px;
+    height: 370px;
 }
 
 .product-wrapper,
 .product-img {
-  overflow: hidden;
-  position: relative;
+    overflow: hidden;
+    position: relative;
 }
 
 .product-wrapper:hover .product-action {
-  bottom: 20px;
-  opacity: 1;
+    bottom: 20px;
+    opacity: 1;
 }
 
 .product-wrapper:hover .product-title {
-  opacity: 0;
+    opacity: 0;
 }
 
 .square-image {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
 }
 
 .swa-confirm-btn,
 .swa-deny-btn {
-  background: none;
-  background-color: #20dc7b;
-  color: inherit;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  padding: 10px 21px;
-  font: inherit;
-  outline: none;
-  margin: 0 20px;
+    background: none;
+    background-color: #20dc7b;
+    color: inherit;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 10px 21px;
+    font: inherit;
+    outline: none;
+    margin: 0 20px;
 }
 
 .swa-deny-btn {
-  background-color: #ffc9c9;
+    background-color: #ffc9c9;
 }
 
 .tienda-logo {
-  font-family: \\\'Rozha One\\\', serif;
-  font-size: 22px;
+    font-family: \\\'Rozha One\\\', serif;
+    font-size: 22px;
 }
 
 /* ID's */
 
 #image-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 10px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
 }
 
 #image-container {
-  margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 #product-form {
-  position: relative;
+    position: relative;
 }

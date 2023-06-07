@@ -16,7 +16,7 @@ const messagesSchema = new Schema({
     type: String,
     required: true
   }
-}, { versionKey: false })
+}, { versionKey: false, timestamps: true })
 
 const MessageModel = mongoose.model('Messages', messagesSchema)
 module.exports = MessageModel
