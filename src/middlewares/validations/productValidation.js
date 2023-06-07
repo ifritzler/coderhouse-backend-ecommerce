@@ -9,14 +9,14 @@ async function productCreateValidation (req, res, next) {
   } else {
     thumbnails = ['/thumbnails/placeholder.jpg']
   }
-  if (data.title && data.description && data.code && data.price && data.category && data.stock) {
+  if (data.title && data.description && data.code && data.price && data.categories && data.stock) {
     req.body = {
       title: data.title,
       description: data.description,
       code: data.code,
       thumbnails,
       price: +data.price,
-      category: data.category,
+      categories: data.categories.trim().split(','),
       stock: +data.stock,
       status: data.status === 'on'
     }

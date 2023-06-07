@@ -34,10 +34,7 @@ class ProductManager {
       await deleteThumbnails(data.thumbnails)
       throw new ProductCodeDuplicatedError(data.code)
     }
-    const newProduct = {
-      ...data
-    }
-    return await ProductModel.create(newProduct)
+    return await ProductModel.create(data)
   }
 
   async updateProduct (id, changes) {

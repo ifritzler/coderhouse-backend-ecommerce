@@ -7,7 +7,9 @@ html {
 
 body {
     min-height: 100vh;
-    overflow: hidden;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 ul,
@@ -25,14 +27,14 @@ li {
     }
     to {
         opacity: 1;
-        bottom: 5%;
+        bottom: 70px;
     }
 }
 
 @keyframes desaparecer-bubble {
     from {
         opacity: 1;
-        bottom: 5%;
+        bottom: 70px;
     }
     to {
         opacity: 0;
@@ -77,10 +79,10 @@ li {
 }
 .chat-bubble {
     background-color: #20dc7b;
-    position: absolute;
+    position: fixed;
     box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
         rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
-    bottom: -70px;
+    bottom: 0;
     right: 5%;
     opacity: 0;
     width: 70px;
@@ -97,7 +99,7 @@ li {
 }
 
 .chat-container {
-    position: absolute;
+    position: fixed;
     z-index: 3;
     display: flex;
     flex-direction: column;
@@ -381,6 +383,7 @@ li {
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 2rem;
     width: 80%;
+    margin-bottom: 2rem;
     margin-inline: auto;
 }
 

@@ -29,7 +29,7 @@ function printNewMessage (message) {
   li.innerHTML = `
     <p class="message-user"><span>${message.user}</span> <span>${datetime}</span></p>`
   const msgParagraph = document.createElement('p')
-  msgParagraph.innerText = message.message
+  msgParagraph.textContent = message.message
   li.appendChild(msgParagraph)
   chatMessageList.appendChild(li)
   chatScrollToBottom()

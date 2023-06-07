@@ -21,7 +21,7 @@ const productSchema = new mongoose.Schema({
     type: Boolean,
     default: true
   },
-  category: String
+  categories: [String]
 }, {
   strict: true,
   versionKey: false
