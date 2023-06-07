@@ -10,7 +10,8 @@ class MessageManager {
   }
 
   async createMessage (message) {
-    return await MessagesModel.create(message)
+    const newMessage = await MessagesModel.create(message)
+    return JSON.parse(JSON.stringify(newMessage))
   }
 }
 

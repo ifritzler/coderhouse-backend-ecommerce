@@ -3,6 +3,7 @@
 // Variables
 let user = null // Usuario actual
 let socketMessagesFlag = false // Bandera para controlar los mensajes del socket
+let nonSeenMessagesCounter = 0
 
 // Elementos del DOM
 const chatBubble = document.getElementById('chat-bubble') // Burbuja del chat
@@ -12,6 +13,7 @@ const chatMessageForm = document.getElementById('chat-message-form') // Formular
 const chatMessageList = document.getElementById('message-list') // Lista de mensajes
 const submitButtonBtn = document.getElementById('submit-message-btn') // Botón de envío de mensajes
 const inputMessage = document.getElementById('message') // Campo de entrada de mensajes
+const chatCounterElement = document.getElementById('message-counter')
 
 // Función para hacer scroll hacia abajo en la lista de mensajes
 function chatScrollToBottom () {
@@ -21,12 +23,14 @@ function chatScrollToBottom () {
 
 // Función para imprimir un nuevo mensaje en la lista
 function printNewMessage (message) {
-  const datetime = new Date(message.createdAt).toLocaleTimeString().split(':').slice(0, 2).join(':')
+  const datetime = new Date(message.createdAt || new Date()).toLocaleTimeString().split(':').slice(0, 2).join(':')
   const li = document.createElement('li')
   li.classList.add('message', `${user === message.user ? 'from-me' : 'from-outside'}`)
   li.innerHTML = `
-    <p class="message-user"><span>${message.user}</span> <span>${datetime}</span></p>
-    <p>${message.message}</p>`
+    <p class="message-user"><span>${message.user}</span> <span>${datetime}</span></p>`
+  const msgParagraph = document.createElement('p')
+  msgParagraph.innerText = message.message
+  li.appendChild(msgParagraph)
   chatMessageList.appendChild(li)
   chatScrollToBottom()
 }
@@ -63,9 +67,16 @@ chatBubble.addEventListener('click', (e) => {
 
       // Evento para escuchar nuevos mensajes
       socket.on('new_message', (message) => {
-        console.log(' se escuchó nuevo mensajes')
         printNewMessage(message)
-        // TODO: Pintar mensajes no leídos si la burbuja está a la vista y el chat está oculto
+
+        if (chat.getAttribute('hidden')) {
+          nonSeenMessagesCounter += 1
+          chatCounterElement.removeAttribute('hidden')
+          chatCounterElement.innerText = nonSeenMessagesCounter
+        } else {
+          chatCounterElement.setAttribute('hidden', true)
+          nonSeenMessagesCounter = 0
+        }
       })
 
       // Evento para recibir los últimos mensajes
@@ -78,6 +89,7 @@ chatBubble.addEventListener('click', (e) => {
 
     // Animaciones para mostrar el chat y ocultar la burbuja
     chat.style.animation = 'aparecer-chat 1s forwards'
+    chat.removeAttribute('hidden')
     chatBubble.style.animation = 'desaparecer-bubble 1s forwards'
   } catch {}
 })
@@ -89,6 +101,7 @@ chatCloseBtn.addEventListener('click', (e) => {
 
   // Animaciones para ocultar el chat y mostrar la burbuja
   chat.style.animation = 'desaparecer-chat 1s forwards'
+  chat.setAttribute('hidden', true)
   chatBubble.style.animation = 'aparecer-bubble 1s forwards'
 })
 
@@ -107,7 +120,6 @@ chatMessageForm.addEventListener('submit', async (e) => {
     socket.emit('message:create', message)
     submitButtonBtn.setAttribute('disabled', true)
   } catch {}
-  printNewMessage(message)
   chatMessageForm.reset()
 })
 

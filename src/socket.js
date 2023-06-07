@@ -10,7 +10,8 @@ const initSockets = (httpServer) => {
     socket.on('message:create', async message => {
       if (!message.message) return
       const newMessage = await messageService.createMessage(message)
-      socket.broadcast.emit('new_message', newMessage)
+      console.log(newMessage)
+      socketServer.emit('new_message', newMessage)
     })
 
     socket.on('getLastMessages', async () => {

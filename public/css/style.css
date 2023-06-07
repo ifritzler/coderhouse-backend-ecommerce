@@ -90,6 +90,11 @@ li {
     color: white;
     animation: aparecer-bubble 1s forwards;
 }
+.chat-bubble > #message-counter {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
 
 .chat-container {
     position: absolute;
