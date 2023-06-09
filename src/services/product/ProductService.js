@@ -6,7 +6,7 @@ const { sanitizeFilter } = require('mongoose')
 class ProductService {
   async getProducts (params) {
     const { limit, page, query, sort } = params
-    const queryMongo = {}
+    const queryMongo = { status: true }
     const pagination = {
       page, limit, customLabels: { docs: 'payload' }
     }

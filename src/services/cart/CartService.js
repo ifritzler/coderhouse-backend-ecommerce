@@ -44,10 +44,21 @@ class CartsService {
 
   async removeProductInCart (cid, pid) {
     const cart = await CartModel.findOne({ _id: cid }).orFail(new CartNotFoundException(cid))
-
     const productIndex = cart.products.findIndex(item => item.product._id.toString() === pid)
     if (productIndex === -1) throw new ProductNotFoundInCartException(pid)
     cart.products.splice(productIndex, 1)
+    return await cart.save()
+  }
+
+  async updateCart (cid, data) {
+    const cart = await CartModel.findOne({ _id: cid }).orFail(new CartNotFoundException(cid))
+    cart.products = []
+    // TODO: [{ prodId: 1, quantity: 2 },{ prodId: 2, quantity: 2 }]
+    // data is an array of objects with id and quantity and needs to be mapped by id=>product and quantity=>quantity
+    data.forEach(async item => {
+      const product = await ProductModel.findOne({ _id: item.prodId }).orFail(new ProductNotFoundError(item.prodId))
+      cart.products.push({ product: product._id, quantity: item.quantity })
+    })
     return await cart.save()
   }
 
