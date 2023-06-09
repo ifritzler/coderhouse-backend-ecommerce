@@ -42,15 +42,29 @@ cartsRouter.post('/:cid/product/:pid', asyncHandler(async (req, res) => {
 
 cartsRouter.put('/:cid', asyncHandler(async (req, res) => {
   // This line of code just makes the product search and throws error if not exists.
-  await cartService.updateCart(req.params.cid, req.body)
-  res.status(200).json({
-    success: true
-  })
+  try {
+    await cartService.updateCart(req.params.cid, req.body)
+    res.status(200).json({
+      success: true
+    })
+  } catch (error) {
+    if (error instanceof ProductNotFoundError) {
+      throw new ProductNotFoundInCartException(req.params.cid, req.params.pid)
+    }
+    throw error
+  }
 }))
 
 cartsRouter.delete('/:cid/product/:pid', asyncHandler(async (req, res) => {
   const { cid, pid } = req.params
   await cartService.removeProductInCart(cid, pid)
+  res.status(200).json({
+    success: true
+  })
+}))
+
+cartsRouter.delete('/:cid', asyncHandler(async (req, res) => {
+  await cartService.deleteProducts(req.params.cid)
   res.status(200).json({
     success: true
   })

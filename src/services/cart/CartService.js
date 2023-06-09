@@ -62,8 +62,10 @@ class CartsService {
     return await cart.save()
   }
 
-  async delete (cid) {
-    await CartModel.deleteOne({ _id: cid }).orFail(new CartNotFoundException(cid))
+  async deleteProducts (cid) {
+    const cart = await CartModel.findOne({ _id: cid }).orFail(new CartNotFoundException(cid))
+    cart.products = []
+    return await cart.save()
   }
 }
 
