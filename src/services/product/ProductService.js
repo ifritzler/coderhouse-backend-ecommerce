@@ -20,14 +20,15 @@ class ProductService {
     }
 
     try {
-      // use paginate in ProductModel with query to find for categories or title or description, the query is a string
-      const result = await ProductModel.paginate(queryMongo, pagination)
-      const paramsPrev = new URLSearchParams(`limit=${limit}&page=${result.prevPage}&sort=${sort}&query=${query}`)
-      const paramsNext = new URLSearchParams(`limit=${limit}&page=${result.nextPage}&sort=${sort}&query=${query}`)
+      // use paginate in ProductModel with query to find for categories or title or description, the query is a string,
+      const result = await ProductModel.paginate(queryMongo, { ...pagination, lean: true })
+      const paramsPrev = new URLSearchParams(`limit=${limit}&page=${result.prevPage}&` + sort ?? `&sort=${sort}` + query ?? `&query=${query}`)
+      const paramsNext = new URLSearchParams(`limit=${limit}&page=${result.nextPage}&` + sort ?? `&sort=${sort}` + query ?? `&query=${query}`)
 
       result.prevLink = result.prevPage ? `/api/products?${paramsPrev.toString()}` : null
       result.nextLink = result.nextPage ? `/api/products?${paramsNext.toString()}` : null
-      return result
+
+      return JSON.parse(JSON.stringify(result))
     } catch {
       return []
     }

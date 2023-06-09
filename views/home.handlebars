@@ -1,5 +1,5 @@
 <ul class="product-store-list" id="product_list">
-  {{#each products as |product|}}
+  {{#each products.payload as |product|}}
     {{>card-product product=product}}
   {{/each}}
 </ul>

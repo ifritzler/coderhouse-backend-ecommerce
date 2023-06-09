@@ -9,6 +9,9 @@ const closeButton = addProductModal.querySelector('.close')
 const imageContainer = document.getElementById('image-container')
 const addProductForm = document.getElementById('product-form')
 const productListContainer = document.getElementById('product_list')
+const pageLinks = document.getElementsByClassName('page-link')
+const prevLinkE = document.getElementById('prevLink')
+const nextLinkE = document.getElementById('nextLink')
 
 // Constantes y validaciones de imágenes
 const maxFiles = 3
@@ -47,6 +50,32 @@ function addImageToPreview (file) {
   })(imageElement)
   reader.readAsDataURL(file)
 }
+
+Array.from(pageLinks).forEach(link => link.addEventListener('click', async e => {
+  e.preventDefault()
+  const link = e.target.href
+  const response = await fetch(link)
+  const data = await response.json()
+
+  const products = data.payload
+  const nextLink = data.nextLink
+  const prevLink = data.prevLink
+  if (prevLink) {
+    prevLinkE.parentElement.classList.remove('disabled')
+    prevLinkE.setAttribute('href', prevLink)
+  } else {
+    prevLinkE.parentElement.classList.add('disabled')
+  }
+  if (nextLink) {
+    nextLinkE.parentElement.classList.remove('disabled')
+    nextLinkE.setAttribute('href', nextLink)
+  } else {
+    nextLinkE.parentElement.classList.add('disabled')
+  }
+
+  productListContainer.innerHTML = ''
+  products.forEach(product => addProductToHtml(product))
+}))
 
 // Evento de cambio de input de imágenes
 thumbnailsInput.addEventListener('change', function (e) {
@@ -144,7 +173,7 @@ async function deleteProduct (id) {
 function addProductToHtml (product) {
   const template = Handlebars.templates['card-product']
   const li = template(product)
-  productListContainer.innerHTML += li
+  productListContainer.insertAdjacentHTML('beforeend', li)
 }
 
 // Escuchar eventos del formulario y realizar petición de creación del producto

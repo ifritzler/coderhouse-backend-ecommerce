@@ -19,7 +19,7 @@ cartsRouter.post('/', asyncHandler(async (_req, res) => {
   const cart = await cartService.create()
   res.status(201).json({
     success: true,
-    payload: cart
+    payload: JSON.parse(JSON.stringify(cart._id))
   })
 }))
 

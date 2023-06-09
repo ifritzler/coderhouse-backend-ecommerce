@@ -13,10 +13,10 @@ class CartsService {
   }
 
   async getById (cid) {
-    const product = CartModel
+    const cart = await CartModel
       .findOne({ _id: cid }).populate('products.product')
       .orFail(new CartNotFoundException(cid))
-    return product
+    return cart
   }
 
   async create () {

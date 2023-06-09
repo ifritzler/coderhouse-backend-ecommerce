@@ -1,0 +1,11 @@
+<nav aria-label="Page products navigation">
+  <ul class="pagination justify-content-center">
+    <li class="page-item disabled">
+      <a class="page-link" href="{{#if this.prevLink}}{{this.prevLink}}{{else}}#{{/if}}" tabindex="-1" id="prevLink">Previous</a>
+    </li>
+    {{!-- <li class="page-item"><a class="page-link" href="#">1</a></li> --}}
+    <li class="page-item">
+      <a class="page-link" href="{{this.nextLink}}" id="nextLink">Next</a>
+    </li>
+  </ul>
+</nav>
