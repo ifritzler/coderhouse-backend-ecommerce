@@ -3,10 +3,31 @@ const { deleteThumbnails } = require('../../utils')
 const ProductModel = require('../../daos/models/products.model')
 const { sanitizeFilter } = require('mongoose')
 
-class ProductManager {
-  async getProducts (limit) {
+class ProductService {
+  async getProducts (params) {
+    const { limit, page, query, sort } = params
+    const queryMongo = {}
+    const pagination = {
+      page, limit, customLabels: { docs: 'payload' }
+    }
+    if (query) {
+      queryMongo.$text = { $search: query }
+    }
+    if (sort) {
+      pagination.sort = {
+        price: sort
+      }
+    }
+
     try {
-      return await ProductModel.find({}).limit(limit).lean()
+      // use paginate in ProductModel with query to find for categories or title or description, the query is a string
+      const result = await ProductModel.paginate(queryMongo, pagination)
+      const paramsPrev = new URLSearchParams(`limit=${limit}&page=${result.prevPage}&sort=${sort}&query=${query}`)
+      const paramsNext = new URLSearchParams(`limit=${limit}&page=${result.nextPage}&sort=${sort}&query=${query}`)
+
+      result.prevLink = result.prevPage ? `/api/products?${paramsPrev.toString()}` : null
+      result.nextLink = result.nextPage ? `/api/products?${paramsNext.toString()}` : null
+      return result
     } catch {
       return []
     }
@@ -45,4 +66,4 @@ class ProductManager {
   }
 }
 
-module.exports = new ProductManager()
+module.exports = new ProductService()

@@ -10,11 +10,14 @@ const productService = require('../services/product/ProductService')
 const router = express.Router()
 
 router.get('/', asyncHandler(async (req, res) => {
-  const { limit = 200 } = req.query
-  const products = await productService.getProducts(limit)
+  let { limit = 3, page = 1, query, sort } = req.query
+  if (sort && (sort !== 'asc' && sort !== 'desc')) {
+    sort = ''
+  }
+  const payload = await productService.getProducts({ limit, page, query, sort })
   res.status(200).json({
     success: true,
-    payload: products
+    ...payload
   })
 }))
 
