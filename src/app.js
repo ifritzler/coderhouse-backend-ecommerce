@@ -1,20 +1,20 @@
-const { PORT, MONGO_URI } = require('./config/environ')
-const http = require('http')
-const express = require('express')
-const { engine } = require('express-handlebars')
-const productsRouter = require('./routes/productsRouter.js')
-const cartsRouter = require('./routes/cartsRouter.js')
-const viewsRouter = require('./routes/viewsRouter')
-const messageRouter = require('./routes/messageRouter')
-const initSockets = require('./socket.js')
-const socketMiddleware = require('./middlewares/socketMiddleware.js')
-const errorHandler = require('./middlewares/errorHandler.js')
-const multerInterceptor = require('./middlewares/errors/multerInterceptor.js')
-const mongoose = require('mongoose')
-const options = require('./config/mongo')
+import { PORT, MONGO_URI } from './config/environ.js'
+import { createServer } from 'http'
+import express from 'express'
+import { engine } from 'express-handlebars'
+import productsRouter from './routes/productsRouter.js'
+import cartsRouter from './routes/cartsRouter.js'
+import viewsRouter from './routes/viewsRouter.js'
+import messageRouter from './routes/messageRouter.js'
+import initSockets from './socket.js'
+import socketMiddleware from './middlewares/socketMiddleware.js'
+import multerInterceptor from './middlewares/errors/multerInterceptor.js'
+import mongoose from 'mongoose'
+import options from './config/mongo.js'
+import errorHandler from './middlewares/ErrorHandler.js'
 
 const app = express()
-const httpServer = http.createServer(app)
+const httpServer = createServer(app)
 const ioServer = initSockets(httpServer)
 
 app.engine('handlebars', engine())
@@ -49,4 +49,4 @@ httpServer.on('error', async () => {
   await mongoose.disconnect()
 })
 
-module.exports = app
+export default app

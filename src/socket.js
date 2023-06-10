@@ -1,5 +1,5 @@
-const { Server } = require('socket.io')
-const messageService = require('./services/messages/MessageService')
+import { Server } from 'socket.io'
+import messageService from './services/messages/MessageService.js'
 
 const initSockets = (httpServer) => {
   const socketServer = new Server(httpServer)
@@ -23,4 +23,4 @@ const initSockets = (httpServer) => {
   return socketServer
 }
 
-module.exports = initSockets
+export default initSockets

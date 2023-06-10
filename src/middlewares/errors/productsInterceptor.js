@@ -1,5 +1,5 @@
-const createError = require('http-errors')
-const { ProductNotFoundError, ProductCodeDuplicatedError, ProductValidationError } = require('../../services/product/errors')
+import createError from 'http-errors'
+import { ProductNotFoundError, ProductCodeDuplicatedError, ProductValidationError } from '../../services/product/errors.js'
 
 const productInterceptor = (error, req, res, next) => {
   if (error instanceof ProductNotFoundError) return next(createError(404, error.message))
@@ -7,5 +7,4 @@ const productInterceptor = (error, req, res, next) => {
   if (error instanceof ProductValidationError) return next(createError(400, error.message))
   throw error
 }
-
-module.exports = productInterceptor
+export default productInterceptor

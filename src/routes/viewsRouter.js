@@ -1,5 +1,6 @@
-const { Router } = require('express')
-const productsManager = require('../services/product/ProductService')
+import { Router } from 'express'
+import productsManager from '../services/product/ProductService.js'
+
 const router = Router()
 
 router.get('/', async (req, res) => {
@@ -12,4 +13,4 @@ router.get('/realtimeProducts', async (req, res) => {
   res.render('home', { products })
 })
 
-module.exports = router
+export default router

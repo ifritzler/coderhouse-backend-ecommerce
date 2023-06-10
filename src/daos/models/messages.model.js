@@ -1,7 +1,6 @@
-const mongoose = require('mongoose')
-const { Schema } = require('mongoose')
+import mongoose from 'mongoose'
 
-const messagesSchema = new Schema({
+const messagesSchema = new mongoose.Schema({
   user: {
     type: String,
     required: true,
@@ -18,6 +17,4 @@ const messagesSchema = new Schema({
   }
 }, { versionKey: false, timestamps: true })
 
-const MessageModel = mongoose.model('Messages', messagesSchema)
-
-module.exports = MessageModel
+export const MessageModel = mongoose.model('Messages', messagesSchema)

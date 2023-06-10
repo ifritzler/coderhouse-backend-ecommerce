@@ -1,6 +1,8 @@
-const fs = require('fs')
+import { dirname } from 'path'
+import { fileURLToPath } from 'url'
+import fs from 'fs'
 
-async function deleteThumbnails (thumbnailsPaths) {
+export async function deleteThumbnails (thumbnailsPaths) {
   if (thumbnailsPaths.length > 0) {
     thumbnailsPaths.forEach(async path => {
       if (fs.existsSync('./public' + path) && path !== '/thumbnails/placeholder.jpg') {
@@ -10,4 +12,4 @@ async function deleteThumbnails (thumbnailsPaths) {
   }
 }
 
-module.exports = { deleteThumbnails }
+export const __dirname = dirname(fileURLToPath(import.meta.url))

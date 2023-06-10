@@ -1,9 +1,10 @@
-const express = require('express')
-const asyncHandler = require('express-async-handler')
-const cartService = require('../services/cart/CartService')
-const { ProductNotFoundError } = require('../services/product/errors')
-const { ProductNotFoundInCartException } = require('../services/cart/errors.js')
-const cartInterceptor = require('../middlewares/errors/cartsInterceptor')
+import express from 'express'
+import asyncHandler from 'express-async-handler'
+import cartService from '../services/cart/CartService.js'
+import { ProductNotFoundError } from '../services/product/errors.js'
+import { ProductNotFoundInCartException } from '../services/cart/errors.js'
+import cartInterceptor from '../middlewares/errors/cartsInterceptor.js'
+
 const cartsRouter = express.Router()
 
 cartsRouter.get('/:cid', asyncHandler(async (req, res) => {
@@ -72,4 +73,4 @@ cartsRouter.delete('/:cid', asyncHandler(async (req, res) => {
 
 cartsRouter.use(cartInterceptor)
 
-module.exports = cartsRouter
+export default cartsRouter

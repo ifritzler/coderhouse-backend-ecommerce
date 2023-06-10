@@ -1,7 +1,7 @@
-const { CartNotFoundException, NoStockProductException, ProductNotFoundInCartException } = require('./errors')
-const CartModel = require('../../daos/models/carts.model')
-const ProductModel = require('../../daos/models/products.model')
-const { ProductNotFoundError } = require('../product/errors')
+import { CartModel } from '../../daos/models/carts.model.js'
+import { ProductModel } from '../../daos/models/products.model.js'
+import { ProductNotFoundError } from '../product/errors.js'
+import { CartNotFoundException, NoStockProductException, ProductNotFoundInCartException } from './errors.js'
 
 class CartsService {
   async getAll (limit = null) {
@@ -33,7 +33,10 @@ class CartsService {
 
     if (productIndex === -1) {
       if (product.stock === 0) throw new NoStockProductException(pid)
-      cart.products.push({ product: product._id })
+      cart.products.push({
+        product: product._id,
+        quantity: 1
+      })
       return await cart.save()
     }
 
@@ -69,4 +72,4 @@ class CartsService {
   }
 }
 
-module.exports = new CartsService('src/carts.json')
+export default new CartsService()

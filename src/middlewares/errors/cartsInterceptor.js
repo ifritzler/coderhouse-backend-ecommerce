@@ -1,5 +1,5 @@
-const createError = require('http-errors')
-const { CartNotFoundException, NoStockProductException, ProductNotFoundInCartException } = require('../../services/cart/errors')
+import createError from 'http-errors'
+import { CartNotFoundException, ProductNotFoundInCartException, NoStockProductException } from '../../services/cart/errors.js'
 
 const cartInterceptor = (err, _req, _res, next) => {
   if (err instanceof CartNotFoundException) return next(createError(404, err.message))
@@ -8,4 +8,4 @@ const cartInterceptor = (err, _req, _res, next) => {
   throw err
 }
 
-module.exports = cartInterceptor
+export default cartInterceptor

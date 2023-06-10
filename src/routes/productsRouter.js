@@ -1,11 +1,10 @@
 /* eslint-disable no-unexpected-multiline */
-/* eslint-disable func-call-spacing */
-const express = require('express')
-const { productCreateValidation, productUpdateValidation } = require('../middlewares/validations/productValidation')
-const productInterceptor = require('../middlewares/errors/productsInterceptor')
-const asyncHandler = require('express-async-handler')
-const upload = require('../middlewares/multer')
-const productService = require('../services/product/ProductService')
+import express from 'express'
+import { productCreateValidation, productUpdateValidation } from '../middlewares/validations/productValidation.js'
+import productInterceptor from '../middlewares/errors/productsInterceptor.js'
+import asyncHandler from 'express-async-handler'
+import upload from '../middlewares/multer.js'
+import productService from '../services/product/ProductService.js'
 
 const router = express.Router()
 
@@ -66,4 +65,5 @@ router.put('/:id', asyncHandler(productUpdateValidation), asyncHandler(async (re
 }))
 
 router.use(productInterceptor)
-module.exports = router
+
+export default router

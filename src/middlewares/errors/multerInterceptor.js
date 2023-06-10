@@ -1,5 +1,5 @@
-const { MulterError } = require('multer')
-const createError = require('http-errors')
+import { MulterError } from 'multer'
+import createError from 'http-errors'
 
 const errorMessages = {
   LIMIT_PART_COUNT: 'Too many parts',
@@ -24,4 +24,4 @@ const multerInterceptor = (err, _req, _res, next) => {
   }
   next(err)
 }
-module.exports = multerInterceptor
+export default multerInterceptor

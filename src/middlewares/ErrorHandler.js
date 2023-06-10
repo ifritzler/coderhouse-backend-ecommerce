@@ -1,4 +1,4 @@
-const createError = require('http-errors')
+import createError from 'http-errors'
 
 const errorHandler = (err, req, res, next) => {
   if (err instanceof createError.HttpError) {
@@ -14,4 +14,4 @@ const errorHandler = (err, req, res, next) => {
   })
 }
 
-module.exports = errorHandler
+export default errorHandler

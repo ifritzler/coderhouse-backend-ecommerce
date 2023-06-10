@@ -1,7 +1,9 @@
-const { ProductNotFoundError, ProductCodeDuplicatedError } = require('./errors')
-const { deleteThumbnails } = require('../../utils')
-const ProductModel = require('../../daos/models/products.model')
-const { sanitizeFilter } = require('mongoose')
+// @ts-nocheck
+
+import { sanitizeFilter } from 'mongoose'
+import { ProductModel } from '../../daos/models/products.model.js'
+import { ProductCodeDuplicatedError, ProductNotFoundError } from './errors.js'
+import { deleteThumbnails } from '../../utils.js'
 
 class ProductService {
   async getProducts (params) {
@@ -20,10 +22,13 @@ class ProductService {
     }
 
     try {
-      // use paginate in ProductModel with query to find for categories or title or description, the query is a string,
       const result = await ProductModel.paginate(queryMongo, { ...pagination, lean: true })
-      const paramsPrev = new URLSearchParams(`limit=${limit}&page=${result.prevPage}&` + sort ?? `&sort=${sort}` + query ?? `&query=${query}`)
-      const paramsNext = new URLSearchParams(`limit=${limit}&page=${result.nextPage}&` + sort ?? `&sort=${sort}` + query ?? `&query=${query}`)
+
+      const sortParam = sort ? `&sort=${sort}` : ''
+      const queryParam = query ? `&query=${query}` : ''
+
+      const paramsPrev = new URLSearchParams(`limit=${limit}&page=${result.prevPage}${sortParam}${queryParam}`)
+      const paramsNext = new URLSearchParams(`limit=${limit}&page=${result.nextPage}${sortParam}${queryParam}`)
 
       result.prevLink = result.prevPage ? `/api/products?${paramsPrev.toString()}` : null
       result.nextLink = result.nextPage ? `/api/products?${paramsNext.toString()}` : null
@@ -67,4 +72,4 @@ class ProductService {
   }
 }
 
-module.exports = new ProductService()
+export default new ProductService()

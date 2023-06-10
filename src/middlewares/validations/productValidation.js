@@ -1,6 +1,7 @@
-const { ProductValidationError } = require('../../services/product/errors')
-const { deleteThumbnails } = require('../../utils')
-async function productCreateValidation (req, res, next) {
+import { ProductValidationError } from '../../services/product/errors.js'
+import { deleteThumbnails } from '../../utils.js'
+
+export async function productCreateValidation (req, res, next) {
   const data = req.body
   const files = req.files
   let thumbnails
@@ -27,7 +28,7 @@ async function productCreateValidation (req, res, next) {
   }
 }
 
-function productUpdateValidation (req, res, next) {
+export function productUpdateValidation (req, res, next) {
   const data = req.body
   if (data.title || data.description || data.code || data.price || data.category || data.stock) {
     req.body = {}
@@ -42,5 +43,3 @@ function productUpdateValidation (req, res, next) {
   }
   throw new ProductValidationError()
 }
-
-module.exports = { productCreateValidation, productUpdateValidation }

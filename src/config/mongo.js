@@ -6,4 +6,4 @@ const options = {
   family: 4,
   dbName: 'ecommerce'
 }
-module.exports = options
+export default options

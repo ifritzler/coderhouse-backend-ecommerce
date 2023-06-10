@@ -7,4 +7,4 @@ function socketMiddleware (ioServer) {
   }
 }
 
-module.exports = socketMiddleware
+export default socketMiddleware

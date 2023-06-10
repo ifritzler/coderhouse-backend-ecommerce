@@ -1,5 +1,6 @@
-const { Router } = require('express')
-const messageService = require('../services/messages/MessageService')
+import { Router } from 'express'
+import messageService from '../services/messages/MessageService.js'
+
 const router = Router()
 
 router.get('/', async (req, res) => {
@@ -21,4 +22,4 @@ router.post('/', async (req, res) => {
   })
 })
 
-module.exports = router
+export default router

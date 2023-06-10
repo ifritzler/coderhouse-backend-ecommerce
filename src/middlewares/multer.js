@@ -1,6 +1,6 @@
-const multer = require('multer')
-const path = require('path')
-const createError = require('http-errors')
+import multer from 'multer'
+import path from 'path'
+import createError from 'http-errors'
 
 const storage = multer.diskStorage({ // multers disk storage settings
   destination: function (req, file, cb) {
@@ -27,4 +27,4 @@ const upload = multer({ // multer settings
   }
 })
 
-module.exports = upload
+export default upload
