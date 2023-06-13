@@ -46,9 +46,7 @@ templates['card-product'] = template({"1":function(container,depth0,helpers,part
     + alias2(alias1((depth0 != null ? lookupProperty(depth0,"title") : depth0), depth0))
     + "</p>\r\n            <div class=\"product-action-style\">\r\n              <a href=\"#\"> <i class=\"fa fa-plus\">\r\n                </i>\r\n              </a>\r\n              <a href=\"#\" onclick=\"deleteProduct('"
     + alias2(alias1((depth0 != null ? lookupProperty(depth0,"_id") : depth0), depth0))
-    + "')\">\r\n                <i class=\"fa fa-trash-o\"></i>\r\n              </a>\r\n              <a href=\"#\" onclick=\"addToCart('"
-    + alias2(alias1((depth0 != null ? lookupProperty(depth0,"_id") : depth0), depth0))
-    + "')\">\r\n                <i class=\"fa fa-shopping-cart\"></i>\r\n              </a>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</li>";
+    + "')\">\r\n                <i class=\"fa fa-trash-o\"></i>\r\n              </a>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</li>";
 },"useData":true});
 templates['chat-bubble'] = template({"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
     return "<div class=\"d-flex justify-content-center align-items-center chat-bubble\" id=\"chat-bubble\">\r\n  <i class=\"fa fa-commenting-o fa-2x\" aria-hidden=\"true\"></i>\r\n  <span class=\"badge badge-pill badge-danger\" id=\"message-counter\" hidden>0</span>\r\n</div>";
@@ -72,7 +70,7 @@ templates['form-modal'] = template({"compiler":[8,">= 4.3.0"],"main":function(co
     + "\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>";
 },"usePartial":true,"useData":true});
 templates['navbar'] = template({"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
-    return "<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\r\n  <a class=\"navbar-brand tienda-logo\" href=\"/\">Rozha One</a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\"\r\n    aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n\r\n  <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\r\n    <ul class=\"navbar-nav mr-auto\">\r\n      <li class=\"nav-item active\">\r\n        <a class=\"nav-link\" href=\"/\">Home</a>\r\n      </li>\r\n      <li class=\"nav-item dropdown\">\r\n        <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\"\r\n          aria-haspopup=\"true\" aria-expanded=\"false\">\r\n          Categories\r\n        </a>\r\n        <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">\r\n          <a class=\"dropdown-item\" href=\"/?query=hombre\">Hombre</a>\r\n          <a class=\"dropdown-item\" href=\"/?query=mujer\">Mujer</a>\r\n          <div class=\"dropdown-divider\"></div>\r\n        </div>\r\n      </li>\r\n    </ul>\r\n    <div>\r\n      <li class=\"nav-item\">\r\n        <!-- Button trigger modal -->\r\n        <button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#addProductModal\">\r\n          Add new Product\r\n        </button>\r\n      </li>\r\n    </div>\r\n  </div>\r\n</nav>";
+    return "<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\r\n  <a class=\"navbar-brand tienda-logo\" href=\"/\">Rozha One</a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\"\r\n    aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n\r\n  <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\r\n    <ul class=\"navbar-nav mr-auto\">\r\n      <li class=\"nav-item active\">\r\n        <a class=\"nav-link\" href=\"/\">Home</a>\r\n      </li>\r\n      <li class=\"nav-item dropdown\">\r\n        <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\"\r\n          aria-haspopup=\"true\" aria-expanded=\"false\">\r\n          Categories\r\n        </a>\r\n        <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">\r\n          <a class=\"dropdown-item\" href=\"#\">Category 1</a>\r\n          <a class=\"dropdown-item\" href=\"#\">Category 2</a>\r\n          <div class=\"dropdown-divider\"></div>\r\n        </div>\r\n      </li>\r\n    </ul>\r\n    <div>\r\n      <li class=\"nav-item\">\r\n        <!-- Button trigger modal -->\r\n        <button type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#addProductModal\">\r\n          Add new Product\r\n        </button>\r\n      </li>\r\n    </div>\r\n  </div>\r\n</nav>";
 },"useData":true});
 templates['products-pagination'] = template({"1":function(container,depth0,helpers,partials,data) {
     var lookupProperty = container.lookupProperty || function(parent, propertyName) {
@@ -84,33 +82,18 @@ templates['products-pagination'] = template({"1":function(container,depth0,helpe
 
   return container.escapeExpression(container.lambda((depth0 != null ? lookupProperty(depth0,"prevLink") : depth0), depth0));
 },"3":function(container,depth0,helpers,partials,data) {
-    return "disabled";
-},"5":function(container,depth0,helpers,partials,data) {
     return "#";
-},"7":function(container,depth0,helpers,partials,data) {
-    var lookupProperty = container.lookupProperty || function(parent, propertyName) {
-        if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
-          return parent[propertyName];
-        }
-        return undefined
-    };
-
-  return container.escapeExpression(container.lambda((depth0 != null ? lookupProperty(depth0,"nextLink") : depth0), depth0));
 },"compiler":[8,">= 4.3.0"],"main":function(container,depth0,helpers,partials,data) {
-    var stack1, alias1=depth0 != null ? depth0 : (container.nullContext || {}), lookupProperty = container.lookupProperty || function(parent, propertyName) {
+    var stack1, lookupProperty = container.lookupProperty || function(parent, propertyName) {
         if (Object.prototype.hasOwnProperty.call(parent, propertyName)) {
           return parent[propertyName];
         }
         return undefined
     };
 
-  return "<nav aria-label=\"Page products navigation\">\r\n  <ul class=\"pagination justify-content-center\">\r\n    <li class=\"page-item "
-    + ((stack1 = lookupProperty(helpers,"if").call(alias1,(depth0 != null ? lookupProperty(depth0,"prevLink") : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.program(3, data, 0),"data":data,"loc":{"start":{"line":3,"column":25},"end":{"line":3,"column":86}}})) != null ? stack1 : "")
-    + "\">\r\n      <a class=\"page-link\" href=\""
-    + ((stack1 = lookupProperty(helpers,"if").call(alias1,(depth0 != null ? lookupProperty(depth0,"prevLink") : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.program(5, data, 0),"data":data,"loc":{"start":{"line":4,"column":33},"end":{"line":4,"column":87}}})) != null ? stack1 : "")
-    + "\" tabindex=\"-1\" id=\"prevLink\">Previous</a>\r\n    </li>\r\n    <li class=\"page-item "
-    + ((stack1 = lookupProperty(helpers,"if").call(alias1,(depth0 != null ? lookupProperty(depth0,"nextLink") : depth0),{"name":"if","hash":{},"fn":container.program(7, data, 0),"inverse":container.program(3, data, 0),"data":data,"loc":{"start":{"line":7,"column":25},"end":{"line":7,"column":86}}})) != null ? stack1 : "")
-    + "\">\r\n      <a class=\"page-link\" href=\""
+  return "<nav aria-label=\"Page products navigation\">\r\n  <ul class=\"pagination justify-content-center\">\r\n    <li class=\"page-item disabled\">\r\n      <a class=\"page-link\" href=\""
+    + ((stack1 = lookupProperty(helpers,"if").call(depth0 != null ? depth0 : (container.nullContext || {}),(depth0 != null ? lookupProperty(depth0,"prevLink") : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.program(3, data, 0),"data":data,"loc":{"start":{"line":4,"column":33},"end":{"line":4,"column":87}}})) != null ? stack1 : "")
+    + "\" tabindex=\"-1\" id=\"prevLink\">Previous</a>\r\n    </li>\r\n    <li class=\"page-item\">\r\n      <a class=\"page-link\" href=\""
     + container.escapeExpression(container.lambda((depth0 != null ? lookupProperty(depth0,"nextLink") : depth0), depth0))
     + "\" id=\"nextLink\">Next</a>\r\n    </li>\r\n  </ul>\r\n</nav>";
 },"useData":true});

@@ -1,5 +1,7 @@
+{{>filters}}
 <ul class="product-store-list" id="product_list">
   {{#each products.payload as |product|}}
     {{>card-product product=product}}
   {{/each}}
 </ul>
+{{>products-pagination products}}

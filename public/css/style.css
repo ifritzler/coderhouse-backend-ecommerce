@@ -10,6 +10,7 @@ body {
     overflow-x: hidden;
     display: flex;
     flex-direction: column;
+    padding-bottom: 2rem;
 }
 
 ul,
@@ -385,6 +386,7 @@ li {
     width: 80%;
     margin-bottom: 2rem;
     margin-inline: auto;
+    flex-grow: 1;
 }
 
 .product-title {

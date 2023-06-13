@@ -12,6 +12,7 @@ const productListContainer = document.getElementById('product_list')
 const pageLinks = document.getElementsByClassName('page-link')
 const prevLinkE = document.getElementById('prevLink')
 const nextLinkE = document.getElementById('nextLink')
+const cartButton = document.getElementById('cartButton')
 
 // Constantes y validaciones de imágenes
 const maxFiles = 3
@@ -43,39 +44,32 @@ function addImageToPreview (file) {
   })
 
   const reader = new FileReader()
-  reader.onload = (function (aImg) {
-    return function (e) {
-      aImg.src = e.target.result
-    }
-  })(imageElement)
+  reader.onload = function (e) {
+    imageElement.src = e.target.result
+  }
   reader.readAsDataURL(file)
 }
 
-Array.from(pageLinks).forEach(link => link.addEventListener('click', async e => {
-  e.preventDefault()
-  const link = e.target.href
-  const response = await fetch(link)
-  const data = await response.json()
+Array.from(pageLinks).forEach((link) => {
+  link.addEventListener('click', async (e) => {
+    e.preventDefault()
+    const link = e.target.href
+    const response = await fetch(link)
+    const data = await response.json()
 
-  const products = data.payload
-  const nextLink = data.nextLink
-  const prevLink = data.prevLink
-  if (prevLink) {
-    prevLinkE.parentElement.classList.remove('disabled')
-    prevLinkE.setAttribute('href', prevLink)
-  } else {
-    prevLinkE.parentElement.classList.add('disabled')
-  }
-  if (nextLink) {
-    nextLinkE.parentElement.classList.remove('disabled')
-    nextLinkE.setAttribute('href', nextLink)
-  } else {
-    nextLinkE.parentElement.classList.add('disabled')
-  }
+    const products = data.payload
+    const nextLink = data.nextLink
+    const prevLink = data.prevLink
 
-  productListContainer.innerHTML = ''
-  products.forEach(product => addProductToHtml(product))
-}))
+    prevLinkE.parentElement.classList.toggle('disabled', !prevLink)
+    prevLinkE.setAttribute('href', prevLink || '#')
+    nextLinkE.parentElement.classList.toggle('disabled', !nextLink)
+    nextLinkE.setAttribute('href', nextLink || '#')
+
+    productListContainer.innerHTML = ''
+    products.forEach((product) => addProductToHtml(product))
+  })
+})
 
 // Evento de cambio de input de imágenes
 thumbnailsInput.addEventListener('change', function (e) {
@@ -83,7 +77,6 @@ thumbnailsInput.addEventListener('change', function (e) {
 
   if (selectedFiles.length > maxFiles) {
     thumbnailsInput.value = ''
-    // Eliminar las imágenes de la vista previa
     imageContainer.innerHTML = ''
     return alert(`Solo se permiten subir un máximo de ${maxFiles} imágenes.`)
   }
@@ -94,14 +87,12 @@ thumbnailsInput.addEventListener('change', function (e) {
 
     if (file.size > maxFileSize) {
       thumbnailsInput.value = ''
-      // Eliminar las imágenes de la vista previa
       imageContainer.innerHTML = ''
       return alert('El tamaño de los archivos no puede ser mayor a 5MB.')
     }
 
     if (!allowedExtensions.includes(fileExtension)) {
       thumbnailsInput.value = ''
-      // Eliminar las imágenes de la vista previa
       imageContainer.innerHTML = ''
       return alert('Solo se permiten subir archivos PNG, JPG, JPEG y WEBP.')
     }
@@ -118,7 +109,6 @@ customFileInput.addEventListener('change', function (e) {
 
   const files = Array.from(e.target.files)
 
-  // Eliminar las imágenes de la vista previa
   imageContainer.innerHTML = ''
 
   files.forEach(function (file) {
@@ -127,30 +117,42 @@ customFileInput.addEventListener('change', function (e) {
 })
 
 // Reiniciar el formulario cuando se cierre el modal
-addProductModal.addEventListener('hidden.bs.modal', function () {
+function resetForm () {
   addProductForm.reset()
   addProductForm.classList.remove('was-validated')
   thumbnailsInput.value = ''
   imageContainer.innerHTML = ''
-})
+}
 
-// Reiniciar el formulario cuando se haga clic en el botón de cierre del modal
-closeButton.addEventListener('click', function () {
-  addProductForm.reset()
-  addProductForm.classList.remove('was-validated')
-  thumbnailsInput.value = ''
-  imageContainer.innerHTML = ''
-})
-
-// Reiniciar el formulario cuando se haga clic fuera del modal
+addProductModal.addEventListener('hidden.bs.modal', resetForm)
+closeButton.addEventListener('click', resetForm)
 window.addEventListener('click', function (event) {
   if (event.target === addProductModal) {
-    addProductForm.reset()
-    addProductForm.classList.remove('was-validated')
-    thumbnailsInput.value = ''
-    imageContainer.innerHTML = ''
+    resetForm()
   }
 })
+
+// Agreagar un producto por su ID al carrito
+async function addToCart (pid) {
+  let cartId = localStorage.getItem('cartId')
+  if (!cartId) {
+    const response = await fetch('/api/carts', {
+      method: 'post'
+    })
+    const body = await response.json()
+    localStorage.setItem('cartId', body.payload)
+    cartId = body.payload
+  }
+  const response = await fetch(`/api/carts/${cartId}/product/${pid}`, {
+    method: 'post'
+  })
+
+  if (response.ok) {
+    alert('Producto agregado al carrito')
+  } else {
+    alert((await response.json()).error)
+  }
+}
 
 // Eliminar un producto por su ID
 async function deleteProduct (id) {
@@ -169,6 +171,14 @@ async function deleteProduct (id) {
   }
 }
 
+async function setFilter (e) {
+  const url = new URLSearchParams(window.location.search)
+  url.set('limit', e.innerText)
+  window.history.pushState({}, '', `?${url.toString()}`)
+  window.location.reload()
+  return false
+}
+
 // Agregar un producto al DOM
 function addProductToHtml (product) {
   const template = Handlebars.templates['card-product']
@@ -177,42 +187,36 @@ function addProductToHtml (product) {
 }
 
 // Escuchar eventos del formulario y realizar petición de creación del producto
-try {
-  addProductForm.addEventListener('submit', async (e) => {
-    e.preventDefault()
-    e.stopPropagation()
+addProductForm.addEventListener('submit', async (e) => {
+  e.preventDefault()
+  e.stopPropagation()
 
-    const formData = new FormData(addProductForm)
-    // const newProduct = Object.fromEntries(formData.entries())
+  const formData = new FormData(addProductForm)
 
-    const response = await fetch('/api/products', {
-      method: 'post',
-      body: formData,
-      headers: {
-        'x-socket-id': socket?.id || null
-      }
-    })
-
-    const bodyResponse = await response.json()
-
-    if (response.ok) {
-      const product = bodyResponse.payload
-      addProductToHtml(product)
-    } else {
-      const error = bodyResponse.error
-      alert(error)
+  const response = await fetch('/api/products', {
+    method: 'post',
+    body: formData,
+    headers: {
+      'x-socket-id': socket?.id || null
     }
-    addProductForm.reset()
-    addProductForm.classList.remove('was-validated')
-    thumbnailsInput.value = ''
-    imageContainer.innerHTML = ''
   })
-} catch (error) {
-}
+
+  const bodyResponse = await response.json()
+
+  if (response.ok) {
+    const product = bodyResponse.payload
+    addProductToHtml(product)
+  } else {
+    const error = bodyResponse.error
+    alert(error)
+  }
+
+  resetForm()
+})
 
 // Escuchar eventos de creación y eliminación de productos (solo si existe el objeto socket)
-try {
-  socket.on('product:created', product => {
+if (socket) {
+  socket.on('product:created', (product) => {
     console.log('Producto creado')
     addProductToHtml(product)
   })
@@ -222,4 +226,22 @@ try {
     const li = document.getElementById(id)
     li.remove()
   })
-} catch (error) {}
+}
+
+(async function () {
+  if (localStorage.getItem('cartId')) {
+    const cartId = localStorage.getItem('cartId')
+    // get items in cart and print quantity in cart button
+
+    const response = await fetch(`/api/carts/${cartId}`)
+    const body = await response.json()
+    const products = body.payload
+
+    if (products.length > 0) {
+      // each product has a quantity value, sum all quantity
+      const quantity = products.reduce((acc, curr) => acc + curr.quantity, 0)
+      cartButton.innerText = `Cart (${quantity})`
+    }
+    cartButton.href = `/cart/${cartId}`
+  }
+})()

@@ -1,10 +1,10 @@
 <nav aria-label="Page products navigation">
   <ul class="pagination justify-content-center">
-    <li class="page-item disabled">
+    <li class="page-item {{#if this.prevLink}}{{this.prevLink}}{{else}}disabled{{/if}}">
       <a class="page-link" href="{{#if this.prevLink}}{{this.prevLink}}{{else}}#{{/if}}" tabindex="-1" id="prevLink">Previous</a>
     </li>
     {{!-- <li class="page-item"><a class="page-link" href="#">1</a></li> --}}
-    <li class="page-item">
+    <li class="page-item {{#if this.nextLink}}{{this.nextLink}}{{else}}disabled{{/if}}">
       <a class="page-link" href="{{this.nextLink}}" id="nextLink">Next</a>
     </li>
   </ul>

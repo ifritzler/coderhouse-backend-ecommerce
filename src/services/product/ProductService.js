@@ -33,16 +33,16 @@ class ProductService {
       result.prevLink = result.prevPage ? `/api/products?${paramsPrev.toString()}` : null
       result.nextLink = result.nextPage ? `/api/products?${paramsNext.toString()}` : null
 
-      return JSON.parse(JSON.stringify(result))
+      return { ...result }
     } catch {
       return []
     }
   }
 
   async getProductById (id) {
-    const product = ProductModel
-      .findOne({ _id: id }).lean()
-      .orFail(new ProductNotFoundError(id))
+    const product = await ProductModel
+      .findOne({ _id: id })
+      .orFail(new ProductNotFoundError(id)).lean()
     return product
   }
 

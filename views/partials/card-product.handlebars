@@ -3,7 +3,7 @@
     <div class="row">
       <div class="product-wrapper text-center">
         <div class="product-img">
-          <a href="#" data-abc="true">
+          <a href="/product/{{this._id}}" data-abc="true">
             <div id="carousel-{{this._id}}" class="carousel slide" data-ride="carousel" data-interval="false">
               <div class="carousel-inner">
                 {{#each this.thumbnails as |image|}}
@@ -29,7 +29,7 @@
           <div class="product-action">
             <p class="text-center">{{this.title}}</p>
             <div class="product-action-style">
-              <a href="#"> <i class="fa fa-plus">
+              <a href="#" onclick="addToCart('{{this._id}}')"> <i class="fa fa-plus">
                 </i>
               </a>
               <a href="#" onclick="deleteProduct('{{this._id}}')">

@@ -1,0 +1,15 @@
+<h1>{{product.title}}</h1>
+<p>Description: {{product.description}}</p>
+<p>Price: {{product.price}}</p>
+<p>Stock: {{product.stock}}</p>
+<a href="#" onclick="addToCart('{{product._id}}')">
+  Agregar al carrito
+  <i class="fa fa-plus">
+  </i>
+</a>
+
+<div style="display: flex;">
+{{#each product.thumbnails}}
+  <img src="{{this}}" alt="Imagen de producto" width="300px">
+{{/each}}
+</div>

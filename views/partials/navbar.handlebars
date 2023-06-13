@@ -10,17 +10,14 @@
       <li class="nav-item active">
         <a class="nav-link" href="/">Home</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/realtimeproducts">Real time products</a>
-      </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
           Categories
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Category 1</a>
-          <a class="dropdown-item" href="#">Category 2</a>
+          <a class="dropdown-item" href="/?query=hombre">Hombre</a>
+          <a class="dropdown-item" href="/?query=mujer">Mujer</a>
           <div class="dropdown-divider"></div>
         </div>
       </li>
@@ -28,6 +25,9 @@
     <div>
       <li class="nav-item">
         <!-- Button trigger modal -->
+        <a class="btn btn-primary" href="/cart" id="cartButton">
+          Cart
+        </a>
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addProductModal">
           Add new Product
         </button>
