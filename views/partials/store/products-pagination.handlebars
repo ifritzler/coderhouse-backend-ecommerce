@@ -1,0 +1,10 @@
+<nav aria-label="Page products navigation">
+  <ul class="flex gap-4 justify-center">
+    <li class="pagination-btn flex-1 text-center max-w-[100px]">
+      <a class="inline-block w-full h-full py-2 px-4" href="{{#if this.prevLink}}{{this.prevLink}}{{else}}#{{/if}}" id="prevLink">Previous</a>
+    </li>
+    <li class="pagination-btn flex-1 text-center max-w-[100px]">
+      <a class="inline-block w-full h-full py-2 px-4" href="{{#if this.nextLInk}}{{this.nextLInk}}{{else}}#{{/if}}" id="nextLink">Next</a>
+    </li>
+  </ul>
+</nav>

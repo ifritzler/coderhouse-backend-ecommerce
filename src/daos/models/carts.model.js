@@ -18,6 +18,6 @@ const cartSchema = new mongoose.Schema({
     default: [],
     require: true
   }
-}, { versionKey: false })
+}, { versionKey: false, expireAfterSeconds: 30 * 24 * 60 * 60 })
 
 export const CartModel = mongoose.model('Carts', cartSchema)

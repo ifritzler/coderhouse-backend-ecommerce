@@ -1,0 +1,11 @@
+<section class="flex flex-1 md:gap-6 border border-gray-200 rounded-2xl shadow-inner mt-4 min-w-screen h-full min-h-full p-4">
+  {{>store/filters categories=categories}}
+  <div class="flex flex-1 flex-col justify-between px-4">
+    <ul class="product-store-list" id="product_list">
+      {{#each products.payload as |product|}}
+      {{>store/card-product product=product}}
+      {{/each}}
+    </ul>
+    {{>store/products-pagination products}}
+  </div>
+</section>

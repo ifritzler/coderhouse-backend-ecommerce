@@ -1,6 +1,7 @@
 import { CartModel } from '../../daos/models/carts.model.js'
 import { ProductModel } from '../../daos/models/products.model.js'
 import { ProductNotFoundError } from '../product/errors.js'
+import userService from '../users/userService.js'
 import { CartNotFoundException, NoStockProductException, ProductNotFoundInCartException } from './errors.js'
 
 class CartsService {

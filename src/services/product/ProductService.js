@@ -39,6 +39,15 @@ class ProductService {
     }
   }
 
+  async getCategories() {
+    const categories = await ProductModel.aggregate([
+      { $unwind: '$categories' }, // Separar las categorías en documentos individuales
+      { $group: { _id: null, categories: { $addToSet: '$categories' } } }, // Agrupar las categorías en un arreglo único
+      { $project: { _id: 0, categories: 1 } } // Proyectar solo el arreglo de categorías
+    ]);
+    return categories[0].categories.sort()
+  }
+
   async getProductById (id) {
     const product = await ProductModel
       .findOne({ _id: id })

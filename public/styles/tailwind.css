@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  h1 {
+    @apply text-2xl;
+  }
+  h2 {
+    @apply text-xl;
+  }
+  body {
+    @apply container mx-auto px-2 py-2 lg:px-16 lg:py-4 min-h-screen;
+    font-family: "Raleway", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+  ul, ol, li {
+    @apply list-none inline-block
+  }
+  .flex-basic {
+    @apply flex flex-row gap-4 items-center
+  }
+  .logo {
+    font-family: "Rozha One", "Raleway", sans-serif;
+  }
+}
+
+@layer buttons {
+  .nav-item-border {
+    @apply !border-b-[1px] !border-spacing-2 !border-solid !border-gray-600
+  }
+  .nav-link {
+    @apply block w-full h-full hover:!font-bold
+  }
+  .pagination-btn {
+    @apply flex justify-center items-center bg-blue-500 hover:bg-blue-700 rounded-lg text-white font-bold
+  }
+
+}
+

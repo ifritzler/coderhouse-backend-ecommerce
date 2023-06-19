@@ -1,0 +1,40 @@
+<div class="p-10 max-w-[300px] flex flex-col gap-4 border border-r-gray-300 border-b-transparent border-t-transparent border-l-transparent">
+  <div class="flex flex-col gap-4 ">
+    <h2>Show # items</h2>
+    <div class="flex flex-col gap-2 flex-wrap">
+      <div class="flex items-center mr-4">
+        <input checked id="show-5-radio" type="radio" value="" name="inline-radio-group"
+          class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+        <label for="show-5-radio" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">5</label>
+      </div>
+      <div class="flex items-center mr-4">
+        <input id="show-10-radio" type="radio" value="" name="inline-radio-group"
+          class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+        <label for="show-10-radio" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">10</label>
+      </div>
+      <div class="flex items-center mr-4">
+        <input id="show-25-radio" type="radio" value="" name="inline-radio-group"
+          class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+        <label for="show-25-radio" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">25</label>
+      </div>
+      <div class="flex items-center mr-4">
+        <input id="show-50-radio" type="radio" value="" name="inline-radio-group"
+          class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+        <label for="show-50-radio" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">50</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex flex-col gap-4 ">
+    <h2>Categories</h2>
+    <div class="flex flex-col flex-wrap" id="category-filters">
+      {{#each categories as |category|}}
+      <div class="flex items-center mb-4">
+        <input id="checkbox-{{category}}" type="checkbox" value="{{category}}"
+          class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+        <label for="checkbox-{{category}}" class="ml-2 text-sm font-medium text-black capitalize">{{this}}</label>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+</div>

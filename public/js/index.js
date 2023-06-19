@@ -132,26 +132,34 @@ window.addEventListener('click', function (event) {
   }
 })
 
+async function createNewCart () {
+  const response = await fetch('/api/carts', {
+    method: 'post'
+  })
+  const body = await response.json()
+  return body.payload
+}
+
 // Agreagar un producto por su ID al carrito
 async function addToCart (pid) {
   let cartId = localStorage.getItem('cartId')
   if (!cartId) {
-    const response = await fetch('/api/carts', {
-      method: 'post'
-    })
-    const body = await response.json()
-    localStorage.setItem('cartId', body.payload)
-    cartId = body.payload
+    cartId = await createNewCart()
+    localStorage.setItem('cartId', cartId)
   }
   const response = await fetch(`/api/carts/${cartId}/product/${pid}`, {
     method: 'post'
   })
 
-  if (response.ok) {
-    alert('Producto agregado al carrito')
-  } else {
-    alert((await response.json()).error)
+  if (!response.ok) {
+    cartId = await createNewCart()
+    localStorage.setItem('cartId', cartId)
+    await fetch(`/api/carts/${cartId}/product/${pid}`, {
+      method: 'post'
+    })
   }
+  alert('Producto agregado al carrito')
+  cartButton.href = `/cart/${localStorage.getItem('cartId')}`
 }
 
 // Eliminar un producto por su ID
@@ -184,6 +192,16 @@ function addProductToHtml (product) {
   const template = Handlebars.templates['card-product']
   const li = template(product)
   productListContainer.insertAdjacentHTML('beforeend', li)
+}
+
+// Logout User
+async function logout () {
+  const response = await fetch('/api/session/logout', {
+    method: 'delete'
+  })
+  if (response.redirected) {
+    window.location.href = response.url
+  }
 }
 
 // Escuchar eventos del formulario y realizar petición de creación del producto

@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 
 // Variables
-let user = null // Usuario actual
+let email = null // Usuario actual
 let socketMessagesFlag = false // Bandera para controlar los mensajes del socket
 let nonSeenMessagesCounter = 0
 
@@ -25,7 +25,7 @@ function chatScrollToBottom () {
 function printNewMessage (message) {
   const datetime = new Date(message.createdAt || new Date()).toLocaleTimeString().split(':').slice(0, 2).join(':')
   const li = document.createElement('li')
-  li.classList.add('message', `${user === message.user ? 'from-me' : 'from-outside'}`)
+  li.classList.add('message', `${email === message.user ? 'from-me' : 'from-outside'}`)
   li.innerHTML = `
     <p class="message-user"><span>${message.user}</span> <span>${datetime}</span></p>`
   const msgParagraph = document.createElement('p')
@@ -40,13 +40,13 @@ chatBubble.addEventListener('click', (e) => {
   e.preventDefault()
   e.stopPropagation()
 
-  if (!user) {
+  if (!email) {
     // Solicitar al usuario que ingrese su email
-    user = prompt('Ingrese su email: ')
+    email = prompt('Ingrese su email: ')
     const emailRegex = /^[\w\-.]+@([\w-]+\.)+[\w-]{2,}$/gm
-    if (!user || !emailRegex.test(user)) {
+    if (!email || !emailRegex.test(email)) {
       alert('Error al ingresar el email. Por favor intente de nuevo')
-      user = null
+      email = null
       return
     }
   }
@@ -111,7 +111,7 @@ chatMessageForm.addEventListener('submit', async (e) => {
   e.stopPropagation()
 
   // Crear objeto de mensaje a partir de los datos del formulario
-  const message = { ...Object.fromEntries(new FormData(chatMessageForm).entries()), user }
+  const message = { ...Object.fromEntries(new FormData(chatMessageForm).entries()), user: email }
   if (!message.message) {
     return
   }
